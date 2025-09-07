@@ -55,7 +55,7 @@ class TranscriptionProcessor:
         date_formatted = date.replace("-", "_")
         return f"{date_formatted}.json"
 
-    def save_transcription_json(self, transcription_data: Dict[str, Any], class_name: str, date: str):
+    def save_transcription_json(self, transcription_data: Dict[str, Any], class_name: str, title: str, date: str):
         """Save transcription data to JSON file."""
         class_dir = self.create_class_directory(class_name)
         filename = self.generate_filename(date)
