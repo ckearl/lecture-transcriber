@@ -8,7 +8,6 @@ from typing import Dict, Any, Optional
 import logging
 
 import whisper
-from whisper.utils import write_vtt, write_srt
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -148,9 +147,10 @@ class TranscriptionProcessor:
             self.update_progress(transcription_uuid,
                                  "Starting transcription with Whisper...")
 
-            # Transcribe with Whisper
+            # Transcribe with Whisper (forced to English)
             result = self.model.transcribe(
                 str(audio_path),
+                language="english",
                 verbose=True,
                 word_timestamps=True
             )
@@ -204,6 +204,7 @@ class TranscriptionProcessor:
             self.save_transcription_json(
                 transcription_data,
                 metadata["class"],
+                metadata["title"],
                 metadata["date"]
             )
 
