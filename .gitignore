@@ -1,0 +1,8 @@
+/transcriptions
+/audio/*
+
+.DS_Store
+.gitkeep
+.env
+
+
