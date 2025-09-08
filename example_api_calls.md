@@ -9,28 +9,27 @@ Replace `sample_lecture.mp3` with your actual audio filename:
 ```bash
 # Basic transcription upload
 curl -X POST "http://localhost:8000/transcribe" \
-  -F "file=@audio/sample_lecture.mp3" \
-  -F "title=Introduction to Financial Markets" \
-  -F "class_name=Finance" \
+  -F "file=@audio/partials/econ159_07_092607_split_005.mp3" \
+  -F "title=Game Theory" \
+  -F "class_name=Econ 159" \
+  -F "professor=Dr. Johnson"
+
+curl -X POST "http://localhost:8000/transcribe" \
+  -F "file=@audio/partials/econ159_07_092607_split_008.mp3" \
+  -F "title=Markets, Supply, and Demand" \
+  -F "class_name=Econ 159" \
   -F "professor=Dr. Johnson"
 
 # Upload with specific date
 curl -X POST "http://localhost:8000/transcribe" \
-  -F "file=@audio/marketing_lecture.wav" \
-  -F "title=Consumer Behavior Analysis" \
-  -F "class_name=Marketing" \
-  -F "professor=Prof. Davis" \
+  -F "file=@audio/partials/econ159_07_092607_split_010.mp3" \
+  -F "title=Impacts of Tariffs on Intl. Markets" \
+  -F "class_name=Econ 260" \
+  -F "professor=Prof. Lewis"
   -F "date=2024-01-20"
 
-# Upload operations lecture
-curl -X POST "http://localhost:8000/transcribe" \
-  -F "file=@audio/operations_class.m4a" \
-  -F "title=Supply Chain Management" \
-  -F "class_name=Operations" \
-  -F "professor=Dr. Wilson"
 ```
 
-Each upload will return a response like:
 ```json
 {
   "transcription_uuid": "123e4567-e89b-12d3-a456-426614174000",
@@ -45,7 +44,7 @@ Use the UUID returned from the upload:
 
 ```bash
 # Check if transcription is complete
-curl "http://localhost:8000/transcribe/status/123e4567-e89b-12d3-a456-426614174000"
+curl "http://localhost:8000/transcribe/status/{uuid}"
 ```
 
 Response will be:
@@ -61,7 +60,7 @@ Possible status values: `uploading`, `processing`, `completed`, `failed`
 
 ```bash
 # Get detailed progress information
-curl "http://localhost:8000/transcribe/progress/123e4567-e89b-12d3-a456-426614174000"
+curl "http://localhost:8000/transcribe/progress/{uuid}"
 ```
 
 Response examples:
@@ -114,7 +113,7 @@ Response:
 
 ```bash
 # Retrieve complete transcription data
-curl "http://localhost:8000/transcription/123e4567-e89b-12d3-a456-426614174000"
+curl "http://localhost:8000/transcription/{uuid}"
 ```
 
 This returns the complete JSON structure with timestamps, text, and placeholder fields for future AI features.
@@ -147,7 +146,21 @@ Response for large files:
 }
 ```
 
-## **8. Complete Testing Workflow**
+## **8. Process Text**
+
+Process text for `main_ideas`, `summary`, `keywords`, `questions_to_review`:
+
+```bash
+curl -X POST "http://localhost:8000/process_text/{uuid}"
+```
+
+GET results of text processing:
+
+```bash
+curl "http://localhost:8000/process_text/{uuid}"
+```
+
+## Complete Testing Workflow**
 
 Here's a complete test sequence:
 

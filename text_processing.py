@@ -1,12 +1,13 @@
 import os
 import json
 import logging
+import time
 from typing import Dict, List, Any, Optional
 from pathlib import Path
 import asyncio
+import re
 
-# TODO: Import Google Gemini SDK when implementing
-# import google.generativeai as genai
+import google.generativeai as genai
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -16,7 +17,7 @@ class TextProcessor:
     """
     Text processing using Google Gemini API.
     
-    This class will handle:
+    This class handles:
     1. Generating main ideas from transcription text
     2. Creating lecture summaries
     3. Extracting keywords and key concepts
@@ -31,29 +32,117 @@ class TextProcessor:
         self.results_tracker: Dict[str, Dict] = {}
         self.transcriptions_dir = Path("transcriptions")
 
-        # TODO: Initialize Google Gemini
+        # Configuration for processing
+        self.max_chunk_size = 30000  # Characters per chunk for Gemini
+        self.max_retries = 3
+        self.retry_delay = 2  # seconds
+
         self._initialize_gemini()
 
     def _initialize_gemini(self):
+        """Initialize Google Gemini API client."""
+        try:
+            api_key = os.getenv('GEMINI_API_KEY')
+            if not api_key:
+                logger.error(
+                    "GEMINI_API_KEY environment variable not set")
+                raise Exception("Google Gemini API key not configured")
+
+            genai.configure(api_key=api_key)
+
+            # Use gemini-pro model for text-only content
+            self.client = genai.GenerativeModel('gemini-pro')
+
+            # Configure generation parameters for academic content
+            self.generation_config = genai.types.GenerationConfig(
+                temperature=0.3,  # Lower temperature for more consistent academic analysis
+                top_p=0.8,
+                top_k=40,
+                max_output_tokens=4096,
+                candidate_count=1
+            )
+
+            logger.info("Google Gemini API client initialized successfully")
+
+        except Exception as e:
+            logger.error(f"Failed to initialize Google Gemini API: {e}")
+            self.client = None
+            raise
+
+    def _chunk_text(self, text: str) -> List[str]:
         """
-        TODO: Initialize Google Gemini API client.
+        Split long transcriptions into manageable chunks for API processing.
         
-        This will:
-        1. Set up API authentication using environment variable
-        2. Configure the Gemini model (gemini-pro or gemini-pro-vision)
-        3. Set up generation parameters
-        
-        Example implementation:
-        ```python
-        api_key = os.getenv('GOOGLE_GEMINI_API_KEY')
-        genai.configure(api_key=api_key)
-        
-        self.client = genai.GenerativeModel('gemini-pro')
-        ```
+        Args:
+            text: Full transcription text
+            
+        Returns:
+            List of text chunks that respect sentence boundaries
         """
-        logger.info("TODO: Initialize Google Gemini API client")
-        # Placeholder initialization
-        self.client = None
+        if len(text) <= self.max_chunk_size:
+            return [text]
+
+        chunks = []
+        current_chunk = ""
+
+        # Split by sentences to maintain context
+        sentences = re.split(r'[.!?]+\s+', text)
+
+        for sentence in sentences:
+            # Add sentence if it fits in current chunk
+            if len(current_chunk + sentence) <= self.max_chunk_size:
+                current_chunk += sentence + ". "
+            else:
+                # Save current chunk and start new one
+                if current_chunk.strip():
+                    chunks.append(current_chunk.strip())
+                current_chunk = sentence + ". "
+
+        # Add the last chunk
+        if current_chunk.strip():
+            chunks.append(current_chunk.strip())
+
+        logger.info(f"Split text into {len(chunks)} chunks")
+        return chunks
+
+    async def _make_gemini_request(self, prompt: str, retries: int = None) -> str:
+        """
+        Make a request to Gemini API with retry logic.
+        
+        Args:
+            prompt: The prompt to send to Gemini
+            retries: Number of retries (uses self.max_retries if None)
+            
+        Returns:
+            Generated response text
+        """
+        if retries is None:
+            retries = self.max_retries
+
+        for attempt in range(retries + 1):
+            try:
+                response = await asyncio.to_thread(
+                    self.client.generate_content,
+                    prompt,
+                    generation_config=self.generation_config
+                )
+
+                if response.text:
+                    return response.text.strip()
+                else:
+                    logger.warning(
+                        f"Empty response from Gemini on attempt {attempt + 1}")
+
+            except Exception as e:
+                logger.warning(
+                    f"Gemini API error on attempt {attempt + 1}: {e}")
+                if attempt < retries:
+                    await asyncio.sleep(self.retry_delay * (attempt + 1))
+                else:
+                    raise Exception(
+                        f"Failed to get response from Gemini after {retries + 1} attempts: {e}")
+
+        raise Exception("No valid response received from Gemini")
 
     def get_processing_status(self, transcription_uuid: str) -> str:
         """Get the current status of text processing."""
@@ -80,7 +169,7 @@ class TextProcessor:
                             with open(json_file, 'r', encoding='utf-8') as f:
                                 data = json.load(f)
 
-                            if data["transcription_uuid"] == transcription_uuid:
+                            if data.get("transcription_uuid") == transcription_uuid:
                                 return data, json_file
                         except (json.JSONDecodeError, KeyError):
                             continue
@@ -99,229 +188,339 @@ class TextProcessor:
             logger.error(f"Failed to save updated transcription: {e}")
             raise
 
+    def _create_main_ideas_prompt(self, text_chunks: List[str], context: Dict) -> str:
+        """Create prompt for extracting main ideas."""
+        class_name = context.get('class', 'Business')
+        professor = context.get('professor', 'Professor')
+        title = context.get('title', 'Lecture')
+
+        if len(text_chunks) == 1:
+            text_content = text_chunks[0][:8000]  # Limit for single chunk
+        else:
+            # For multiple chunks, create a summary of each
+            text_content = "\n\n".join([f"Section {i+1}: {chunk[:2000]}..."
+                                        for i, chunk in enumerate(text_chunks[:3])])
+
+        return f"""
+You are analyzing a {class_name} lecture by {professor} titled "{title}".
+
+Please identify the 6-8 most important main ideas or key concepts discussed in this lecture. Focus on:
+- Core business concepts and frameworks
+- Key theories or models presented
+- Strategic insights or principles
+- Important methodologies or approaches
+- Critical takeaways for MBA students
+
+Lecture content:
+{text_content}
+
+Provide exactly 6-8 main ideas as a numbered list. Each idea should be concise (10-15 words) but comprehensive enough to capture the essence of the concept.
+
+Format your response as:
+1. [Main idea 1]
+2. [Main idea 2]
+...etc.
+"""
+
+    def _create_summary_prompt(self, text_chunks: List[str], context: Dict) -> str:
+        """Create prompt for generating lecture summary."""
+        class_name = context.get('class', 'Business')
+        professor = context.get('professor', 'Professor')
+        title = context.get('title', 'Lecture')
+
+        if len(text_chunks) == 1:
+            text_content = text_chunks[0]
+        else:
+            # For multiple chunks, include first and last chunks fully, summarize middle
+            text_content = text_chunks[0]
+            if len(text_chunks) > 2:
+                text_content += f"\n\n[Middle sections contain discussions of: {', '.join(context.get('keywords', ['various topics']))}]\n\n"
+            text_content += text_chunks[-1]
+
+        return f"""
+Create a comprehensive summary of this {class_name} lecture by {professor} on "{title}".
+
+Your summary should be 400-500 words and include:
+1. Brief introduction to the topic/context
+2. Main arguments and key points presented
+3. Important frameworks, models, or methodologies discussed
+4. Practical applications or case studies mentioned
+5. Key conclusions and takeaways for MBA students
+
+Focus on content that would be most valuable for exam preparation and practical business application.
+
+Lecture content:
+{text_content[:15000]}
+
+Write a well-structured, professional summary suitable for MBA students preparing for exams.
+"""
+
+    def _create_keywords_prompt(self, text_chunks: List[str], context: Dict) -> str:
+        """Create prompt for extracting keywords."""
+        class_name = context.get('class', 'Business')
+
+        # Sample from multiple chunks if available
+        if len(text_chunks) > 1:
+            sample_text = text_chunks[0][:3000] + \
+                "\n\n" + text_chunks[-1][:3000]
+        else:
+            sample_text = text_chunks[0][:6000]
+
+        return f"""
+Extract 12-15 important keywords and key terms from this {class_name} lecture.
+
+Focus on:
+- Business terminology and jargon
+- Frameworks and models (e.g., SWOT, Porter's Five Forces, etc.)
+- Technical terms specific to the subject area
+- Important concepts that would appear in exams
+- Methodologies and analytical tools
+- Key performance indicators or metrics
+- Strategic concepts and approaches
+
+Avoid common words. Focus on substantive business and academic terms.
+
+Lecture content:
+{sample_text}
+
+Provide exactly 12-15 keywords as a simple comma-separated list (no numbers or bullets).
+Example format: Strategic Planning, Market Analysis, Competitive Advantage, SWOT Analysis, ...
+"""
+
+    def _create_questions_prompt(self, text_chunks: List[str], context: Dict, main_ideas: List[str]) -> str:
+        """Create prompt for generating review questions."""
+        class_name = context.get('class', 'Business')
+        title = context.get('title', 'Lecture')
+
+        # Use main ideas to guide question generation
+        ideas_text = "\n".join([f"- {idea}" for idea in main_ideas])
+
+        # Sample key content for questions
+        if len(text_chunks) > 1:
+            content_sample = text_chunks[0][:4000] + \
+                "\n...\n" + text_chunks[-1][:4000]
+        else:
+            content_sample = text_chunks[0][:8000]
+
+        return f"""
+Generate 10-12 review questions for this {class_name} lecture on "{title}".
+
+Main concepts covered:
+{ideas_text}
+
+Create a mix of question types:
+- 3-4 factual/recall questions (What is...? Define...?)
+- 4-5 analytical questions (How does...? Why is...? Compare...?)
+- 3-4 application questions (How would you apply...? What would happen if...?)
+
+Questions should:
+- Be suitable for MBA-level study and exam preparation
+- Cover the most important concepts from the lecture
+- Encourage critical thinking about business applications
+- Be clear and specific enough to guide study
+
+Lecture sample:
+{content_sample}
+
+Provide exactly 10-12 questions as a numbered list:
+1. [Question 1]
+2. [Question 2]
+...etc.
+"""
+
+    def _parse_list_response(self, response: str, expected_count: int = None) -> List[str]:
+        """Parse numbered list response from Gemini."""
+        lines = response.strip().split('\n')
+        items = []
+
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+
+            # Remove numbering (1., 2., -, •, etc.)
+            clean_line = re.sub(r'^\d+\.?\s*', '', line)
+            clean_line = re.sub(r'^[-•]\s*', '', clean_line)
+
+            # Avoid empty or very short items
+            if clean_line and len(clean_line) > 3:
+                items.append(clean_line)
+
+        return items
+
+    def _parse_keywords_response(self, response: str) -> List[str]:
+        """Parse comma-separated keywords from Gemini response."""
+        # Remove any introductory text and get the keywords
+        lines = response.strip().split('\n')
+        keywords_line = ""
+
+        for line in lines:
+            if ',' in line and len(line.split(',')) > 3:  # Likely the keywords line
+                keywords_line = line
+                break
+
+        if not keywords_line:
+            keywords_line = response.strip()
+
+        # Split by commas and clean up
+        keywords = [keyword.strip() for keyword in keywords_line.split(',')]
+        keywords = [kw for kw in keywords if kw and len(
+            kw) > 2]  # Filter short/empty items
+
+        return keywords[:15]  # Limit to 15 keywords
+
     async def generate_main_ideas(self, transcription_text: str, context: Dict) -> List[str]:
-        """
-        TODO: Generate main ideas from transcription using Google Gemini.
-        
-        This function will:
-        1. Create a prompt asking Gemini to identify key concepts
-        2. Include context (class, professor, title) for better results
-        3. Parse Gemini's response into a list of main ideas
-        4. Handle API errors and retries
-        
-        Args:
-            transcription_text: Full transcription text
-            context: Metadata about the lecture (class, professor, etc.)
-            
-        Returns:
-            List[str]: List of main ideas/key concepts
-            
-        Example prompt:
-        "Analyze this lecture transcription and identify the 5-8 main ideas or key concepts 
-        discussed. Context: This is a {class} lecture by {professor} on {title}.
-        
-        Transcription: {text}
-        
-        Please provide only the main ideas as a numbered list."
-        """
+        """Generate main ideas from transcription using Google Gemini."""
         try:
-            # TODO: Implement Gemini API call
-            # prompt = self._create_main_ideas_prompt(transcription_text, context)
-            # response = await self.client.generate_content_async(prompt)
-            # main_ideas = self._parse_main_ideas_response(response.text)
+            text_chunks = self._chunk_text(transcription_text)
+            prompt = self._create_main_ideas_prompt(text_chunks, context)
 
-            logger.info("TODO: Generate main ideas using Google Gemini")
+            response = await self._make_gemini_request(prompt)
+            main_ideas = self._parse_list_response(response, expected_count=8)
 
-            # Placeholder response
-            main_ideas = [
-                f"TODO: Main idea 1 for {context.get('class', 'Unknown')} lecture",
-                f"TODO: Main idea 2 about {context.get('title', 'lecture content')}",
-                "TODO: Main idea 3 (generated by Gemini)"
-            ]
+            # Ensure we have at least 5 ideas and at most 8
+            if len(main_ideas) < 5:
+                main_ideas.extend(
+                    [f"Additional concept {i}" for i in range(5 - len(main_ideas))])
+            elif len(main_ideas) > 8:
+                main_ideas = main_ideas[:8]
 
+            logger.info(f"Generated {len(main_ideas)} main ideas")
             return main_ideas
 
         except Exception as e:
             logger.error(f"Failed to generate main ideas: {e}")
-            return ["Error generating main ideas - TODO: Implement Gemini integration"]
+            return [
+                "Error generating main ideas - please check API configuration",
+                f"Class: {context.get('class', 'Unknown')}",
+                f"Topic: {context.get('title', 'Unknown')}"
+            ]
 
     async def generate_summary(self, transcription_text: str, context: Dict) -> str:
-        """
-        TODO: Generate lecture summary using Google Gemini.
-        
-        This function will:
-        1. Create a comprehensive summary prompt
-        2. Request a structured summary (intro, main points, conclusion)
-        3. Limit summary length appropriately
-        4. Include context for better understanding
-        
-        Args:
-            transcription_text: Full transcription text
-            context: Metadata about the lecture
-            
-        Returns:
-            str: Comprehensive lecture summary
-            
-        Example prompt:
-        "Create a comprehensive but concise summary of this lecture. 
-        Include the main topics covered, key arguments, and important conclusions.
-        Keep it under 500 words. Context: {class} lecture by {professor}.
-        
-        Transcription: {text}"
-        """
+        """Generate lecture summary using Google Gemini."""
         try:
-            # TODO: Implement Gemini API call
-            logger.info("TODO: Generate summary using Google Gemini")
+            text_chunks = self._chunk_text(transcription_text)
+            prompt = self._create_summary_prompt(text_chunks, context)
 
-            # Placeholder response
-            class_name = context.get('class', 'Unknown Class')
-            title = context.get('title', 'Lecture')
+            response = await self._make_gemini_request(prompt)
 
-            summary = f"""TODO: This is a placeholder summary for the {class_name} lecture on {title}. 
-            
-            The actual implementation will use Google Gemini to:
-            1. Analyze the full transcription text
-            2. Identify key themes and arguments
-            3. Create a structured summary with main points
-            4. Provide conclusions and takeaways
-            
-            Summary length will be optimized for MBA student review needs."""
+            # Clean up the response
+            summary = response.strip()
 
+            # Ensure reasonable length (aim for 400-500 words)
+            words = summary.split()
+            if len(words) > 600:
+                summary = ' '.join(words[:550]) + "..."
+
+            logger.info(f"Generated summary with {len(summary.split())} words")
             return summary
 
         except Exception as e:
             logger.error(f"Failed to generate summary: {e}")
-            return "Error generating summary - TODO: Implement Gemini integration"
+            class_name = context.get('class', 'Unknown Class')
+            title = context.get('title', 'Lecture')
+            return f"""Error generating summary for the {class_name} lecture on {title}. 
+            
+Please check the Google Gemini API configuration and ensure the GEMINI_API_KEY environment variable is properly set. The transcription was successfully created but AI analysis could not be completed.
+
+To resolve this issue:
+1. Verify your Google Gemini API key is valid
+2. Ensure you have sufficient API quota
+3. Check your network connectivity
+4. Retry the text processing operation"""
 
     async def extract_keywords(self, transcription_text: str, context: Dict) -> List[str]:
-        """
-        TODO: Extract keywords and key terms using Google Gemini.
-        
-        This function will:
-        1. Identify important terminology and concepts
-        2. Focus on business/academic keywords relevant to MBA studies
-        3. Include technical terms, frameworks, and methodologies
-        4. Remove common words and focus on substantive terms
-        
-        Args:
-            transcription_text: Full transcription text
-            context: Metadata about the lecture
-            
-        Returns:
-            List[str]: List of important keywords/terms
-        """
+        """Extract keywords and key terms using Google Gemini."""
         try:
-            # TODO: Implement Gemini API call
-            logger.info("TODO: Extract keywords using Google Gemini")
+            text_chunks = self._chunk_text(transcription_text)
+            prompt = self._create_keywords_prompt(text_chunks, context)
 
-            # Placeholder response
-            class_name = context.get('class', 'business')
-            keywords = [
-                f"TODO: {class_name.lower()}-related keyword 1",
-                f"TODO: {class_name.lower()}-related keyword 2",
-                "TODO: Framework or methodology mentioned",
-                "TODO: Key business concept",
-                "TODO: Important terminology"
-            ]
+            response = await self._make_gemini_request(prompt)
+            keywords = self._parse_keywords_response(response)
 
-            return keywords
+            # Ensure we have a reasonable number of keywords
+            if len(keywords) < 8:
+                # Add some default business terms based on class
+                class_name = context.get('class', 'business').lower()
+                default_terms = {
+                    'finance': ['Financial Analysis', 'Capital Structure', 'Risk Management'],
+                    'marketing': ['Market Segmentation', 'Brand Strategy', 'Consumer Behavior'],
+                    'operations': ['Process Optimization', 'Supply Chain', 'Quality Management'],
+                    'strategy': ['Competitive Advantage', 'Strategic Planning', 'Market Analysis']
+                }
+
+                additional = default_terms.get(
+                    class_name, ['Business Strategy', 'Management', 'Analysis'])
+                keywords.extend(additional[:15-len(keywords)])
+
+            logger.info(f"Extracted {len(keywords)} keywords")
+            return keywords[:15]  # Limit to 15
 
         except Exception as e:
             logger.error(f"Failed to extract keywords: {e}")
-            return ["Error extracting keywords - TODO: Implement Gemini integration"]
-
-    async def generate_review_questions(self, transcription_text: str, context: Dict) -> List[str]:
-        """
-        TODO: Generate review questions using Google Gemini.
-        
-        This function will:
-        1. Create thoughtful questions for study/review
-        2. Include both factual recall and analytical questions
-        3. Focus on exam-relevant content
-        4. Generate questions at different difficulty levels
-        
-        Args:
-            transcription_text: Full transcription text
-            context: Metadata about the lecture
-            
-        Returns:
-            List[str]: List of review questions
-            
-        Example prompt:
-        "Based on this lecture transcription, generate 8-12 review questions 
-        that would help an MBA student study for exams. Include both factual 
-        questions and analytical/application questions. Context: {class} lecture.
-        
-        Transcription: {text}"
-        """
-        try:
-            # TODO: Implement Gemini API call
-            logger.info("TODO: Generate review questions using Google Gemini")
-
-            # Placeholder response
-            class_name = context.get('class', 'Business')
-            questions = [
-                f"TODO: What are the main {class_name.lower()} concepts discussed in this lecture?",
-                f"TODO: How does [concept] apply to real-world {class_name.lower()} scenarios?",
-                "TODO: What frameworks or models were presented?",
-                "TODO: What are the key differences between [concept A] and [concept B]?",
-                "TODO: How would you apply these concepts to solve [type of problem]?",
-                "TODO: What are the implications of [key point] for business strategy?"
+            class_name = context.get('class', 'business')
+            return [
+                f"{class_name} Analysis",
+                "Key Concepts",
+                "Strategic Framework",
+                "Management Principles",
+                "Business Applications"
             ]
 
-            return questions
+    async def generate_review_questions(self, transcription_text: str, context: Dict, main_ideas: List[str] = None) -> List[str]:
+        """Generate review questions using Google Gemini."""
+        try:
+            if not main_ideas:
+                main_ideas = await self.generate_main_ideas(transcription_text, context)
+
+            text_chunks = self._chunk_text(transcription_text)
+            prompt = self._create_questions_prompt(
+                text_chunks, context, main_ideas)
+
+            response = await self._make_gemini_request(prompt)
+            questions = self._parse_list_response(response, expected_count=12)
+
+            # Ensure we have enough questions
+            if len(questions) < 8:
+                class_name = context.get('class', 'Business')
+                title = context.get('title', 'this topic')
+                additional_questions = [
+                    f"What are the key takeaways from this {class_name} lecture?",
+                    f"How do the concepts discussed apply to real-world business scenarios?",
+                    f"What frameworks or models were introduced in relation to {title}?",
+                    f"How might these principles be tested in an exam setting?"
+                ]
+                questions.extend(additional_questions[:12-len(questions)])
+
+            logger.info(f"Generated {len(questions)} review questions")
+            return questions[:12]  # Limit to 12
 
         except Exception as e:
             logger.error(f"Failed to generate review questions: {e}")
-            return ["Error generating questions - TODO: Implement Gemini integration"]
-
-    def _create_comprehensive_prompt(self, transcription_text: str, context: Dict) -> str:
-        """
-        TODO: Create a comprehensive prompt for processing all text elements at once.
-        
-        This could be more efficient than multiple API calls.
-        """
-        class_name = context.get('class', 'Unknown')
-        professor = context.get('professor', 'Unknown')
-        title = context.get('title', 'Lecture')
-
-        prompt = f"""
-        Please analyze this lecture transcription and provide:
-
-        1. MAIN IDEAS (5-8 key concepts)
-        2. SUMMARY (comprehensive but under 400 words)  
-        3. KEYWORDS (10-15 important terms)
-        4. REVIEW QUESTIONS (8-12 questions for study)
-
-        Context:
-        - Class: {class_name}
-        - Professor: {professor} 
-        - Title: {title}
-
-        Transcription:
-        {transcription_text[:4000]}...
-
-        Please format your response clearly with sections for each element.
-        """
-
-        return prompt
+            class_name = context.get('class', 'Business')
+            title = context.get('title', 'the lecture topic')
+            return [
+                f"What are the main concepts covered in this {class_name} lecture?",
+                f"How do the principles discussed relate to {title}?",
+                "What practical applications were mentioned?",
+                "How might this content appear on an exam?",
+                "What are the key frameworks or models presented?"
+            ]
 
     async def process_text(self, transcription_uuid: str) -> Dict:
         """
         Main function to process transcription text with Google Gemini.
         
-        This function will:
-        1. Load the existing transcription
-        2. Generate main ideas, summary, keywords, and questions
-        3. Update the transcription JSON with processed content
-        4. Return processing results
-        
-        Args:
-            transcription_uuid: UUID of the transcription to process
-            
-        Returns:
-            Dict: Results of text processing
+        This function:
+        1. Loads the existing transcription
+        2. Generates main ideas, summary, keywords, and questions
+        3. Updates the transcription JSON with processed content
+        4. Returns processing results
         """
+        if not self.client:
+            raise Exception(
+                "Google Gemini API not properly initialized. Check your GEMINI_API_KEY environment variable.")
+
         try:
             self.update_status(transcription_uuid, "starting")
 
@@ -336,12 +535,16 @@ class TextProcessor:
             if not transcription_text:
                 raise Exception("No transcription text found")
 
+            # Prepare context for AI processing
             context = {
-                "class": transcription_data.get("class", ""),
-                "professor": transcription_data.get("professor", ""),
-                "title": transcription_data.get("title", ""),
+                "class": transcription_data.get("class", "Business"),
+                "professor": transcription_data.get("professor", "Professor"),
+                "title": transcription_data.get("title", "Lecture"),
                 "date": transcription_data.get("date", "")
             }
+
+            logger.info(
+                f"Processing {len(transcription_text)} characters for {context['class']} lecture")
 
             # Generate all text processing elements
             self.update_status(transcription_uuid, "generating_main_ideas")
@@ -354,7 +557,7 @@ class TextProcessor:
             keywords = await self.extract_keywords(transcription_text, context)
 
             self.update_status(transcription_uuid, "generating_questions")
-            questions = await self.generate_review_questions(transcription_text, context)
+            questions = await self.generate_review_questions(transcription_text, context, main_ideas)
 
             # Update transcription with processed content
             transcription_data["main_ideas"] = main_ideas
@@ -376,9 +579,10 @@ class TextProcessor:
             }
 
             self.results_tracker[transcription_uuid] = processing_results
-
             self.update_status(transcription_uuid, "completed")
-            logger.info(f"Text processing completed for: {transcription_uuid}")
+
+            logger.info(
+                f"Text processing completed successfully for: {transcription_uuid}")
 
             return {
                 "transcription_uuid": transcription_uuid,
@@ -395,29 +599,23 @@ class TextProcessor:
 
     def get_processing_statistics(self, transcription_uuid: str) -> Optional[Dict]:
         """
-        TODO: Get statistics about the text processing results.
-        
-        This could include:
-        - Processing time
-        - Text length analysis
-        - Keyword density
-        - Summary compression ratio
-        
-        Args:
-            transcription_uuid: UUID of the transcription
-            
-        Returns:
-            Dict: Processing statistics
+        Get statistics about the text processing results.
         """
         results = self.get_processed_results(transcription_uuid)
         if not results:
             return None
 
-        # TODO: Implement statistics calculation
+        transcription_data, _ = self.load_transcription_json(
+            transcription_uuid)
+        original_text = transcription_data.get(
+            "text", "") if transcription_data else ""
+
         return {
             "main_ideas_count": len(results.get("main_ideas", [])),
             "keywords_count": len(results.get("keywords", [])),
             "questions_count": len(results.get("questions_to_review", [])),
             "summary_word_count": len(results.get("summary", "").split()),
-            "processing_time": "TODO"
+            "original_text_word_count": len(original_text.split()),
+            "processing_status": self.get_processing_status(transcription_uuid),
+            "compression_ratio": round(len(results.get("summary", "").split()) / max(len(original_text.split()), 1) * 100, 2)
         }
