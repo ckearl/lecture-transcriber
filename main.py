@@ -1,14 +1,14 @@
-import os
-import json
-import uuid
 from datetime import datetime
-from typing import List, Optional
-from pathlib import Path
-
 from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks, Form
-from fastapi.responses import JSONResponse
+from fastapi.responses import Response, JSONResponse
+from pathlib import Path
 from pydantic import BaseModel
+from typing import List, Optional
 import aiofiles
+import asyncio
+import json
+import os
+import uuid
 
 from transcribe import TranscriptionProcessor
 from speaker_diarization import SpeakerDiarizer
@@ -254,7 +254,7 @@ async def get_transcription(transcription_uuid: str):
 
 @app.post("/process_text/{transcription_uuid}")
 async def trigger_text_processing(transcription_uuid: str):
-    """Trigger text processing for a completed transcription (TODO: Implement with Google Gemini)."""
+    """Trigger text processing for a completed transcription."""
     try:
         result = await text_processor.process_text(transcription_uuid)
         return {"message": "Text processing started", "uuid": transcription_uuid}
@@ -264,7 +264,7 @@ async def trigger_text_processing(transcription_uuid: str):
 
 @app.get("/process_text/{transcription_uuid}")
 async def get_processed_text(transcription_uuid: str):
-    """Get processed text results (TODO: Implement)."""
+    """Get processed text results."""
     try:
         result = text_processor.get_processed_results(transcription_uuid)
         return result
@@ -272,32 +272,205 @@ async def get_processed_text(transcription_uuid: str):
         raise HTTPException(
             status_code=404, detail=f"Processed text not found: {str(e)}")
 
-# TODO: Speaker Diarization Routes
 
-
+# WIP
 @app.post("/diarize/{transcription_uuid}")
-async def trigger_speaker_diarization(transcription_uuid: str):
-    """Trigger speaker diarization for a transcription (TODO: Implement with pyannote.audio)."""
-    # TODO: Implement with pyannote.audio (Hugging Face)
+async def trigger_speaker_diarization(
+    transcription_uuid: str,
+    audio_file: UploadFile = File(...),
+    background_tasks: BackgroundTasks = None
+):
+    """
+    Trigger speaker diarization for a transcription with audio file upload.
+    Accepts both the transcription UUID (to locate existing JSON) and audio file (for processing).
+    """
     try:
-        result = await speaker_diarizer.diarize_speakers(transcription_uuid)
-        return {"message": "Speaker diarization started", "uuid": transcription_uuid}
+        # Validate audio file
+        validate_audio_file(audio_file)
+
+        # Check if transcription exists
+        transcription_data = None
+        json_file_path = None
+
+        # Search for existing transcription
+        for class_dir in TRANSCRIPTIONS_DIR.iterdir():
+            if class_dir.is_dir():
+                for json_file in class_dir.glob("*.json"):
+                    try:
+                        with open(json_file, 'r', encoding='utf-8') as f:
+                            data = json.load(f)
+                        if data.get("transcription_uuid") == transcription_uuid:
+                            transcription_data = data
+                            json_file_path = json_file
+                            break
+                    except (json.JSONDecodeError, KeyError):
+                        continue
+                if transcription_data:
+                    break
+
+        if not transcription_data:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Transcription with UUID {transcription_uuid} not found"
+            )
+
+        # Check if diarization is already in progress
+        current_status = speaker_diarizer.get_diarization_status(
+            transcription_uuid)
+        if current_status in ["starting", "preprocessing", "diarizing", "mapping_speakers"]:
+            return {
+                "message": f"Diarization already in progress for {transcription_uuid}",
+                "status": current_status,
+                "transcription_uuid": transcription_uuid
+            }
+
+        # Read audio file content
+        audio_content = await audio_file.read()
+
+        # Check file size for processing decision
+        file_size = len(audio_content)
+
+        if file_size <= MAX_SYNC_FILE_SIZE:
+            # Process synchronously for smaller files
+            result = await speaker_diarizer.diarize_speakers(
+                transcription_uuid, audio_content, audio_file.filename
+            )
+            return result
+        else:
+            # Process asynchronously for larger files
+            if background_tasks:
+                background_tasks.add_task(
+                    speaker_diarizer.diarize_speakers,
+                    transcription_uuid, audio_content, audio_file.filename
+                )
+            else:
+                # If no background_tasks available, process anyway but warn
+                asyncio.create_task(
+                    speaker_diarizer.diarize_speakers(
+                        transcription_uuid, audio_content, audio_file.filename
+                    )
+                )
+
+            return {
+                "message": f"Large file received, diarization started in background",
+                "status": "starting",
+                "transcription_uuid": transcription_uuid,
+                "file_size_mb": round(file_size / (1024 * 1024), 2)
+            }
+
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(
             status_code=500, detail=f"Speaker diarization failed: {str(e)}")
 
-
+# WIP
 @app.get("/diarize/{transcription_uuid}")
 async def get_diarization_results(transcription_uuid: str):
-    """Get speaker diarization results (TODO: Implement)."""
-    # TODO: Return speaker diarization results from pyannote.audio
+    """Get speaker diarization results and status."""
     try:
-        result = speaker_diarizer.get_diarization_results(transcription_uuid)
-        return result
+        # Get current status
+        status = speaker_diarizer.get_diarization_status(transcription_uuid)
+
+        # Get results if available
+        results = speaker_diarizer.get_diarization_results(transcription_uuid)
+
+        response_data = {
+            "transcription_uuid": transcription_uuid,
+            "status": status
+        }
+
+        if results:
+            response_data.update(results)
+
+        # If completed, also get statistics
+        if status == "completed" and results:
+            stats = speaker_diarizer.get_speaker_statistics(transcription_uuid)
+            if stats:
+                response_data["detailed_statistics"] = stats
+
+        return response_data
+
     except Exception as e:
         raise HTTPException(
             status_code=404, detail=f"Diarization results not found: {str(e)}")
 
+# WIP
+@app.get("/diarize/{transcription_uuid}/status")
+async def get_diarization_status_only(transcription_uuid: str):
+    """Get only the current diarization status (lightweight endpoint)."""
+    try:
+        status = speaker_diarizer.get_diarization_status(transcription_uuid)
+        return {
+            "transcription_uuid": transcription_uuid,
+            "status": status
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=404, detail=f"Status not found: {str(e)}")
+
+# WIP
+@app.get("/diarize/{transcription_uuid}/statistics")
+async def get_speaker_statistics(transcription_uuid: str):
+    """Get detailed speaker statistics for a completed diarization."""
+    try:
+        stats = speaker_diarizer.get_speaker_statistics(transcription_uuid)
+        if not stats:
+            raise HTTPException(
+                status_code=404,
+                detail="Statistics not available - diarization may not be completed"
+            )
+        return stats
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Failed to get statistics: {str(e)}")
+
+# WIP
+@app.get("/diarize/{transcription_uuid}/export/{format}")
+async def export_diarization_results(transcription_uuid: str, format: str):
+    """
+    Export diarization results in various formats.
+    Supported formats: json, csv, txt
+    """
+    try:
+        if format.lower() not in ["json", "csv", "txt"]:
+            raise HTTPException(
+                status_code=400,
+                detail="Unsupported format. Use: json, csv, or txt"
+            )
+
+        exported_data = speaker_diarizer.export_diarization_results(
+            transcription_uuid, format
+        )
+
+        if not exported_data:
+            raise HTTPException(
+                status_code=404,
+                detail="Export data not available - diarization may not be completed"
+            )
+
+        # Set appropriate content type and filename
+        media_types = {
+            "json": "application/json",
+            "csv": "text/csv",
+            "txt": "text/plain"
+        }
+
+        filename = f"diarization_{transcription_uuid}.{format.lower()}"
+
+        return Response(
+            content=exported_data,
+            media_type=media_types[format.lower()],
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Export failed: {str(e)}")
 
 @app.get("/health")
 async def health_check():

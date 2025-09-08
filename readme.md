@@ -8,8 +8,8 @@ This backend API serves as a comprehensive lecture processing system similar to 
 
 - **Accurate Transcriptions** - Using OpenAI Whisper for high-quality speech-to-text
 - **Speaker Identification** - Distinguishing between professors and students (TODO)
-- **Intelligent Summaries** - Key points and main ideas extraction (TODO)
-- **Study Materials** - Auto-generated review questions and keywords (TODO)
+- **Intelligent Summaries** - Key points and main ideas extraction
+- **Study Materials** - Auto-generated review questions and keywords
 
 ## 🏗️ Architecture
 
@@ -18,7 +18,7 @@ This backend API serves as a comprehensive lecture processing system similar to 
 ├── main.py                    # FastAPI routes and request handling
 ├── transcribe.py              # Whisper transcription processing
 ├── speaker_diarization.py     # Speaker identification (TODO)
-├── text_processing.py         # AI text analysis (TODO)
+├── text_processing.py         # AI text analysis
 └── /transcriptions           # JSON storage organized by class
     ├── /Finance
     ├── /Marketing
@@ -47,7 +47,7 @@ This backend API serves as a comprehensive lecture processing system similar to 
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.8-3.11
 - FFmpeg (for audio processing)
 - 4GB+ RAM (for Whisper model)
 
@@ -56,15 +56,15 @@ This backend API serves as a comprehensive lecture processing system similar to 
 1. **Clone and Setup**
 
 ```bash
-git clone <repository-url>
-cd mba-lecture-transcription
+git clone https://github.com/ckearl/lecture-transcriber.git
+cd lecture-transcriber
 pip install -r requirements.txt
 ```
 
 2. **Install Dependencies**
 
 ```bash
-pip install fastapi uvicorn python-multipart aiofiles openai-whisper pydantic
+pip install fastapi uvicorn pydantic openai-whisper aiofiles python-multipart
 ```
 
 3. **Set Environment Variables** (for future AI features)
@@ -93,15 +93,18 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 | `/transcribe/progress/{uuid}` | GET | Get detailed progress information |
 | `/transcription` | GET | List all transcriptions |
 | `/transcription/{uuid}` | GET | Get specific transcription |
+| `/process_text/{uuid}` | POST | Trigger AI text analysis |
+| `/process_text/{uuid}` | GET | Get AI analysis results |
 
-### Future AI Features (TODO)
+### Future AI Features (WIP)
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/process_text/{uuid}` | POST | Trigger AI text analysis |
-| `/process_text/{uuid}` | GET | Get AI analysis results |
 | `/diarize/{uuid}` | POST | Trigger speaker identification |
 | `/diarize/{uuid}` | GET | Get speaker diarization results |
+| `/diarize/{uuid}/status` | GET | Get speaker diarization status |
+| `/diarize/{uuid}/statistics` | GET | Get statistics on the speaker diarization |
+| `/diarize/{uuid}/export/{format}` | GET | Export the speaker diarization in a specified format |
 
 ### Utility
 

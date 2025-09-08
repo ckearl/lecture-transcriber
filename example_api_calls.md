@@ -160,6 +160,18 @@ GET results of text processing:
 curl "http://localhost:8000/process_text/{uuid}"
 ```
 
+## **9. Diarize Audio**
+
+```bash
+curl -X POST "http://localhost:8000/diarize/e59fceef-3a95-410e-b5b4-09687fcbd981" \
+  -F "audio_file=@/partials/econ159_07_092607_split_005.mp3"
+```
+
+```bash
+curl -X POST "http://localhost:8000/diarize/93637449-90a8-48b8-9704-a637b559b5eb" \
+  -F "audio_file=@/partials/econ159_07_092607_split_010.mp3"
+```
+
 ## Complete Testing Workflow**
 
 Here's a complete test sequence:

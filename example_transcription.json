@@ -1,0 +1,57 @@
+{
+  "title": "Lecture Title",
+  "transcription_uuid": "uuid",
+  "date": "yyyy-mm-dd",
+  "class": "Abbr. Course Name Course No. (ABCD ###)",
+  "professor": "Dr. Last Name",
+  "speakers": [
+    {
+      "name": "Speaker 1",
+      "timestamps": [#.#, #.##, #.##, #.##, #.##, ...]
+    },
+    {
+      "name": "Speaker 2",
+      "timestamps": [#.#, #.##, ...]
+    }
+  ],
+  "timestamps": [
+    {
+      "start": #.#,
+      "end": #.##,
+      "text": "Sentence of first clause"
+    }
+  ],
+  "main_ideas": [
+    "list",
+    "of",
+    "five",
+    "to",
+    "eight",
+    "main",
+    "ideas",
+    "of the lecture"
+  ],
+  "summary": "Summary of the lecture in 2-3 paragraphs.",
+  "keywords": [
+    "list",
+    "of",
+    "ten",
+    "to",
+    "twenty",
+    "key",
+    "words",
+    "and",
+    "terms"
+  ],
+  "questions_to_review": [
+    "list",
+    "of",
+    "eight",
+    "to",
+    "twelve",
+    "questions",
+    "to",
+    "review"
+  ],
+  "text": "The full body of the transcription text of the lecture."
+}
