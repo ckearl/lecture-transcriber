@@ -42,16 +42,16 @@ class TextProcessor:
     def _initialize_gemini(self):
         """Initialize Google Gemini API client."""
         try:
-            api_key = os.getenv('GEMINI_API_KEY')
+            api_key = os.getenv('GOOGLE_GEMINI_API_KEY')
             if not api_key:
                 logger.error(
-                    "GEMINI_API_KEY environment variable not set")
+                    "GOOGLE_GEMINI_API_KEY environment variable not set")
                 raise Exception("Google Gemini API key not configured")
 
             genai.configure(api_key=api_key)
 
-            # Use gemini-pro model for text-only content
-            self.client = genai.GenerativeModel('gemini-pro')
+            # Use Gemini 2.5 Flash - best price/performance for lecture analysis
+            self.client = genai.GenerativeModel('gemini-2.5-flash')
 
             # Configure generation parameters for academic content
             self.generation_config = genai.types.GenerationConfig(
@@ -62,7 +62,8 @@ class TextProcessor:
                 candidate_count=1
             )
 
-            logger.info("Google Gemini API client initialized successfully")
+            logger.info(
+                "Google Gemini API client initialized successfully with gemini-2.5-flash")
 
         except Exception as e:
             logger.error(f"Failed to initialize Google Gemini API: {e}")
@@ -421,7 +422,7 @@ Provide exactly 10-12 questions as a numbered list:
             title = context.get('title', 'Lecture')
             return f"""Error generating summary for the {class_name} lecture on {title}. 
             
-Please check the Google Gemini API configuration and ensure the GEMINI_API_KEY environment variable is properly set. The transcription was successfully created but AI analysis could not be completed.
+Please check the Google Gemini API configuration and ensure the GOOGLE_GEMINI_API_KEY environment variable is properly set. The transcription was successfully created but AI analysis could not be completed.
 
 To resolve this issue:
 1. Verify your Google Gemini API key is valid
@@ -519,7 +520,7 @@ To resolve this issue:
         """
         if not self.client:
             raise Exception(
-                "Google Gemini API not properly initialized. Check your GEMINI_API_KEY environment variable.")
+                "Google Gemini API not properly initialized. Check your GOOGLE_GEMINI_API_KEY environment variable.")
 
         try:
             self.update_status(transcription_uuid, "starting")

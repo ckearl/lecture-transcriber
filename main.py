@@ -252,14 +252,9 @@ async def get_transcription(transcription_uuid: str):
         raise HTTPException(
             status_code=500, detail=f"Failed to retrieve transcription: {str(e)}")
 
-# TODO: Text Processing Routes
-
-
 @app.post("/process_text/{transcription_uuid}")
 async def trigger_text_processing(transcription_uuid: str):
     """Trigger text processing for a completed transcription (TODO: Implement with Google Gemini)."""
-    # TODO: Implement with Google Gemini API
-    # This will generate main_ideas, summary, keywords, and questions_to_review
     try:
         result = await text_processor.process_text(transcription_uuid)
         return {"message": "Text processing started", "uuid": transcription_uuid}
@@ -267,11 +262,9 @@ async def trigger_text_processing(transcription_uuid: str):
         raise HTTPException(
             status_code=500, detail=f"Text processing failed: {str(e)}")
 
-
 @app.get("/process_text/{transcription_uuid}")
 async def get_processed_text(transcription_uuid: str):
     """Get processed text results (TODO: Implement)."""
-    # TODO: Return processed text results from Google Gemini
     try:
         result = text_processor.get_processed_results(transcription_uuid)
         return result
