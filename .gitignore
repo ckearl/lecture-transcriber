@@ -1,10 +1,11 @@
 /transcriptions
-/audio/*
+/audio
 
 .DS_Store
 .gitkeep
 .env
 
+docker_compose.yml
 
 __pycache__/
 .pytest_

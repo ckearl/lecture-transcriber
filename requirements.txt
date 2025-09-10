@@ -1,24 +1,23 @@
-# Core FastAPI dependencies (existing)
-fastapi>=0.104.0
-uvicorn>=0.24.0
-python-multipart>=0.0.6
-aiofiles>=23.2.1
-pydantic>=2.4.0
+# FastAPI and server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+aiofiles==23.2.1
 
-# Audio processing and ML dependencies
-torch>=2.0.0
-torchaudio>=2.0.0
-numpy>=1.24.0
+# Machine Learning and AI
+openai-whisper==20231117
+google-generativeai==0.3.2
+numpy==1.24.3
+scipy==1.11.4
 
-# pyannote.audio for speaker diarization
-pyannote.audio>=3.1.0
-pyannote.core>=5.0.0
+# Audio processing
+pyannote.audio==3.1.1
+torchaudio==2.1.1
+librosa==0.10.1
 
-# Additional audio/ML utilities
-librosa>=0.10.1
-soundfile>=0.12.1
-scipy>=1.11.0
+# Data handling
+pydantic==2.5.0
+pathlib2==2.3.7.post1
 
-# Optional: GPU acceleration (if using CUDA)
-# torch>=2.0.0+cu118  # Replace torch line above with this for CUDA support
-# torchaudio>=2.0.0+cu118  # Replace torchaudio line above with this for CUDA support
+# Development and utilities
+python-dotenv==1.0.0

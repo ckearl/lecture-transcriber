@@ -273,7 +273,7 @@ async def get_processed_text(transcription_uuid: str):
             status_code=404, detail=f"Processed text not found: {str(e)}")
 
 
-# WIP
+# Work In Progress
 @app.post("/diarize/{transcription_uuid}")
 async def trigger_speaker_diarization(
     transcription_uuid: str,
@@ -364,7 +364,7 @@ async def trigger_speaker_diarization(
         raise HTTPException(
             status_code=500, detail=f"Speaker diarization failed: {str(e)}")
 
-# WIP
+# Work In Progress
 @app.get("/diarize/{transcription_uuid}")
 async def get_diarization_results(transcription_uuid: str):
     """Get speaker diarization results and status."""
@@ -395,7 +395,7 @@ async def get_diarization_results(transcription_uuid: str):
         raise HTTPException(
             status_code=404, detail=f"Diarization results not found: {str(e)}")
 
-# WIP
+# Work In Progress
 @app.get("/diarize/{transcription_uuid}/status")
 async def get_diarization_status_only(transcription_uuid: str):
     """Get only the current diarization status (lightweight endpoint)."""
@@ -409,7 +409,7 @@ async def get_diarization_status_only(transcription_uuid: str):
         raise HTTPException(
             status_code=404, detail=f"Status not found: {str(e)}")
 
-# WIP
+# Work In Progress
 @app.get("/diarize/{transcription_uuid}/statistics")
 async def get_speaker_statistics(transcription_uuid: str):
     """Get detailed speaker statistics for a completed diarization."""
@@ -427,7 +427,7 @@ async def get_speaker_statistics(transcription_uuid: str):
         raise HTTPException(
             status_code=500, detail=f"Failed to get statistics: {str(e)}")
 
-# WIP
+# Work In Progress
 @app.get("/diarize/{transcription_uuid}/export/{format}")
 async def export_diarization_results(transcription_uuid: str, format: str):
     """
