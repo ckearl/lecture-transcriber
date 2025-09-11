@@ -1,0 +1,20 @@
+{
+	"days": "Tuesday",
+	"lecture_time": "8:00 - 9:15 AM",
+	"course_title": "Corporate Financial Reporting",
+	"course_number": "MBA 501",
+	"professor_name": "",
+	"lecture_titles": {
+		"2025-9-9": "Course introduction, The Balance Sheet",
+        "2025-09-16": "The Income Statement, Earnings persistence",
+        "2025-09-23": "Measuring business activities, Adjusting the books, Closing the books",
+        "2025-09-30": "Revenue, Recognition",
+        "2025-10-14": "Receivables, Reserves",
+        "2025-10-21": "Inventory reporting, COGS, Inventory analysis",
+        "2025-10-28": "Property and Equipment, Intangibles",
+        "2025-11-04": "Current liabilities, Long-term liabilities, Liquidity and Solvency",
+        "2025-11-18": "Contributed capital, Retained earnings, Dividends",
+        "2025-12-02": "Classifying cash flows, Preparing the statement of cash flows, Analyzing cash flows",
+        "2025-12-09": "Comparing financial information, Ratios"
+	}
+}

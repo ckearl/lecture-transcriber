@@ -1,0 +1,21 @@
+{
+    "days": "Friday",
+    "lecture_time": "9:30 - 10:45 AM",
+    "professor_name": "Department",
+    "lecture_titles": {
+        "2025-09-05": "No Pro Sem (Program Welcome Back)",
+        "2025-09-12": "Panel: 1st year internship exposure",
+        "2025-09-19": "Investment Banking: Colton Bates & Ryan Allenbach",
+        "2025-09-26": "No Pro Sem (NBMBA)",
+        "2025-10-03": "?",
+        "2025-10-10": "Private Equity: Brandon Muirhead & LeGrand Lewis",
+        "2025-10-17": "No Pro Sem (Midterms)",
+        "2025-10-24": "Consulting: Eden Peterson & Spencer Stevens",
+        "2025-10-31": "Corporate Finance: Peter Christensen & Spencer Clegg",
+        "2025-11-07": "No Pro Sem (Tech Trek)",
+        "2025-11-14": "Real Estate: Tanner Weekes & Ben Neff",
+        "2025-11-21": "Private Banking: Danni Wright & Olivia Barzee",
+        "2025-11-28": "No Pro Sem (Thanksgiving)",
+        "2025-12-05": "No Pro Sem (Program Meeting)"
+    }
+}

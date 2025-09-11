@@ -1,0 +1,14 @@
+{
+	"days": "Monday, Wednesday",
+	"lecture_time": "9:30 - 10:45 AM",
+	"course_title": "Operations Management",
+	"course_number": "MBA 530",
+	"professor_name": "Prof. Snow",
+	"lecture_titles": {
+		"2025-09-03": "Process Fundamentals",
+		"2025-09-08": "Donner Company part 1",
+		"2025-09-10": "Donner Company part 2",
+		"2025-09-15": "Fabritek",
+		"2025-09-17": "Dore-Dore"
+	}
+}
