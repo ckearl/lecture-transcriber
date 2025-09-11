@@ -1,4 +1,17 @@
 .env
 
 /gdrive/credentials.json
+/gdrive/folder_ids.json
+
+# ignore all .DS_Store files
+.DS_Store
+/*.DS_Store
+**/.DS_Store
+**/.AppleDouble
+
+# ignore all __pycache__ directories
+__pycache__/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
 

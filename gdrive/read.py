@@ -1,4 +1,5 @@
 import os.path
+import json
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -8,9 +9,10 @@ from googleapiclient.errors import HttpError
 # Use the same scopes as the upload script
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
-
 def read():
-    """Lists the files in a specific Google Drive folder."""
+    with open('folder_ids.json', 'r') as f:
+        folder_ids = json.load(f)
+        
     creds = None
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
@@ -30,8 +32,7 @@ def read():
 
         # --- LIST FILES IN A FOLDER ---
 
-        # IMPORTANT: Replace this with the ID of the folder you want to list
-        folder_id = 'YOUR_FOLDER_ID_HERE'
+        folder_id = folder_ids['lecture recordings']
 
         # The 'q' parameter is a search query.
         # Here, it's searching for all files ('*') whose 'parents' list contains the folder_id.
@@ -54,7 +55,3 @@ def read():
 
     except HttpError as error:
         print(f'An error occurred: {error}')
-
-
-if __name__ == '__main__':
-    main()

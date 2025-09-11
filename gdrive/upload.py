@@ -1,4 +1,5 @@
 import os.path
+import json
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -12,10 +13,10 @@ from googleapiclient.http import MediaFileUpload
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
 
-
-
-
 def upload(audio_file_path: str, class_number: str, class_name: str, date: str, file_name: str):
+    with open('folder_ids.json', 'r') as f:
+        folder_ids = json.load(f)
+        
     creds = None
     
     if os.path.exists('token.json'):
@@ -41,7 +42,7 @@ def upload(audio_file_path: str, class_number: str, class_name: str, date: str, 
         
         file_name = os.path.basename(file_path)
 
-        folder_id = '1PewFdbSlJ0hDAKuShx1tNvu-g-pJYCbj'
+        folder_id = folder_ids['lecture recordings']
 
         # File metadata
         file_metadata = {
