@@ -72,6 +72,8 @@ def read():
 
     print(f'found {len(audio_files)} audio files in {audio_recording_dir}')
     
+    class_list = []
+    
     # loop through each audio file and parse the date from the filename and print out the day of the week
     for file in audio_files:
         try:
@@ -89,6 +91,10 @@ def read():
             class_key = f"{day_of_week}: {formatted_time_str}"
             class_name = CLASS_TIME_MAPPINGS.get(class_key, "Unknown Class")
             print(f"File: {file} | Date: {date_str} | Time: {time_str} | Day: {day_of_week} | Class: {class_name}")
+            
+            class_list.append(f"{date_str}: {class_name}")
+            
+            return class_list
         except ValueError as e:
             print(f"Error processing file {file}: {e}")
 

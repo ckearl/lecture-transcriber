@@ -51,14 +51,13 @@ class LectureUploader:
             # 5. Insert insights
             self._insert_insights(lecture_id, data)
 
-            print(
-                f"Successfully uploaded lecture: {data.get('title', 'Unknown')} (ID: {lecture_id})")
+            # print(f"Successfully uploaded lecture: {data.get('title', 'Unknown')} (ID: {lecture_id})")
             return lecture_id
 
         except Exception as e:
             # Attempt cleanup on failure
             self._cleanup_failed_upload(lecture_id)
-            print(f"Error uploading lecture: {str(e)}")
+            # print(f"Error uploading lecture: {str(e)}")
             raise
 
     def _insert_lecture_metadata(self, lecture_id: str, data: Dict[str, Any]) -> None:
@@ -110,11 +109,20 @@ class LectureUploader:
 
         segments_to_insert = []
         for i, segment in enumerate(timestamps_data):
+            start_time = float(segment.get('start', 0))
+            end_time = float(segment.get('end', 0))
+            text = segment.get('text', '').strip()
+
+            # Skip empty segments or segments where start_time >= end_time
+            if not text or start_time >= end_time:
+                # print(f"Skipping invalid segment {i+1}: start={start_time}, end={end_time}, text='{text}'")
+                continue
+
             segments_to_insert.append({
                 'lecture_id': lecture_id,
-                'start_time': float(segment.get('start', 0)),
-                'end_time': float(segment.get('end', 0)),
-                'text': segment.get('text', ''),
+                'start_time': start_time,
+                'end_time': end_time,
+                'text': text,
                 'speaker_name': segment.get('speaker'),  # Optional field
                 'segment_order': i + 1
             })
@@ -128,8 +136,7 @@ class LectureUploader:
             if not result.data:
                 raise Exception(
                     f"Failed to insert transcript segments batch {i//batch_size + 1}")
-            print(
-                f"Inserted batch {i//batch_size + 1}/{(len(segments_to_insert) + batch_size - 1)//batch_size}")
+            # print(f"Inserted batch {i//batch_size + 1}/{(len(segments_to_insert) + batch_size - 1)//batch_size}")
 
     def _insert_full_text(self, lecture_id: str, text: str) -> None:
         """Insert full text"""
@@ -178,14 +185,14 @@ class LectureUploader:
                 'lecture_id', lecture_id).execute()
             self.supabase.table('lectures').delete().eq(
                 'id', lecture_id).execute()
-            print(f"Cleaned up failed upload for lecture_id: {lecture_id}")
+            # print(f"Cleaned up failed upload for lecture_id: {lecture_id}")
         except Exception as cleanup_error:
             print(f"Error during cleanup: {str(cleanup_error)}")
 
 # Usage example
 
 
-def upload_lecture(file_path: Optional[str] = None):
+def main():
     # Initialize with your Supabase credentials
     SUPABASE_URL = os.getenv('SUPABASE_URL')  # or your actual URL
     SUPABASE_KEY = os.getenv('SUPABASE_ANON_KEY')  # or your actual key
@@ -225,4 +232,4 @@ def batch_upload_lectures(json_files: list, supabase_url: str, supabase_key: str
 
 
 if __name__ == "__main__":
-    upload_lecture()
+    main()

@@ -1,21 +1,43 @@
+import os
+import pyfiglet
+
+from db_supabase.upload import LectureUploader
+from db_supabase.read import LectureReader
 from gdrive.read import loop as gdrive_read
 from gdrive.upload import upload as gdrive_upload
 from local_files.read import read as local_read
 from transcribe.transcribe import TranscriptionProcessor
 from text_insights.process import TextProcessor
 
-
-def read_supabase_data():
-    # Placeholder function to read data from Supabase
-    print("Reading data from Supabase...")
-    # Add actual Supabase reading logic here
-    return []
+SUPABASE_URL = os.getenv('SUPABASE_URL')
+SUPABASE_KEY = os.getenv('SUPABASE_ANON_KEY')
 
 def main():
-    print('welcome to the lecture transcriber!')
+    text = "Hi my love <3"
+
+    ascii_art = pyfiglet.figlet_format(text, font="larry3d", width=999)
+    print(ascii_art)
+
+    #1. read in supabase to get list of recorded audio files already transcribed
     
-    # 1. read in the existing supabase data
+    if not SUPABASE_URL or not SUPABASE_KEY:
+        print("Please set SUPABASE_URL and SUPABASE_ANON_KEY environment variables.")
+        return
+
+    reader = LectureReader(SUPABASE_URL, SUPABASE_KEY)
     
+    sb_lecture_list = reader.fetch_lecture_list()
+    curated_sb_lecture_list = []
+
+    if sb_lecture_list is not None:
+        # print("✅ Successfully fetched lecture list:")
+        for lecture in sb_lecture_list:
+            curated_sb_lecture_list.append(f"{lecture['date']}: {lecture['class_number']}")
+            # print(
+            #     f"  - Title: {lecture['title']}, "
+            #     f"Class: {lecture['class_number']}, "
+            #     f"Date: {lecture['date']}"
+            # )    
     
     # 2. read in the recorded audio file
         # - the file will be in the folder of the audio recording device when plugged into the computer
@@ -24,7 +46,17 @@ def main():
     
     # get list of file names in the folder ~/projects/lecture-transcriber/audio/senahs_recorder/
     
-    # local_read()
+    local_lecture_list = local_read()
+    
+    lectures_to_upload = []
+    
+    for lecture in local_lecture_list:
+        if lecture in curated_sb_lecture_list:
+            print(f"{lecture} found in both local and supabase lists")
+        else:
+            print(f"{lecture} NOT found in supabase list")
+            lectures_to_upload.append(lecture)
+            
     
     
     # 3. compare the recordings on the device to the recordings in supabase
