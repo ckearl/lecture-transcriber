@@ -13,8 +13,12 @@ from googleapiclient.http import MediaFileUpload
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
 
-def upload(audio_file_path: str, class_number: str, class_name: str, date: str, file_name: str):
-    with open('folder_ids.json', 'r') as f:
+def upload(audio_file_path: str, class_number: str = None, class_name: str = None, date: str = None, file_name: str = None):
+    script_dir = os.path.dirname(__file__)
+    
+    print(f"Script directory: {script_dir}")
+    
+    with open(script_dir + '/folder_ids.json', 'r') as f:
         folder_ids = json.load(f)
         
     creds = None
@@ -27,8 +31,8 @@ def upload(audio_file_path: str, class_number: str, class_name: str, date: str, 
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file(script_dir +
+                '/credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
 
         # Save the credentials for the next run
@@ -51,9 +55,10 @@ def upload(audio_file_path: str, class_number: str, class_name: str, date: str, 
         }
 
         # Media file upload
-        # .wav mimetype is 'audio/wav'
+        # TODO: switch this back to 'audio/wav' if uploading .wav files
+        # .mp3 mimetype is 'audio/mpeg'
         media = MediaFileUpload(
-            file_path, mimetype='audio/wav', resumable=True)
+            file_path, mimetype='audio/mpeg', resumable=True)
 
         # Create the file on Google Drive
         print(f"Uploading {file_name}...")

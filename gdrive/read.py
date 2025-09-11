@@ -9,10 +9,23 @@ from googleapiclient.errors import HttpError
 # Use the same scopes as the upload script
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
-def read():
-    with open('folder_ids.json', 'r') as f:
-        folder_ids = json.load(f)
-        
+script_dir = os.path.dirname(__file__)
+
+with open(script_dir + '/folder_ids.json', 'r') as f:
+    folder_ids = json.load(f)
+    
+current_files = {
+    "MBA 500 Career Development": [],
+	"MBA 501 Corporate Financial Reporting": [],
+	"MBA 505 Leadership": [],
+	"MBA 520 Business Finance": [],
+	"MBA 530 Operations Management": [],
+	"MBA 548 Strategic Human Resource Mgt": [],
+	"MBA 550 Marketing Management": [],
+	"MBA 593R Management Seminar": []
+}
+
+def read(class_name: str):
     creds = None
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
@@ -32,7 +45,7 @@ def read():
 
         # --- LIST FILES IN A FOLDER ---
 
-        folder_id = folder_ids['lecture recordings']
+        folder_id = folder_ids[class_name]
 
         # The 'q' parameter is a search query.
         # Here, it's searching for all files ('*') whose 'parents' list contains the folder_id.
@@ -49,9 +62,16 @@ def read():
         if not items:
             print('No files found in this folder.')
         else:
-            print('Files in folder:')
+            print(f'Files in folder "{class_name}":')
             for item in items:
-                print(f"  - {item['name']} (ID: {item['id']})")
+                print(f"{item['name']} ({item['id']})")
+                current_files[class_name].append(item['name'])
 
     except HttpError as error:
         print(f'An error occurred: {error}')
+
+
+def loop():
+    for class_name in folder_ids.keys():
+        if class_name != 'lecture recordings':
+            read(class_name)
