@@ -6,8 +6,10 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, Optional
 import logging
+import uuid
 
 import whisper
+from supabase import create_client, Client
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -15,13 +17,25 @@ logger = logging.getLogger(__name__)
 
 
 class TranscriptionProcessor:
-    def __init__(self):
-        """Initialize Whisper model and tracking dictionaries."""
+    def __init__(self, supabase_url: str = None, supabase_key: str = None):
+        """Initialize Whisper model, Supabase client, and tracking dictionaries."""
         self.model = whisper.load_model("base")
         self.status_tracker: Dict[str, str] = {}
         self.progress_tracker: Dict[str, str] = {}
         self.transcriptions_dir = Path("transcriptions")
         self.transcriptions_dir.mkdir(exist_ok=True)
+
+        # Initialize Supabase client
+        self.supabase_url = supabase_url or os.getenv('SUPABASE_URL')
+        self.supabase_key = supabase_key or os.getenv('SUPABASE_ANON_KEY')
+
+        if self.supabase_url and self.supabase_key:
+            self.supabase: Client = create_client(
+                self.supabase_url, self.supabase_key)
+            logger.info("Supabase client initialized successfully")
+        else:
+            logger.error("Supabase credentials not found")
+            self.supabase = None
 
         logger.info("Whisper model loaded successfully")
 
@@ -69,6 +83,65 @@ class TranscriptionProcessor:
             logger.error(f"Failed to save transcription: {e}")
             raise
 
+    def save_to_supabase(self, transcription_data: Dict[str, Any]) -> str:
+        """Save transcription data to Supabase and return the lecture UUID."""
+        if not self.supabase:
+            raise Exception("Supabase client not initialized")
+
+        try:
+            lecture_uuid = str(uuid.uuid4())
+
+            # 1. Insert into lectures table
+            lecture_data = {
+                "id": lecture_uuid,
+                "title": transcription_data["title"],
+                "professor": transcription_data["professor"],
+                "date": transcription_data["date"],
+                "duration_seconds": sum([
+                    segment["end"] - segment["start"]
+                    for segment in transcription_data["timestamps"]
+                ]),
+                "class_number": transcription_data["class"],
+                "language": "en-US"
+            }
+
+            result = self.supabase.table(
+                "lectures").insert(lecture_data).execute()
+            logger.info(f"Inserted lecture record: {lecture_uuid}")
+
+            # 2. Insert transcript segments
+            segments_data = []
+            for i, segment in enumerate(transcription_data["timestamps"]):
+                segments_data.append({
+                    "lecture_id": lecture_uuid,
+                    "start_time": segment["start"],
+                    "end_time": segment["end"],
+                    "text": segment["text"],
+                    "speaker_name": None,  # Will be populated by speaker diarization later
+                    "segment_order": i
+                })
+
+            if segments_data:
+                self.supabase.table("transcript_segments").insert(
+                    segments_data).execute()
+                logger.info(
+                    f"Inserted {len(segments_data)} transcript segments")
+
+            # 3. Insert full text body
+            text_data = {
+                "lecture_id": lecture_uuid,
+                "text": transcription_data["text"]
+            }
+
+            self.supabase.table("lecture_texts").insert(text_data).execute()
+            logger.info(f"Inserted full lecture text")
+
+            return lecture_uuid
+
+        except Exception as e:
+            logger.error(f"Failed to save to Supabase: {e}")
+            raise Exception(f"Supabase save failed: {str(e)}")
+
     def process_whisper_segments(self, result: Dict[str, Any]) -> tuple:
         """Process Whisper result into timestamps and full text."""
         timestamps = []
@@ -86,11 +159,14 @@ class TranscriptionProcessor:
         full_text = " ".join(full_text_parts)
         return timestamps, full_text
 
-    def create_transcription_data(self, metadata: Dict[str, Any], timestamps: list, full_text: str) -> Dict[str, Any]:
+    def create_transcription_data(self, metadata: Dict[str, Any], timestamps: list, full_text: str, transcription_uuid: str = None) -> Dict[str, Any]:
         """Create the complete transcription data structure."""
+        if not transcription_uuid:
+            transcription_uuid = str(uuid.uuid4())
+
         return {
             "title": metadata["title"],
-            "transcription_uuid": metadata["transcription_uuid"],
+            "transcription_uuid": transcription_uuid,
             "date": metadata["date"],
             "class": metadata["class"],
             "professor": metadata["professor"],
@@ -164,12 +240,12 @@ class TranscriptionProcessor:
             logger.error(f"Whisper transcription failed: {e}")
             raise Exception(f"Transcription failed: {str(e)}")
 
-    async def process_transcription(self, temp_path: Path, metadata: Dict[str, Any], sync: bool = True) -> Dict[str, Any]:
+    async def process_transcription(self, audio_path: Path, metadata: Dict[str, Any], sync: bool = True) -> Dict[str, Any]:
         """
         Main transcription processing function.
         Handles both sync and async processing.
         """
-        transcription_uuid = metadata["transcription_uuid"]
+        transcription_uuid = str(uuid.uuid4())
 
         try:
             self.update_status(transcription_uuid, "processing")
@@ -179,12 +255,12 @@ class TranscriptionProcessor:
             if sync:
                 # Process synchronously
                 result = await asyncio.get_event_loop().run_in_executor(
-                    None, self.transcribe_audio, temp_path, transcription_uuid
+                    None, self.transcribe_audio, audio_path, transcription_uuid
                 )
             else:
                 # Process in background thread
                 def transcribe_in_thread():
-                    return self.transcribe_audio(temp_path, transcription_uuid)
+                    return self.transcribe_audio(audio_path, transcription_uuid)
 
                 result = await asyncio.get_event_loop().run_in_executor(
                     None, transcribe_in_thread
@@ -197,10 +273,11 @@ class TranscriptionProcessor:
 
             # Create transcription data
             transcription_data = self.create_transcription_data(
-                metadata, timestamps, full_text)
+                metadata, timestamps, full_text, transcription_uuid)
 
-            # Save to JSON
-            self.update_progress(transcription_uuid, "Saving transcription...")
+            # Save to JSON (local backup)
+            self.update_progress(transcription_uuid,
+                                 "Saving transcription locally...")
             self.save_transcription_json(
                 transcription_data,
                 metadata["class"],
@@ -208,16 +285,23 @@ class TranscriptionProcessor:
                 metadata["date"]
             )
 
+            # Save to Supabase
+            self.update_progress(transcription_uuid, "Saving to database...")
+            lecture_uuid = self.save_to_supabase(transcription_data)
+
             # Update final status
             self.update_status(transcription_uuid, "completed")
             self.update_progress(transcription_uuid,
                                  "Transcription completed successfully")
 
-            # Cleanup temp file
-            self.cleanup_temp_file(temp_path)
+            # Don't cleanup temp file here - let main.py handle it
+            # self.cleanup_temp_file(temp_path)
 
             logger.info(
                 f"Transcription completed successfully: {transcription_uuid}")
+
+            # Return both UUIDs for text processing
+            transcription_data["lecture_uuid"] = lecture_uuid
             return transcription_data
 
         except Exception as e:
@@ -225,36 +309,19 @@ class TranscriptionProcessor:
             self.update_progress(transcription_uuid,
                                  f"Transcription failed: {str(e)}")
 
-            # Cleanup on failure
-            self.cleanup_temp_file(temp_path)
+            # Don't cleanup on failure either - let main.py handle it
+            # self.cleanup_temp_file(temp_path)
 
             logger.error(f"Transcription failed for {transcription_uuid}: {e}")
             raise Exception(f"Transcription processing failed: {str(e)}")
 
-    # TODO: S3 Upload functionality
-    async def upload_to_s3(self, file_path: Path) -> str:
+    def run(self, audio_path: Path, metadata: Dict[str, Any]) -> Dict[str, Any]:
         """
-        TODO: Upload audio file to S3 bucket
-        
-        This function will:
-        1. Connect to AWS S3 using boto3
-        2. Upload the audio file to designated bucket
-        3. Return the S3 URL/key for future reference
-        4. Handle proper error handling and retry logic
-        
-        Args:
-            file_path: Path to the audio file to upload
-            
-        Returns:
-            str: S3 URL or key of uploaded file
+        Sync wrapper for main.py so you can call one method directly.
         """
-        # TODO: Implement S3 upload
-        # import boto3
-        # s3_client = boto3.client('s3')
-        # bucket_name = os.getenv('S3_BUCKET_NAME')
-        # s3_key = f"audio_files/{transcription_uuid}/{file_path.name}"
-        # s3_client.upload_file(str(file_path), bucket_name, s3_key)
-        # return f"s3://{bucket_name}/{s3_key}"
-
-        logger.info(f"TODO: Upload {file_path} to S3")
-        return "s3://placeholder-bucket/placeholder-key"
+        loop = asyncio.get_event_loop()
+        if loop.is_running():
+            # If inside a running event loop, create a new one in a thread
+            return asyncio.run(self.process_transcription(audio_path, metadata, sync=True))
+        else:
+            return loop.run_until_complete(self.process_transcription(audio_path, metadata, sync=True))

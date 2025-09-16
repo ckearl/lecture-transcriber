@@ -34,6 +34,7 @@ def parse_date_from_filename(filename: str) -> str:
     
     formatted_date = f"{year}-{month}-{day}"
     formatted_time = f"{hour}:{minute}:{second}"
+    
     return formatted_date, formatted_time
 
 def format_time_string_with_am_pm(time_str: str) -> str:
@@ -69,7 +70,7 @@ def read():
 
     audio_files = [f for f in contents if os.path.isfile(
     os.path.join(audio_recording_dir, f))]
-
+    
     print(f'found {len(audio_files)} audio files in {audio_recording_dir}')
     
     class_list = []
@@ -90,13 +91,13 @@ def read():
             
             class_key = f"{day_of_week}: {formatted_time_str}"
             class_name = CLASS_TIME_MAPPINGS.get(class_key, "Unknown Class")
-            print(f"File: {file} | Date: {date_str} | Time: {time_str} | Day: {day_of_week} | Class: {class_name}")
             
             class_list.append(f"{date_str}: {class_name}")
             
-            return class_list
         except ValueError as e:
             print(f"Error processing file {file}: {e}")
+    
+    return class_list
 
 def compare():
     pass

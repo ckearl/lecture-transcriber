@@ -12,7 +12,6 @@ from googleapiclient.http import MediaFileUpload
 # For upload-only, you could use 'https://www.googleapis.com/auth/drive.file'
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
-
 def upload(audio_file_path: str, class_number: str = None, class_name: str = None, date: str = None, file_name: str = None):
     script_dir = os.path.dirname(__file__)
     
@@ -44,21 +43,31 @@ def upload(audio_file_path: str, class_number: str = None, class_name: str = Non
 
         file_path = audio_file_path
         
-        file_name = os.path.basename(file_path)
+        # file_name = os.path.basename(file_path)
 
-        folder_id = folder_ids['lecture recordings']
+        folder_id = folder_ids[class_name]
 
         # File metadata
         file_metadata = {
             'name': file_name,
             'parents': [folder_id] # Uncomment to upload to a specific folder
         }
+        
+        print(f"\t->Uploading file: {file_name} to folder ID: {folder_id}")
+        
+        file_type = os.path.splitext(file_name)[1].lower()
+        mime_types = {
+            '.mp3': 'audio/mpeg',
+            '.wav': 'audio/wav',
+            '.m4a': 'audio/mp4',
+            '.flac': 'audio/flac'
+        }
 
         # Media file upload
         # TODO: switch this back to 'audio/wav' if uploading .wav files
         # .mp3 mimetype is 'audio/mpeg'
         media = MediaFileUpload(
-            file_path, mimetype='audio/mpeg', resumable=True)
+            file_path, mimetype=mime_types.get(file_type, 'application/octet-stream'), resumable=True)
 
         # Create the file on Google Drive
         print(f"Uploading {file_name}...")

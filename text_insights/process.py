@@ -8,6 +8,7 @@ import asyncio
 import re
 
 import google.generativeai as genai
+from supabase import create_client, Client
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -23,10 +24,11 @@ class TextProcessor:
     3. Extracting keywords and key concepts
     4. Generating review questions
     5. Updating transcription JSON with processed content
+    6. Saving insights to Supabase
     """
 
-    def __init__(self):
-        """Initialize Google Gemini client."""
+    def __init__(self, supabase_url: str = None, supabase_key: str = None):
+        """Initialize Google Gemini client and Supabase client."""
         self.client = None
         self.status_tracker: Dict[str, str] = {}
         self.results_tracker: Dict[str, Dict] = {}
@@ -36,6 +38,18 @@ class TextProcessor:
         self.max_chunk_size = 30000  # Characters per chunk for Gemini
         self.max_retries = 3
         self.retry_delay = 2  # seconds
+
+        # Initialize Supabase client
+        self.supabase_url = supabase_url or os.getenv('SUPABASE_URL')
+        self.supabase_key = supabase_key or os.getenv('SUPABASE_ANON_KEY')
+
+        if self.supabase_url and self.supabase_key:
+            self.supabase: Client = create_client(
+                self.supabase_url, self.supabase_key)
+            logger.info("Supabase client initialized successfully")
+        else:
+            logger.error("Supabase credentials not found")
+            self.supabase = None
 
         self._initialize_gemini()
 
@@ -145,19 +159,42 @@ class TextProcessor:
 
         raise Exception("No valid response received from Gemini")
 
-    def get_processing_status(self, transcription_uuid: str) -> str:
+    def get_processing_status(self, lecture_uuid: str) -> str:
         """Get the current status of text processing."""
-        return self.status_tracker.get(transcription_uuid, "not_started")
+        return self.status_tracker.get(lecture_uuid, "not_started")
 
-    def get_processed_results(self, transcription_uuid: str) -> Optional[Dict]:
+    def get_processed_results(self, lecture_uuid: str) -> Optional[Dict]:
         """Get the text processing results."""
-        return self.results_tracker.get(transcription_uuid, None)
+        return self.results_tracker.get(lecture_uuid, None)
 
-    def update_status(self, transcription_uuid: str, status: str):
+    def update_status(self, lecture_uuid: str, status: str):
         """Update text processing status."""
-        self.status_tracker[transcription_uuid] = status
+        self.status_tracker[lecture_uuid] = status
         logger.info(
-            f"Text processing status updated for {transcription_uuid}: {status}")
+            f"Text processing status updated for {lecture_uuid}: {status}")
+
+    def save_insights_to_supabase(self, lecture_uuid: str, insights: Dict[str, Any]):
+        """Save text insights to Supabase."""
+        if not self.supabase:
+            raise Exception("Supabase client not initialized")
+
+        try:
+            insights_data = {
+                "lecture_id": lecture_uuid,
+                "summary": insights["summary"],
+                "key_terms": insights["keywords"],
+                "main_ideas": insights["main_ideas"],
+                "review_questions": insights["questions_to_review"]
+            }
+
+            result = self.supabase.table(
+                "text_insights").insert(insights_data).execute()
+            logger.info(
+                f"Saved text insights to Supabase for lecture: {lecture_uuid}")
+
+        except Exception as e:
+            logger.error(f"Failed to save insights to Supabase: {e}")
+            raise Exception(f"Supabase insights save failed: {str(e)}")
 
     def load_transcription_json(self, transcription_uuid: str) -> tuple:
         """Load existing transcription JSON by UUID."""
@@ -508,14 +545,14 @@ To resolve this issue:
                 "What are the key frameworks or models presented?"
             ]
 
-    async def process_text(self, transcription_uuid: str) -> Dict:
+    async def process_text(self, lecture_uuid: str, transcription_text: str, context: Dict) -> Dict:
         """
         Main function to process transcription text with Google Gemini.
         
         This function:
-        1. Loads the existing transcription
-        2. Generates main ideas, summary, keywords, and questions
-        3. Updates the transcription JSON with processed content
+        1. Generates main ideas, summary, keywords, and questions
+        2. Updates the transcription JSON with processed content (if available)
+        3. Saves insights to Supabase
         4. Returns processing results
         """
         if not self.client:
@@ -523,100 +560,97 @@ To resolve this issue:
                 "Google Gemini API not properly initialized. Check your GOOGLE_GEMINI_API_KEY environment variable.")
 
         try:
-            self.update_status(transcription_uuid, "starting")
-
-            # Load existing transcription
-            transcription_data, json_file_path = self.load_transcription_json(
-                transcription_uuid)
-            if not transcription_data:
-                raise Exception(
-                    f"Transcription not found: {transcription_uuid}")
-
-            transcription_text = transcription_data.get("text", "")
-            if not transcription_text:
-                raise Exception("No transcription text found")
-
-            # Prepare context for AI processing
-            context = {
-                "class": transcription_data.get("class", "Business"),
-                "professor": transcription_data.get("professor", "Professor"),
-                "title": transcription_data.get("title", "Lecture"),
-                "date": transcription_data.get("date", "")
-            }
+            self.update_status(lecture_uuid, "starting")
 
             logger.info(
                 f"Processing {len(transcription_text)} characters for {context['class']} lecture")
 
             # Generate all text processing elements
-            self.update_status(transcription_uuid, "generating_main_ideas")
+            self.update_status(lecture_uuid, "generating_main_ideas")
             main_ideas = await self.generate_main_ideas(transcription_text, context)
 
-            self.update_status(transcription_uuid, "generating_summary")
+            self.update_status(lecture_uuid, "generating_summary")
             summary = await self.generate_summary(transcription_text, context)
 
-            self.update_status(transcription_uuid, "extracting_keywords")
+            self.update_status(lecture_uuid, "extracting_keywords")
             keywords = await self.extract_keywords(transcription_text, context)
 
-            self.update_status(transcription_uuid, "generating_questions")
+            self.update_status(lecture_uuid, "generating_questions")
             questions = await self.generate_review_questions(transcription_text, context, main_ideas)
 
-            # Update transcription with processed content
-            transcription_data["main_ideas"] = main_ideas
-            transcription_data["summary"] = summary
-            transcription_data["keywords"] = keywords
-            transcription_data["questions_to_review"] = questions
-
-            # Save updated transcription
-            self.update_status(transcription_uuid, "saving")
-            self.save_updated_transcription(transcription_data, json_file_path)
-
-            # Store results for retrieval
-            processing_results = {
+            # Prepare insights for Supabase
+            insights = {
                 "main_ideas": main_ideas,
                 "summary": summary,
                 "keywords": keywords,
-                "questions_to_review": questions,
+                "questions_to_review": questions
+            }
+
+            # Save insights to Supabase
+            self.update_status(lecture_uuid, "saving_to_database")
+            self.save_insights_to_supabase(lecture_uuid, insights)
+
+            # Try to update local JSON file if it exists (optional)
+            try:
+                # This is now optional since we're working directly with Supabase
+                transcription_data, json_file_path = self.load_transcription_json(
+                    lecture_uuid)
+                if transcription_data and json_file_path:
+                    transcription_data.update(insights)
+                    self.save_updated_transcription(
+                        transcription_data, json_file_path)
+                    logger.info("Updated local JSON file with insights")
+            except Exception as e:
+                logger.warning(f"Could not update local JSON file: {e}")
+
+            # Store results for retrieval
+            processing_results = {
+                **insights,
                 "processing_complete": True
             }
 
-            self.results_tracker[transcription_uuid] = processing_results
-            self.update_status(transcription_uuid, "completed")
+            self.results_tracker[lecture_uuid] = processing_results
+            self.update_status(lecture_uuid, "completed")
 
             logger.info(
-                f"Text processing completed successfully for: {transcription_uuid}")
+                f"Text processing completed successfully for: {lecture_uuid}")
 
             return {
-                "transcription_uuid": transcription_uuid,
+                "lecture_uuid": lecture_uuid,
                 "status": "completed",
                 "message": "Text processing completed successfully",
                 "results": processing_results
             }
 
         except Exception as e:
-            self.update_status(transcription_uuid, "failed")
+            self.update_status(lecture_uuid, "failed")
             logger.error(
-                f"Text processing failed for {transcription_uuid}: {e}")
+                f"Text processing failed for {lecture_uuid}: {e}")
             raise Exception(f"Text processing failed: {str(e)}")
 
-    def get_processing_statistics(self, transcription_uuid: str) -> Optional[Dict]:
+    def run(self, lecture_uuid: str, transcription_text: str, context: Dict) -> Dict:
+        """
+        Sync wrapper for main.py so you can call one method directly.
+        """
+        loop = asyncio.get_event_loop()
+        if loop.is_running():
+            # If inside a running event loop, create a new one in a thread
+            return asyncio.run(self.process_text(lecture_uuid, transcription_text, context))
+        else:
+            return loop.run_until_complete(self.process_text(lecture_uuid, transcription_text, context))
+
+    def get_processing_statistics(self, lecture_uuid: str) -> Optional[Dict]:
         """
         Get statistics about the text processing results.
         """
-        results = self.get_processed_results(transcription_uuid)
+        results = self.get_processed_results(lecture_uuid)
         if not results:
             return None
-
-        transcription_data, _ = self.load_transcription_json(
-            transcription_uuid)
-        original_text = transcription_data.get(
-            "text", "") if transcription_data else ""
 
         return {
             "main_ideas_count": len(results.get("main_ideas", [])),
             "keywords_count": len(results.get("keywords", [])),
             "questions_count": len(results.get("questions_to_review", [])),
             "summary_word_count": len(results.get("summary", "").split()),
-            "original_text_word_count": len(original_text.split()),
-            "processing_status": self.get_processing_status(transcription_uuid),
-            "compression_ratio": round(len(results.get("summary", "").split()) / max(len(original_text.split()), 1) * 100, 2)
+            "processing_status": self.get_processing_status(lecture_uuid),
         }
