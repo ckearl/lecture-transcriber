@@ -91,16 +91,21 @@ class TranscriptionProcessor:
         try:
             lecture_uuid = str(uuid.uuid4())
 
+            # Calculate duration and ensure it's an integer
+            duration_seconds = sum([
+                segment["end"] - segment["start"]
+                for segment in transcription_data["timestamps"]
+            ])
+            # Convert to integer (round to nearest second)
+            duration_seconds = int(round(duration_seconds))
+
             # 1. Insert into lectures table
             lecture_data = {
                 "id": lecture_uuid,
                 "title": transcription_data["title"],
                 "professor": transcription_data["professor"],
                 "date": transcription_data["date"],
-                "duration_seconds": sum([
-                    segment["end"] - segment["start"]
-                    for segment in transcription_data["timestamps"]
-                ]),
+                "duration_seconds": duration_seconds,
                 "class_number": transcription_data["class"],
                 "language": "en-US"
             }
@@ -148,13 +153,21 @@ class TranscriptionProcessor:
         full_text_parts = []
 
         for segment in result.get("segments", []):
+            start_time = round(segment["start"], 2)
+            end_time = round(segment["end"], 2)
+            text = segment["text"].strip()
+
+            # Skip segments with invalid time ranges or empty text
+            if end_time <= start_time or not text:
+                continue
+
             timestamp_entry = {
-                "start": round(segment["start"], 2),
-                "end": round(segment["end"], 2),
-                "text": segment["text"].strip()
+                "start": start_time,
+                "end": end_time,
+                "text": text
             }
             timestamps.append(timestamp_entry)
-            full_text_parts.append(segment["text"].strip())
+            full_text_parts.append(text)
 
         full_text = " ".join(full_text_parts)
         return timestamps, full_text
@@ -276,14 +289,14 @@ class TranscriptionProcessor:
                 metadata, timestamps, full_text, transcription_uuid)
 
             # Save to JSON (local backup)
-            self.update_progress(transcription_uuid,
-                                 "Saving transcription locally...")
-            self.save_transcription_json(
-                transcription_data,
-                metadata["class"],
-                metadata["title"],
-                metadata["date"]
-            )
+            # self.update_progress(transcription_uuid,
+            #                      "Saving transcription locally...")
+            # self.save_transcription_json(
+            #     transcription_data,
+            #     metadata["class"],
+            #     metadata["title"],
+            #     metadata["date"]
+            # )
 
             # Save to Supabase
             self.update_progress(transcription_uuid, "Saving to database...")

@@ -1,9 +1,16 @@
 import os
-import pyfiglet
+import sys
 import json
 import time
-import sys
+import argparse
+import logging
+import wave
 from pathlib import Path
+from typing import Dict, List
+
+import pyfiglet
+from tqdm import tqdm
+from colorama import init, Fore, Back, Style
 
 from db_supabase.upload import LectureUploader
 from db_supabase.read import LectureReader
@@ -21,148 +28,190 @@ from local_files.read import (
 from transcribe.transcribe import TranscriptionProcessor
 from text_insights.process import TextProcessor
 
+# Initialize colorama for colored output
+init(autoreset=True)
+
+# Configure logging to hide INFO messages
+logging.basicConfig(level=logging.WARNING)
+
 SUPABASE_URL = os.getenv('SUPABASE_URL')
 SUPABASE_KEY = os.getenv('SUPABASE_ANON_KEY')
 
 
-def animate_ellipsis(duration_seconds=3, interval_seconds=0.5):
-    """
-    Animates an ellipsis in the console for a given duration.
+def get_audio_info(file_path: Path) -> Dict:
+    """Get audio file information including duration and size."""
+    try:
+        # Get file size
+        file_size = file_path.stat().st_size
+        size_mb = file_size / (1024 * 1024)
 
-    Args:
-        duration_seconds (int): The total duration of the animation in seconds.
-        interval_seconds (float): The time delay between each frame of the animation.
-    """
-    start_time = time.time()
-    while time.time() - start_time < duration_seconds:
-        for i in range(4):  # Cycle through "", ".", "..", "..."
-            # '   ' to clear previous longer text
-            sys.stdout.write('\rLoading' + '.' * i + '   ')
-            sys.stdout.flush()
-            time.sleep(interval_seconds)
+        # Get duration from WAV file
+        duration = 0
+        try:
+            with wave.open(str(file_path), 'rb') as wav_file:
+                frames = wav_file.getnframes()
+                sample_rate = wav_file.getframerate()
+                duration = frames / sample_rate
+        except:
+            duration = 0
+
+        return {
+            'size_mb': round(size_mb, 1),
+            'duration_minutes': round(duration / 60, 1),
+            'duration_seconds': int(duration)
+        }
+    except:
+        return {'size_mb': 0, 'duration_minutes': 0, 'duration_seconds': 0}
 
 
-def print_intro():
-    text = "Hi my love <3"
+def format_duration(seconds: int) -> str:
+    """Format duration in MM:SS format."""
+    minutes = seconds // 60
+    secs = seconds % 60
+    return f"{minutes:02d}:{secs:02d}"
 
-    ascii_art = pyfiglet.figlet_format(text, font="larry3d", width=999)
+
+def animate_dots(message: str, duration: float = 2.0, color: str = Fore.CYAN):
+    """Animate dots after a message."""
+    for _ in range(int(duration * 2)):
+        for dots in ["", ".", "..", "..."]:
+            print(f"\r{color}{message}{dots}   ", end="", flush=True)
+            time.sleep(0.25)
+    print()
+
+
+def print_banner():
+    """Print cute banner with ASCII art."""
+    print(Fore.MAGENTA + Style.BRIGHT)
+    text = "hi my love <3"
+    ascii_art = pyfiglet.figlet_format(text, font="slant")
     print(ascii_art)
 
-    time.sleep(1)
+    print(Style.RESET_ALL)
 
-    animate_ellipsis(duration_seconds=2, interval_seconds=0.3)
+    animate_dots("Initializing", 1.5, Fore.GREEN)
 
 
-def read_in_supabase():
-    if not SUPABASE_URL or not SUPABASE_KEY:
-        print("Please set SUPABASE_URL and SUPABASE_ANON_KEY environment variables.")
+def confirm_file_processing(file_info: Dict, skip_confirmations: bool = False) -> tuple:
+    """Confirm file processing with user and allow filename editing."""
+    if skip_confirmations:
+        return True, file_info['gdrive_filename']
+
+    print(f"\n{Fore.YELLOW}📋 File Details:")
+    print(f"   📅 Date: {file_info['date']}")
+    print(f"   📚 Class: {file_info['class']}")
+    print(f"   📖 Title: {file_info['title']}")
+    print(f"   📁 Filename: {Fore.GREEN}{file_info['gdrive_filename']}")
+    print(f"   💾 Size: {file_info['size_mb']} MB")
+    print(f"   ⏱️  Duration: {format_duration(file_info['duration_seconds'])}")
+
+    while True:
+        response = input(
+            f"\n{Fore.CYAN}Continue with this file? (y/n/e to edit filename): {Style.RESET_ALL}").lower().strip()
+
+        if response == 'y':
+            return True, file_info['gdrive_filename']
+        elif response == 'n':
+            print(f"{Fore.YELLOW}⏭️  Skipping this file...")
+            return False, ""
+        elif response == 'e':
+            new_filename = input(
+                f"{Fore.GREEN}Enter new filename (without .mp3): {Style.RESET_ALL}").strip()
+            if new_filename:
+                if not new_filename.endswith('.mp3'):
+                    new_filename += '.mp3'
+                print(f"{Fore.GREEN}✅ Updated filename: {new_filename}")
+                return True, new_filename
+
+        print(f"{Fore.RED}Please enter 'y', 'n', or 'e'")
+
+
+def show_processing_summary(files_to_process: List[Dict], skip_confirmations: bool = False):
+    """Show summary of files to be processed."""
+    if not files_to_process:
+        print(f"\n{Fore.GREEN}🎉 All files are already processed! Nothing to do.")
         return
 
-    reader = LectureReader(SUPABASE_URL, SUPABASE_KEY)
+    print(f"\n{Fore.CYAN}📊 Processing Summary:")
+    print(f"   Files to process: {Fore.YELLOW}{len(files_to_process)}")
 
-    sb_lecture_list = reader.fetch_lecture_list()
-    curated_sb_lecture_list = []
+    total_size = sum(f['size_mb'] for f in files_to_process)
+    total_duration = sum(f['duration_seconds'] for f in files_to_process)
 
-    if sb_lecture_list is not None:
-        print("✅ Successfully fetched lecture list:")
-        for lecture in sb_lecture_list:
-            curated_sb_lecture_list.append(
-                f"{lecture['date']}: {lecture['class_number']}")
+    print(f"   Total size: {Fore.YELLOW}{total_size:.1f} MB")
+    print(f"   Total duration: {Fore.YELLOW}{format_duration(total_duration)}")
 
-    return curated_sb_lecture_list
-
-
-def load_lecture_metadata(class_name: str, date_str: str) -> dict:
-    """Load lecture metadata from the JSON file."""
-    try:
-        metadata_path = os.path.join(
-            os.path.expanduser('~'),
-            'senah',
-            'lecture-transcriber',
-            'lecture_metadata',
-            class_name,
-            'data.json'
-        )
-
-        with open(metadata_path, 'r') as f:
-            metadata = json.load(f)
-
-        lecture_title = metadata.get('lecture_titles', {}).get(
-            date_str, f"{class_name} Lecture")
-        professor = metadata.get('professor', 'Professor')
-
-        return {
-            'title': lecture_title,
-            'class': class_name,
-            'professor': professor,
-            'date': date_str
-        }
-    except Exception as e:
-        print(f"Warning: Could not load metadata for {class_name}: {e}")
-        return {
-            'title': f"{class_name} Lecture",
-            'class': class_name,
-            'professor': 'Professor',
-            'date': date_str
-        }
+    if not skip_confirmations:
+        response = input(
+            f"\n{Fore.GREEN}Ready to start processing? (y/n): {Style.RESET_ALL}").lower().strip()
+        if response != 'y':
+            print(f"{Fore.YELLOW}👋 Goodbye!")
+            sys.exit(0)
 
 
 def main():
-    # Initialize processors
-    processor = TranscriptionProcessor(SUPABASE_URL, SUPABASE_KEY)
-    text_processor = TextProcessor(SUPABASE_URL, SUPABASE_KEY)
+    parser = argparse.ArgumentParser(description="Process lecture recordings")
+    parser.add_argument('-y', '--yes', action='store_true',
+                        help='Skip all confirmations')
+    args = parser.parse_args()
 
-    print_intro()
+    # Initialize processors with suppressed logging
+    print_banner()
 
-    # 1. Read in supabase to get list of recorded audio files already transcribed
-    print("\n🔍 Checking existing transcriptions in database...")
-    curated_sb_lecture_list = read_in_supabase()
+    with tqdm(total=2, desc="Initializing", bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt}', colour='green') as pbar:
+        processor = TranscriptionProcessor(SUPABASE_URL, SUPABASE_KEY)
+        pbar.update(1)
+        text_processor = TextProcessor(SUPABASE_URL, SUPABASE_KEY)
+        pbar.update(1)
 
-    # 2. Read in the recorded audio files from the device
-    print("\n📁 Reading local audio files...")
-    local_lecture_list = local_read()
+    # Step 1: Check existing transcriptions
+    print(f"\n{Fore.BLUE}🔍 Checking database for existing transcriptions...")
+    try:
+        reader = LectureReader(SUPABASE_URL, SUPABASE_KEY)
+        sb_lecture_list = reader.fetch_lecture_list()
+        curated_sb_lecture_list = []
 
-    # 3. Compare recordings and determine what needs to be uploaded
-    lectures_to_upload = [
-        lecture for lecture in local_lecture_list
-        if lecture not in curated_sb_lecture_list
-    ]
+        if sb_lecture_list is not None:
+            for lecture in sb_lecture_list:
+                curated_sb_lecture_list.append(
+                    f"{lecture['date']}: {lecture['class_number']}")
+            print(
+                f"{Fore.GREEN}✅ Found {len(curated_sb_lecture_list)} existing transcriptions")
+        else:
+            print(f"{Fore.YELLOW}⚠️  No existing transcriptions found")
+    except Exception:
+        curated_sb_lecture_list = []
+        print(f"{Fore.YELLOW}⚠️  Could not connect to database")
 
-    print(
-        f"\n📝 Lectures to process: {', '.join(lectures_to_upload) if lectures_to_upload else 'None'}")
+    # Step 2: Check Google Drive
+    print(f"\n{Fore.BLUE}☁️  Checking Google Drive...")
+    try:
+        gdrive_files = gdrive_read()
+        print(f"{Fore.GREEN}✅ Found {len(gdrive_files)} files in Google Drive")
+    except Exception:
+        gdrive_files = []
+        print(f"{Fore.YELLOW}⚠️  Could not connect to Google Drive")
 
-    # 4. Check what's already in Google Drive
-    # print("\n☁️ Checking Google Drive...")
-    gdrive_files = gdrive_read()
-    print(f"Found {len(gdrive_files)} files in Google Drive")
+    # Step 3: Scan local files
+    print(f"\n{Fore.BLUE}📁 Scanning local audio files...")
+    audio_recording_dir = Path(os.path.expanduser(
+        '~')) / 'projects' / 'lecture-transcriber' / 'audio' / 'senahs_recorder'
 
-    # 5. Process each audio file
-    audio_recording_dir = os.path.join(
-        os.path.expanduser('~'),
-        'projects',
-        'lecture-transcriber',
-        'audio',
-        'senahs_recorder'
-    )
-
-    if not os.path.exists(audio_recording_dir):
-        print(f"❌ Audio recording directory not found: {audio_recording_dir}")
+    if not audio_recording_dir.exists():
+        print(f"{Fore.RED}❌ Audio directory not found: {audio_recording_dir}")
         return
 
-    contents = os.listdir(audio_recording_dir)
-    audio_files = [f for f in contents if os.path.isfile(
-        os.path.join(audio_recording_dir, f))]
+    audio_files = [f for f in audio_recording_dir.iterdir(
+    ) if f.is_file() and not f.name.startswith('.')]
+    valid_files = []
 
-    print(f'\n🎵 Found {len(audio_files)} audio files in {audio_recording_dir}')
+    print(f"{Fore.GREEN}📂 Found {len(audio_files)} files")
 
-    for file in audio_files:
+    # Process each file and collect valid ones
+    for file_path in audio_files:
         try:
-            print(f"\n🔄 Processing file: {file}")
-
-            # Parse file info
-            date_str, time_str = parse_date_from_filename(file)
+            date_str, time_str = parse_date_from_filename(file_path.name)
             day_of_week = get_day_of_week_from_date(date_str)
-            formatted_time = format_time_string_with_am_pm(time_str)
             hour, minute = map(int, time_str.split(':')[0:2])
             truncated_end_time = truncate_recording_endtime_to_nearest_quarter(
                 hour, minute)
@@ -171,96 +220,138 @@ def main():
             if class_time_key[5] == '0':
                 class_time_key = f"{day_of_week}: {class_time_key[6:]}"
 
-            class_name = CLASS_TIME_MAPPINGS.get(class_time_key, None)
-
+            class_name = CLASS_TIME_MAPPINGS.get(class_time_key)
             if not class_name:
-                print(
-                    f"⚠️ Skipping {file}: No class mapping found for {class_time_key}")
                 continue
 
-            print(
-                f"📅 Date: {date_str} | 🕐 Time: {class_time_key} | 📚 Class: {class_name}")
-
             # Load metadata
-            lecture_metadata = load_lecture_metadata(class_name, date_str)
+            try:
+                metadata_path = Path.home() / 'senah' / 'lecture-transcriber' / \
+                    'lecture_metadata' / class_name / 'data.json'
+                with open(metadata_path, 'r') as f:
+                    metadata = json.load(f)
+                lecture_title = metadata.get('lecture_titles', {}).get(
+                    date_str, f"{class_name} Lecture")
+                professor = metadata.get('professor', 'Professor')
+            except:
+                lecture_title = f"{class_name} Lecture"
+                professor = 'Professor'
 
             # Check if already processed
             lecture_identifier = f"{date_str}: {class_name}"
             if lecture_identifier in curated_sb_lecture_list:
-                print(f"✅ Already processed: {lecture_identifier}")
                 continue
 
-            # Prepare file paths
-            audio_file_path = Path(os.path.join(audio_recording_dir, file))
-            gdrive_file_name = f"{date_str}_{lecture_metadata['title'].replace(' ', '_')}.mp3"
+            # Get audio info
+            audio_info = get_audio_info(file_path)
 
-            # Upload to Google Drive (if not already there)
-            print(f"☁️ Uploading to Google Drive...")
-            try:
+            file_info = {
+                'file_path': file_path,
+                'date': date_str,
+                'class': class_name,
+                'title': lecture_title,
+                'professor': professor,
+                'gdrive_filename': f"{date_str}_{lecture_title.replace(' ', '_')}.mp3",
+                'metadata': {
+                    'title': lecture_title,
+                    'class': class_name,
+                    'professor': professor,
+                    'date': date_str
+                },
+                **audio_info
+            }
+
+            valid_files.append(file_info)
+
+        except (ValueError, Exception):
+            continue
+
+    # Show processing summary
+    show_processing_summary(valid_files, args.yes)
+
+    if not valid_files:
+        print(
+            f"\n{Fore.GREEN}🎉 All done! Check your Next.js app to view transcriptions.")
+        return
+
+    # Process each file
+    print(f"\n{Fore.MAGENTA}🚀 Starting processing...")
+
+    for i, file_info in enumerate(valid_files, 1):
+        print(f"\n{Fore.CYAN}{Style.BRIGHT}{'='*60}")
+        print(
+            f"📝 Processing file {i}/{len(valid_files)}: {file_info['class']}")
+        print(f"{'='*60}{Style.RESET_ALL}")
+
+        # Confirm file processing
+        should_process, final_filename = confirm_file_processing(
+            file_info, args.yes)
+        if not should_process:
+            continue
+
+        try:
+            # Upload to Google Drive
+            print(f"\n{Fore.BLUE}☁️  Uploading to Google Drive...")
+            with tqdm(total=1, desc="Uploading", colour='blue') as pbar:
                 gdrive_upload(
-                    audio_file_path=str(audio_file_path),
-                    class_name=class_name,
-                    file_name=gdrive_file_name
+                    audio_file_path=str(file_info['file_path']),
+                    class_name=file_info['class'],
+                    file_name=final_filename
                 )
-                print(f"✅ Uploaded to Google Drive: {gdrive_file_name}")
-            except Exception as e:
-                print(f"⚠️ Google Drive upload failed: {e}")
-                # Continue with transcription even if upload fails
+                pbar.update(1)
+            print(f"{Fore.GREEN}✅ Uploaded successfully")
 
-            # Transcribe the audio
-            print(f"🎙️ Starting transcription...")
-            try:
+            # Transcribe audio
+            print(f"\n{Fore.BLUE}🎙️  Transcribing audio...")
+            with tqdm(total=1, desc="Transcribing", colour='yellow') as pbar:
                 transcription_result = processor.run(
-                    audio_file_path, lecture_metadata)
-                lecture_uuid = transcription_result.get('lecture_uuid')
+                    file_info['file_path'], file_info['metadata'])
+                pbar.update(1)
 
-                if not lecture_uuid:
-                    print(f"❌ Transcription failed - no lecture UUID returned")
-                    continue
-
-                print(
-                    f"✅ Transcription completed. Lecture UUID: {lecture_uuid}")
-
-                # Generate text insights
-                print(f"🧠 Generating text insights...")
-                try:
-                    context = {
-                        'class': lecture_metadata['class'],
-                        'professor': lecture_metadata['professor'],
-                        'title': lecture_metadata['title'],
-                        'date': lecture_metadata['date']
-                    }
-
-                    insights_result = text_processor.run(
-                        lecture_uuid,
-                        transcription_result['text'],
-                        context
-                    )
-
-                    print(f"✅ Text insights completed:")
-                    results = insights_result.get('results', {})
-                    print(
-                        f"   📋 Main ideas: {len(results.get('main_ideas', []))}")
-                    print(
-                        f"   📝 Summary: {len(results.get('summary', '').split())} words")
-                    print(f"   🔑 Keywords: {len(results.get('keywords', []))}")
-                    print(
-                        f"   ❓ Questions: {len(results.get('questions_to_review', []))}")
-
-                except Exception as e:
-                    print(f"❌ Text insights failed: {e}")
-                    # Continue even if insights fail - transcription is still saved
-
-            except Exception as e:
-                print(f"❌ Transcription failed: {e}")
+            lecture_uuid = transcription_result.get('lecture_uuid')
+            if not lecture_uuid:
+                print(f"{Fore.RED}❌ Transcription failed")
                 continue
 
-        except ValueError as ve:
-            print(f"⚠️ Skipping file {file}: {ve}")
-        except Exception as e:
-            print(f"❌ Error processing {file}: {e}")
+            print(f"{Fore.GREEN}✅ Transcription completed")
 
-    print(f"\n🎉 Processing complete!")
+            # Generate insights
+            print(f"\n{Fore.BLUE}🧠 Generating study insights...")
+            with tqdm(total=4, desc="AI Processing", colour='magenta') as pbar:
+                context = {
+                    'class': file_info['class'],
+                    'professor': file_info['professor'],
+                    'title': file_info['title'],
+                    'date': file_info['date']
+                }
+
+                insights_result = text_processor.run(
+                    lecture_uuid,
+                    transcription_result['text'],
+                    context
+                )
+                pbar.update(4)
+
+            results = insights_result.get('results', {})
+            print(f"{Fore.GREEN}✅ AI insights generated:")
+            print(f"   📋 {len(results.get('main_ideas', []))} main concepts")
+            print(
+                f"   📝 {len(results.get('summary', '').split())} word summary")
+            print(f"   🔑 {len(results.get('keywords', []))} key terms")
+            print(
+                f"   ❓ {len(results.get('questions_to_review', []))} study questions")
+
+        except Exception as e:
+            print(f"{Fore.RED}❌ Processing failed: {str(e)}")
+            continue
+
+    # Final celebration
+    print(f"\n{Fore.GREEN}{Style.BRIGHT}{'='*60}")
+    print("🎉 ALL PROCESSING COMPLETE! 🎉")
+    print("='*60}")
+    print(f"{Fore.CYAN}✨ Your lectures are now ready for studying!")
+    print(f"💻 Visit your Next.js app to explore the transcriptions")
+    print(f"📚 Happy studying, superstar! 📚{Style.RESET_ALL}")
 
 
 if __name__ == '__main__':
