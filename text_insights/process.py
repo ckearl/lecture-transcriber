@@ -39,9 +39,10 @@ class TextProcessor:
         self.max_retries = 3
         self.retry_delay = 2  # seconds
 
-        # Initialize Supabase client
+        # Initialize Supabase client with service key for admin operations
         self.supabase_url = supabase_url or os.getenv('SUPABASE_URL')
-        self.supabase_key = supabase_key or os.getenv('SUPABASE_ANON_KEY')
+        # Use SERVICE_KEY for admin operations (inserting insights bypasses RLS)
+        self.supabase_key = supabase_key or os.getenv('SUPABASE_SERVICE_KEY') or os.getenv('SUPABASE_ANON_KEY')
 
         if self.supabase_url and self.supabase_key:
             self.supabase: Client = create_client(

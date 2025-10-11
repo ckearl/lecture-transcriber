@@ -64,8 +64,7 @@ def truncate_recording_endtime_to_nearest_quarter(hour: int, minute: int) -> str
     return f"{hour:02}:{minute:02}"
 
 def read():
-    audio_recording_dir = os.path.join(os.path.expanduser(
-    '~'), 'projects', 'lecture-transcriber', 'audio', 'senahs_recorder')
+    audio_recording_dir = '/Volumes/USB-DISK/RECORD'
     contents = os.listdir(audio_recording_dir)
 
     audio_files = [f for f in contents if os.path.isfile(

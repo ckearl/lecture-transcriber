@@ -25,9 +25,10 @@ class TranscriptionProcessor:
         self.transcriptions_dir = Path("transcriptions")
         self.transcriptions_dir.mkdir(exist_ok=True)
 
-        # Initialize Supabase client
+        # Initialize Supabase client with service key for admin operations
         self.supabase_url = supabase_url or os.getenv('SUPABASE_URL')
-        self.supabase_key = supabase_key or os.getenv('SUPABASE_ANON_KEY')
+        # Use SERVICE_KEY for admin operations (inserting lectures bypasses RLS)
+        self.supabase_key = supabase_key or os.getenv('SUPABASE_SERVICE_KEY') or os.getenv('SUPABASE_ANON_KEY')
 
         if self.supabase_url and self.supabase_key:
             self.supabase: Client = create_client(
@@ -288,15 +289,15 @@ class TranscriptionProcessor:
             transcription_data = self.create_transcription_data(
                 metadata, timestamps, full_text, transcription_uuid)
 
-            # Save to JSON (local backup)
-            # self.update_progress(transcription_uuid,
-            #                      "Saving transcription locally...")
-            # self.save_transcription_json(
-            #     transcription_data,
-            #     metadata["class"],
-            #     metadata["title"],
-            #     metadata["date"]
-            # )
+            # Save to JSON (local backup) - do this FIRST to preserve data even if Supabase fails
+            self.update_progress(transcription_uuid,
+                                 "Saving transcription locally...")
+            self.save_transcription_json(
+                transcription_data,
+                metadata["class"],
+                metadata["title"],
+                metadata["date"]
+            )
 
             # Save to Supabase
             self.update_progress(transcription_uuid, "Saving to database...")

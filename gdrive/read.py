@@ -34,8 +34,18 @@ def get_credentials():
     return creds
 
 
-def get_files_in_folder(service, folder_id, class_name):
-    """Get all files in a specific folder."""
+def get_files_in_folder(service, folder_id, class_name, return_metadata=False):
+    """Get all files in a specific folder.
+
+    Args:
+        service: Google Drive API service
+        folder_id: ID of the folder to scan
+        class_name: Name of the class
+        return_metadata: If True, return dict with file metadata. If False, return just filenames
+
+    Returns:
+        List of filenames (if return_metadata=False) or list of dicts with metadata (if return_metadata=True)
+    """
     files = []
     page_token = None
 
@@ -55,7 +65,14 @@ def get_files_in_folder(service, folder_id, class_name):
             for item in items:
                 # Only include actual files, not folders
                 if item['mimeType'] != 'application/vnd.google-apps.folder':
-                    files.append(item['name'])
+                    if return_metadata:
+                        files.append({
+                            'id': item['id'],
+                            'name': item['name'],
+                            'class': class_name
+                        })
+                    else:
+                        files.append(item['name'])
                     print(f"Found in {class_name}: {item['name']}")
 
             page_token = response.get('nextPageToken')
@@ -124,4 +141,27 @@ def loop():
 
     except Exception as error:
         print(f'An error occurred in loop(): {error}')
+        return []
+
+
+def loop_with_metadata():
+    """Loop through all class folders and return file metadata (id, name, class)."""
+    all_files = []
+
+    try:
+        creds = get_credentials()
+        service = build('drive', 'v3', credentials=creds)
+
+        for class_name in folder_ids.keys():
+            if class_name != 'lecture recordings':  # Skip the parent folder
+                print(f"\nScanning folder: {class_name}")
+                files = get_files_in_folder(
+                    service, folder_ids[class_name], class_name, return_metadata=True)
+                all_files.extend(files)
+
+        print(f"\nTotal files found across all folders: {len(all_files)}")
+        return all_files
+
+    except Exception as error:
+        print(f'An error occurred in loop_with_metadata(): {error}')
         return []

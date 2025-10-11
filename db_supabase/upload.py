@@ -195,10 +195,11 @@ class LectureUploader:
 def main():
     # Initialize with your Supabase credentials
     SUPABASE_URL = os.getenv('SUPABASE_URL')  # or your actual URL
-    SUPABASE_KEY = os.getenv('SUPABASE_ANON_KEY')  # or your actual key
+    # Use SERVICE_KEY for admin operations to bypass RLS policies
+    SUPABASE_KEY = os.getenv('SUPABASE_SERVICE_KEY') or os.getenv('SUPABASE_ANON_KEY')
 
     if not SUPABASE_URL or not SUPABASE_KEY:
-        print("Please set SUPABASE_URL and SUPABASE_ANON_KEY environment variables")
+        print("Please set SUPABASE_URL and SUPABASE_SERVICE_KEY (or SUPABASE_ANON_KEY) environment variables")
         return
 
     uploader = LectureUploader(SUPABASE_URL, SUPABASE_KEY)
