@@ -1,0 +1,3236 @@
+{
+  "title": "MBA 501 Corporate Financial Reporting Lecture",
+  "transcription_uuid": "b755ad5c-ba2c-417f-ad49-f5416b367aab",
+  "date": "2025-10-07",
+  "class": "MBA 501 Corporate Financial Reporting",
+  "professor": "Professor",
+  "speakers": [],
+  "timestamps": [
+    {
+      "start": 0.0,
+      "end": 2.96,
+      "text": "Today's National Chocolate Cupboardnej."
+    },
+    {
+      "start": 34.88,
+      "end": 42.46,
+      "text": "Okay. Okay. We spent a few class sessions looking at the characteristics of work that we"
+    },
+    {
+      "start": 42.46,
+      "end": 49.04,
+      "text": "will do and how that shapes things like culture, how it influences individuals, how we design"
+    },
+    {
+      "start": 49.04,
+      "end": 55.16,
+      "text": "formal organization to support that work. We spent a few days talking about universal needs"
+    },
+    {
+      "start": 55.16,
+      "end": 61.16,
+      "text": "that individuals have. We talked about individual differences in diversity. Today we're going"
+    },
+    {
+      "start": 61.16,
+      "end": 66.38,
+      "text": "to shift and we're going to spend a good chunk of the next number of weeks. I talked about"
+    },
+    {
+      "start": 66.38,
+      "end": 73.34,
+      "text": "different formal HR processes. Today we're going to start by talking about recruiting and selection"
+    },
+    {
+      "start": 73.34,
+      "end": 84.26,
+      "text": "as a really critical HR process. This slide just helps you again reinforce the message that"
+    },
+    {
+      "start": 84.26,
+      "end": 88.4,
+      "text": "I hope you've been hearing from Dave on and that is I don't care what discipline you"
+    },
+    {
+      "start": 88.4,
+      "end": 93.92,
+      "text": "are. I don't care what you're after. I don't care if you never want to go into HR. Who"
+    },
+    {
+      "start": 93.92,
+      "end": 103.68,
+      "text": "executes most of the HR functions for HR processes and managers in other places. HR supports"
+    },
+    {
+      "start": 103.68,
+      "end": 110.86,
+      "text": "and sold sometimes it owns those processes but line managers often execute those. Today"
+    },
+    {
+      "start": 110.86,
+      "end": 115.54,
+      "text": "we're going to talk about the hiring process. We're going to talk about something called"
+    },
+    {
+      "start": 115.54,
+      "end": 121.7,
+      "text": "job analysis that we use to create a weighted criterion matrix and then we'll spend a good"
+    },
+    {
+      "start": 121.7,
+      "end": 129.8,
+      "text": "chunk of our time discussing it as to how it's going to work. This is the ideal hiring process."
+    },
+    {
+      "start": 130.42,
+      "end": 136.16,
+      "text": "We're being very intentional about hiring. It starts with identifying the purpose of the"
+    },
+    {
+      "start": 136.16,
+      "end": 143.92,
+      "text": "hiring. That sounds obvious but in a startup environment or a high growth environment, sometimes"
+    },
+    {
+      "start": 143.92,
+      "end": 148.54,
+      "text": "you're just trying to get bodies and you don't really take time to think about what is the"
+    },
+    {
+      "start": 148.54,
+      "end": 154.86,
+      "text": "actual purpose. What is the job that we're hiring this person to do? Once we identify that purpose,"
+    },
+    {
+      "start": 155.52,
+      "end": 162.02,
+      "text": "we establish the criteria upon which selection is going to be based. We go through a process of"
+    },
+    {
+      "start": 162.02,
+      "end": 169.58,
+      "text": "waiting those criteria and then we identify candidates, evaluate candidates, select candidates,"
+    },
+    {
+      "start": 170.22,
+      "end": 175.28,
+      "text": "hire and on board those that we selected and then at some point we're going to evaluate"
+    },
+    {
+      "start": 175.28,
+      "end": 183.78,
+      "text": "that employee and see do they perform in line with expectations. We're going to spend a"
+    },
+    {
+      "start": 183.78,
+      "end": 190.14,
+      "text": "little bit of time on each of these steps here. First, identify the purpose of a hire. Again,"
+    },
+    {
+      "start": 191.36,
+      "end": 197.08,
+      "text": "you have to be very intentional about why you're hiring someone. I think this is a really"
+    },
+    {
+      "start": 197.08,
+      "end": 204.06,
+      "text": "good example of a situation where they really create a competitive advantage by getting really,"
+    },
+    {
+      "start": 204.06,
+      "end": 210.28,
+      "text": "really clear about the purpose of a hire. I'm not 100% sure if the sound on this is working."
+    },
+    {
+      "start": 210.52,
+      "end": 212.82,
+      "text": "So I can try to test it. We'll see here."
+    },
+    {
+      "start": 216.18,
+      "end": 221.28,
+      "text": "There is an epidemic failure with a patient who understands what we need to ask."
+    },
+    {
+      "start": 222.42,
+      "end": 229.44,
+      "text": "And this means people with an agent based policies. This judge your players may manage their teams."
+    },
+    {
+      "start": 232.22,
+      "end": 239.24,
+      "text": "Okay, people who run all those that they think in terms of buying players."
+    },
+    {
+      "start": 241.06,
+      "end": 247.22,
+      "text": "Your goal is to buy players, your goal should be five players and over-defined players should be five"
+    },
+    {
+      "start": 247.22,
+      "end": 253.98,
+      "text": "players. Here's your final question. It's about to be a stock seed journey based on your start."
+    },
+    {
+      "start": 254.4,
+      "end": 257.88,
+      "text": "We're $7 million a year. So I see your journey."
+    },
+    {
+      "start": 258.52,
+      "end": 265.34,
+      "text": "What I see is an imperfect understanding of your growth."
+    },
+    {
+      "start": 266.88,
+      "end": 274.62,
+      "text": "The guy's got a great club. He's an easy lead off-hitter. He'll be $7 million a year from"
+    },
+    {
+      "start": 274.62,
+      "end": 275.6,
+      "text": "the rest of the school."
+    },
+    {
+      "start": 278.64,
+      "end": 282.86,
+      "text": "Based on this, it's going to be later on. All of the more questions."
+    },
+    {
+      "start": 284.1,
+      "end": 288.74,
+      "text": "Hey Billy, I wanted you to see player dimensions."
+    },
+    {
+      "start": 291.82,
+      "end": 294.86,
+      "text": "I actually do three. Yeah."
+    },
+    {
+      "start": 295.68,
+      "end": 299.32,
+      "text": "To buy my three players. Yeah. How many do you do?"
+    },
+    {
+      "start": 300.42,
+      "end": 301.2,
+      "text": "Forty-six."
+    },
+    {
+      "start": 303.5,
+      "end": 303.84,
+      "text": "Okay."
+    },
+    {
+      "start": 305.46,
+      "end": 312.4,
+      "text": "Okay, well that's stuffy. So traditionally, baseball executives were thinking about the purpose of a higher"
+    },
+    {
+      "start": 312.4,
+      "end": 318.42,
+      "text": "in terms of buying stars, right? The Oakland A's had severe budget constraints."
+    },
+    {
+      "start": 319.24,
+      "end": 326.2,
+      "text": "They didn't have the financial needs to hire the start players like someone like the U.C. or the Yankees."
+    },
+    {
+      "start": 326.2,
+      "end": 331.46,
+      "text": "So how did they change their thinking about the purpose of hiring a baseball player?"
+    },
+    {
+      "start": 331.66,
+      "end": 334.54,
+      "text": "How did they shift their thinking here to other law books?"
+    },
+    {
+      "start": 334.98,
+      "end": 340.14,
+      "text": "Yeah. So yeah, they broke down. Instead of thinking like, oh I hired a person."
+    },
+    {
+      "start": 340.74,
+      "end": 349.04,
+      "text": "Oh, I need to change the needs of the metrics. How does this person help this music?"
+    },
+    {
+      "start": 349.04,
+      "end": 351.18,
+      "text": "They're looking to get done with it."
+    },
+    {
+      "start": 352.5,
+      "end": 355.32,
+      "text": "They're very hitter. They're a great runner."
+    },
+    {
+      "start": 356.14,
+      "end": 359.02,
+      "text": "They're thinking about it in the whole unified term."
+    },
+    {
+      "start": 359.58,
+      "end": 365.08,
+      "text": "Yeah. So if a win comes from scoring runs, how does a baseball team score runs?"
+    },
+    {
+      "start": 365.28,
+      "end": 367.14,
+      "text": "And it runs by getting people on base."
+    },
+    {
+      "start": 367.82,
+      "end": 371.48,
+      "text": "And so they started to value something called on base for simple."
+    },
+    {
+      "start": 371.9,
+      "end": 374.56,
+      "text": "Far more than how many home runs someone hits."
+    },
+    {
+      "start": 375.36,
+      "end": 380.1,
+      "text": "Far more than other metrics than what typically he used to think about hiring a baseball player."
+    },
+    {
+      "start": 381.1,
+      "end": 383.08,
+      "text": "And during the years from"
+    },
+    {
+      "start": 385.1,
+      "end": 386.78,
+      "text": "2000 to about 2006,"
+    },
+    {
+      "start": 387.9,
+      "end": 393.1,
+      "text": "they finished first and second in their division despite some severe financial constraints."
+    },
+    {
+      "start": 393.84,
+      "end": 398.72,
+      "text": "This is a frontier that shows you T-20 percentage."
+    },
+    {
+      "start": 399.32,
+      "end": 402.58,
+      "text": "And this is salary. So you'll notice the New York Yankees,"
+    },
+    {
+      "start": 402.58,
+      "end": 407.7,
+      "text": "how to hide T-20 percentage, but they were paying a ton for that winning percentage."
+    },
+    {
+      "start": 408.62,
+      "end": 415.52,
+      "text": "Here you see these teams from the Oakland A's are all down on the lower right quadrant,"
+    },
+    {
+      "start": 415.92,
+      "end": 421.52,
+      "text": "suggesting that they were getting a significant winning percentage for very low salary."
+    },
+    {
+      "start": 422.32,
+      "end": 426.52,
+      "text": "So just by simply shifting their thinking about what is the purpose of a baseball player,"
+    },
+    {
+      "start": 427.0,
+      "end": 430.06,
+      "text": "they were going to create this incredible competitive advantage."
+    },
+    {
+      "start": 430.06,
+      "end": 435.12,
+      "text": "And they never won a World Series during that time, but they came very close and had some really,"
+    },
+    {
+      "start": 435.26,
+      "end": 436.3,
+      "text": "really good teams during that time."
+    },
+    {
+      "start": 437.76,
+      "end": 441.92,
+      "text": "Once the market kind of discovered what the A's were doing as management,"
+    },
+    {
+      "start": 442.22,
+      "end": 445.98,
+      "text": "earned the A's, went to other places, and the money ball concept kind of went to other places."
+    },
+    {
+      "start": 446.04,
+      "end": 452.82,
+      "text": "You'll notice the labor market returns to individuals with higher on base percentage"
+    },
+    {
+      "start": 452.82,
+      "end": 459.94,
+      "text": "begin to skyrocket. So getting clear about the purpose of a higher is really important."
+    },
+    {
+      "start": 461.38,
+      "end": 466.48,
+      "text": "Once you get clear on why you're hiring someone, then we do something called a job analysis."
+    },
+    {
+      "start": 467.2,
+      "end": 474.52,
+      "text": "A job analysis is a study that's meant to determine the tasks that are involved in a job,"
+    },
+    {
+      "start": 474.86,
+      "end": 477.96,
+      "text": "and the competencies that are required to do those tasks."
+    },
+    {
+      "start": 478.44,
+      "end": 484.02,
+      "text": "The ultimate goal of the job analysis is to write a job description so that you can advertise"
+    },
+    {
+      "start": 484.02,
+      "end": 487.26,
+      "text": "for a particular job what you're looking for."
+    },
+    {
+      "start": 487.26,
+      "end": 492.56,
+      "text": "So a few steps into job analysis, we're going to review existing job descriptions"
+    },
+    {
+      "start": 493.1,
+      "end": 495.42,
+      "text": "that are related to this job that we're hiring for."
+    },
+    {
+      "start": 496.02,
+      "end": 501.6,
+      "text": "We're going to review any public data that's available that can help us gather information"
+    },
+    {
+      "start": 501.6,
+      "end": 508.06,
+      "text": "about what this job entails. We're going to conduct surveys or interviews or observations of"
+    },
+    {
+      "start": 508.06,
+      "end": 514.84,
+      "text": "people that have done that job. And then we're going to look at those that supervise individuals"
+    },
+    {
+      "start": 514.84,
+      "end": 521.34,
+      "text": "in that job. And so by implementing these different types of approaches to learning about the"
+    },
+    {
+      "start": 521.34,
+      "end": 525.3,
+      "text": "job, we can better understand what are the tasks and what are the competencies."
+    },
+    {
+      "start": 527.06,
+      "end": 532.82,
+      "text": "So once we've identified the critical tasks and tasks in competencies, then we're going to"
+    },
+    {
+      "start": 532.82,
+      "end": 544.82,
+      "text": "learn how to write what we call task statements and competencies statements. And then we're going"
+    },
+    {
+      "start": 544.82,
+      "end": 549.42,
+      "text": "to get a good task statement. Has this form we've talked about each action, sorry,"
+    },
+    {
+      "start": 550.42,
+      "end": 556.38,
+      "text": "the object of the action with clarifying details. So here's the example of a task statement."
+    },
+    {
+      "start": 556.8,
+      "end": 562.74,
+      "text": "We need an individual that can develop and implement comprehensive digital marketing strategies"
+    },
+    {
+      "start": 563.62,
+      "end": 569.12,
+      "text": "that increase brand visibility and customer engagement using platforms such as Google Analytics"
+    },
+    {
+      "start": 569.12,
+      "end": 576.14,
+      "text": "social media and SEO tools. So that's an example of a task statement. What competencies are required,"
+    },
+    {
+      "start": 576.86,
+      "end": 582.24,
+      "text": "competency statements have to form what is the competency, what is the object of the competency,"
+    },
+    {
+      "start": 582.82,
+      "end": 588.32,
+      "text": "and what's the level of proficiency. So here it says advanced proficiency in developing,"
+    },
+    {
+      "start": 588.72,
+      "end": 594.22,
+      "text": "testing and deploying web applications using modern frameworks to optimize application"
+    },
+    {
+      "start": 594.22,
+      "end": 600.62,
+      "text": "formats and ensure security best practices. So task statement describes what needs to be done,"
+    },
+    {
+      "start": 601.06,
+      "end": 607.24,
+      "text": "the competency statement describes the level of competency we're looking for for some of the performance"
+    },
+    {
+      "start": 607.24,
+      "end": 609.9,
+      "text": "tasks. Questions?"
+    },
+    {
+      "start": 613.74,
+      "end": 614.14,
+      "text": "Yes."
+    },
+    {
+      "start": 615.04,
+      "end": 621.1,
+      "text": "From your perspective, I feel like, so in my experience, any job, job-to-word, job-to-description,"
+    },
+    {
+      "start": 621.44,
+      "end": 625.08,
+      "text": "job-to-signal, you can believe what I can look at is actually very different from the"
+    },
+    {
+      "start": 625.08,
+      "end": 631.76,
+      "text": "circumstances. So it's like, you job-to-signal, you're not a good idea to be a scientist,"
+    },
+    {
+      "start": 632.16,
+      "end": 636.58,
+      "text": "you're kind of like a more patient, you'll be a partner in the job-to-signal, like the"
+    },
+    {
+      "start": 636.58,
+      "end": 637.24,
+      "text": "other type of thing."
+    },
+    {
+      "start": 638.74,
+      "end": 645.84,
+      "text": "Yeah, so a job description is really for helping someone understand what am I going to be doing"
+    },
+    {
+      "start": 645.84,
+      "end": 651.94,
+      "text": "here and what are the core companies and that may or may not be included in a job-to-signal,"
+    },
+    {
+      "start": 651.94,
+      "end": 658.54,
+      "text": "you may have other way to get your job, but the job description is really the nuts and bolts"
+    },
+    {
+      "start": 658.54,
+      "end": 662.8,
+      "text": "that help the person understand this is what you're going to be doing and these are the"
+    },
+    {
+      "start": 662.8,
+      "end": 664.34,
+      "text": "qualifications to make life easier."
+    },
+    {
+      "start": 665.72,
+      "end": 666.0,
+      "text": "Yeah."
+    },
+    {
+      "start": 666.42,
+      "end": 670.68,
+      "text": "Do you really need theories about why so many people are so bad at this?"
+    },
+    {
+      "start": 671.66,
+      "end": 676.52,
+      "text": "This is my experience, I'm very worried about the new job, those things that have good"
+    },
+    {
+      "start": 676.52,
+      "end": 680.12,
+      "text": "jobs for getting married, they actually make sense. I appreciate it's indescribable."
+    },
+    {
+      "start": 680.98,
+      "end": 688.66,
+      "text": "To be honest, I just feel like many, many, many managers get so consumed with putting up"
+    },
+    {
+      "start": 688.66,
+      "end": 693.16,
+      "text": "their buyers and their day to day jobs, they just don't have the bandwidth or the time,"
+    },
+    {
+      "start": 693.88,
+      "end": 699.06,
+      "text": "or maybe the understanding is the intentional loss in this, so they do a new four-gyPE."
+    },
+    {
+      "start": 700.5,
+      "end": 704.4,
+      "text": "Companies that really value HR are going to do this better than one of these."
+    },
+    {
+      "start": 706.22,
+      "end": 711.48,
+      "text": "Now there's some argument that this is kind of an obsolete thing."
+    },
+    {
+      "start": 712.2,
+      "end": 719.46,
+      "text": "There are some people that advocate for other types of mediums, so one is a video job description."
+    },
+    {
+      "start": 720.3,
+      "end": 723.48,
+      "text": "I'm going to show you an example of a video job description."
+    },
+    {
+      "start": 725.12,
+      "end": 732.38,
+      "text": "10,000 shrewpacks if you've been caught the BYU cameo in this particular job description."
+    },
+    {
+      "start": 734.4,
+      "end": 740.12,
+      "text": "As you're watching this, I want you to think about, okay, what would be the advantages of a job"
+    },
+    {
+      "start": 740.12,
+      "end": 744.3,
+      "text": "description like this? What would be some of the drawbacks to the advantages of this?"
+    },
+    {
+      "start": 753.84,
+      "end": 760.06,
+      "text": "Instructors are critical to camp. They help the faith in environment where the campers feel"
+    },
+    {
+      "start": 760.06,
+      "end": 765.72,
+      "text": "faith, whether they feel hurt, their臂, exploring their interests, the material."
+    },
+    {
+      "start": 766.42,
+      "end": 772.4,
+      "text": "Three things that make a really amazing medium instructor are being able to be in prompting,"
+    },
+    {
+      "start": 772.44,
+      "end": 776.66,
+      "text": "being someone who is really passionate about certain subjects or certain areas,"
+    },
+    {
+      "start": 776.94,
+      "end": 782.22,
+      "text": "but also someone who is excited and loves to easily and have a lot of fun at camp."
+    },
+    {
+      "start": 783.12,
+      "end": 788.66,
+      "text": "Going into gallery, you don't necessarily have to be going down to the traditional education"
+    },
+    {
+      "start": 788.66,
+      "end": 795.46,
+      "text": "path. You don't have to be a video game designer to being a video game instructor. You just need to have"
+    },
+    {
+      "start": 795.46,
+      "end": 801.18,
+      "text": "the passion, you just need to want to have fun with kids, you just need to have that open mind"
+    },
+    {
+      "start": 801.18,
+      "end": 808.3,
+      "text": "jumping there to do this. The aim of a medium instructor can vary, but their main focus is to work on"
+    },
+    {
+      "start": 808.3,
+      "end": 814.14,
+      "text": "the classroom, to make sure that all the materials are there for people to use, that your 10 years"
+    },
+    {
+      "start": 814.14,
+      "end": 819.78,
+      "text": "know how to best support you in the classroom, but also just being a part of camp, where I'm feeling"
+    },
+    {
+      "start": 819.78,
+      "end": 826.8,
+      "text": "hot today, and bringing the energy, bringing the time every day, just being excited with you there."
+    },
+    {
+      "start": 827.74,
+      "end": 833.62,
+      "text": "Jowl is fun because you're working with amazing staff in an environment where you get to be"
+    },
+    {
+      "start": 833.62,
+      "end": 839.96,
+      "text": "able to fit again, working with curriculum that's so high quality that really inspires not only kids"
+    },
+    {
+      "start": 839.96,
+      "end": 845.06,
+      "text": "to be your best, but also the staffers to be their best as well. It gives you this confidence going"
+    },
+    {
+      "start": 845.06,
+      "end": 850.06,
+      "text": "through your talent, and it's not a love warranting confidence, it's like a real confidence from an experience,"
+    },
+    {
+      "start": 850.46,
+      "end": 853.64,
+      "text": "a transformative experience, a really great success."
+    },
+    {
+      "start": 858.68,
+      "end": 862.56,
+      "text": "How do you, it's obviously what you came up with."
+    },
+    {
+      "start": 863.74,
+      "end": 865.14,
+      "text": "10,000, three bucks for all."
+    },
+    {
+      "start": 867.16,
+      "end": 872.92,
+      "text": "What are some of it, some advantages, disadvantages to this type of job history?"
+    },
+    {
+      "start": 873.74,
+      "end": 877.84,
+      "text": "Advantage, you see what's happening, you see a little bit of environment, no, yeah,"
+    },
+    {
+      "start": 877.84,
+      "end": 878.46,
+      "text": "I think I did a good job."
+    },
+    {
+      "start": 878.78,
+      "end": 882.36,
+      "text": "Did you much better feel culture and a bit of video?"
+    },
+    {
+      "start": 883.52,
+      "end": 886.46,
+      "text": "I hope I'm happier walking that video, so I will agree to that."
+    },
+    {
+      "start": 886.72,
+      "end": 890.06,
+      "text": "Yeah, yeah, there's emotions, the affect that's part of it."
+    },
+    {
+      "start": 890.86,
+      "end": 897.98,
+      "text": "I feel like it feels more like I don't know what state you're in the office, but I think that's a lot of me great to see what you're here."
+    },
+    {
+      "start": 898.38,
+      "end": 904.0,
+      "text": "This is kind of like I don't really want you to be doing any today, but I feel like actually getting to work,"
+    },
+    {
+      "start": 905.48,
+      "end": 911.6,
+      "text": "it's not like you're doing anything in the field, and they get expectation, and what the whole job"
+    },
+    {
+      "start": 911.6,
+      "end": 913.38,
+      "text": "I will get much more into."
+    },
+    {
+      "start": 914.28,
+      "end": 915.2,
+      "text": "You see, I'm not sure."
+    },
+    {
+      "start": 915.54,
+      "end": 926.28,
+      "text": "Yeah, so this one's maybe more focused on culture and cultural fit, but you still have a lot of questions about what I'm actually wanting for, what I'm actually doing here too."
+    },
+    {
+      "start": 943.8,
+      "end": 946.82,
+      "text": "Yeah, these are expensive, right? And they're market change."
+    },
+    {
+      "start": 946.82,
+      "end": 952.78,
+      "text": "So once you create them, if somebody changes making a new one, it's a whole new expense."
+    },
+    {
+      "start": 953.44,
+      "end": 956.8,
+      "text": "I think that video is more flexible than what they can portray."
+    },
+    {
+      "start": 957.02,
+      "end": 962.32,
+      "text": "Like this one focused on culture, but could you possibly understand what the job is on the functional days?"
+    },
+    {
+      "start": 962.56,
+      "end": 962.98,
+      "text": "Absolutely."
+    },
+    {
+      "start": 963.82,
+      "end": 970.26,
+      "text": "I think the main difference is that when you're writing about the structured why not just being on your specs."
+    },
+    {
+      "start": 970.26,
+      "end": 978.7,
+      "text": "Many of you are so different, as we do not know for working on this, because not most of us are."
+    },
+    {
+      "start": 979.46,
+      "end": 979.92,
+      "text": "Thank you."
+    },
+    {
+      "start": 1009.92,
+      "end": 1015.58,
+      "text": "I'll give you some utility and creating videos that do help individuals understand."
+    },
+    {
+      "start": 1016.22,
+      "end": 1017.5,
+      "text": "Could I be a cultural fit?"
+    },
+    {
+      "start": 1020.38,
+      "end": 1026.38,
+      "text": "Once we've done the job analysis, we create selection criteria."
+    },
+    {
+      "start": 1026.86,
+      "end": 1028.36,
+      "text": "This was from your case, right?"
+    },
+    {
+      "start": 1028.36,
+      "end": 1038.42,
+      "text": "I think that this very well thought out selection criteria sheet, commitment to firm, judgment maturity,"
+    },
+    {
+      "start": 1038.78,
+      "end": 1042.7,
+      "text": "interpersonal skills, leadership, technical skills, and work ethic."
+    },
+    {
+      "start": 1043.36,
+      "end": 1047.98,
+      "text": "And then under each and that, we're in the head of subcategories here to get to an overall rate."
+    },
+    {
+      "start": 1049.18,
+      "end": 1054.32,
+      "text": "Once we create our criteria, then the last step is to create what we call weighted criteria and metrics."
+    },
+    {
+      "start": 1054.32,
+      "end": 1062.08,
+      "text": "So there may be criteria that we value equally, or there may be some that we want to weight more than others."
+    },
+    {
+      "start": 1062.78,
+      "end": 1073.54,
+      "text": "And so we take our criterion, we establish a weight for each one, and then, when we break the candidate, we can use that weighted criterion matrix to evaluate the candidate."
+    },
+    {
+      "start": 1078.82,
+      "end": 1081.28,
+      "text": "Or you can just employ Ron Swanson's method."
+    },
+    {
+      "start": 1084.04,
+      "end": 1086.1,
+      "text": "The only question is, what can you start?"
+    },
+    {
+      "start": 1086.46,
+      "end": 1087.76,
+      "text": "I know, let's do it."
+    },
+    {
+      "start": 1087.96,
+      "end": 1089.4,
+      "text": "Thank you for coming here."
+    },
+    {
+      "start": 1090.0,
+      "end": 1090.82,
+      "text": "We will talk."
+    },
+    {
+      "start": 1091.54,
+      "end": 1093.0,
+      "text": "Cool. I feel good about this."
+    },
+    {
+      "start": 1093.66,
+      "end": 1096.08,
+      "text": "I know you can give me a location with anytime there, and I know that right."
+    },
+    {
+      "start": 1096.5,
+      "end": 1097.0,
+      "text": "Thank you everybody."
+    },
+    {
+      "start": 1097.34,
+      "end": 1097.5,
+      "text": "Boom."
+    },
+    {
+      "start": 1098.46,
+      "end": 1099.76,
+      "text": "So what even do you do with assistance?"
+    },
+    {
+      "start": 1101.12,
+      "end": 1103.64,
+      "text": "I want to punch you in the face of that right now."
+    },
+    {
+      "start": 1105.38,
+      "end": 1105.78,
+      "text": "Yeah."
+    },
+    {
+      "start": 1107.58,
+      "end": 1108.54,
+      "text": "Mr. Seagalkey, look."
+    },
+    {
+      "start": 1109.04,
+      "end": 1109.5,
+      "text": "Thank you."
+    },
+    {
+      "start": 1110.12,
+      "end": 1110.3,
+      "text": "Really?"
+    },
+    {
+      "start": 1110.52,
+      "end": 1110.64,
+      "text": "No."
+    },
+    {
+      "start": 1110.9,
+      "end": 1115.28,
+      "text": "I want to be your assistant."
+    },
+    {
+      "start": 1116.02,
+      "end": 1116.24,
+      "text": "Really?"
+    },
+    {
+      "start": 1117.32,
+      "end": 1118.0,
+      "text": "You're a native here."
+    },
+    {
+      "start": 1118.34,
+      "end": 1121.66,
+      "text": "So you, I'll make sure you don't have to go to any meetings."
+    },
+    {
+      "start": 1122.46,
+      "end": 1124.82,
+      "text": "And when comes to see you, I'll scare them away."
+    },
+    {
+      "start": 1125.5,
+      "end": 1130.96,
+      "text": "If you have to do these two guys, you're hired."
+    },
+    {
+      "start": 1133.26,
+      "end": 1135.3,
+      "text": "I'm going to find a spot to get paid for being here."
+    },
+    {
+      "start": 1137.28,
+      "end": 1138.46,
+      "text": "There's no..."
+    },
+    {
+      "start": 1139.42,
+      "end": 1144.28,
+      "text": "Hopefully we're in a safe and value and following the more ideal hiring process."
+    },
+    {
+      "start": 1151.18,
+      "end": 1152.52,
+      "text": "So that's right, Ben."
+    },
+    {
+      "start": 1152.64,
+      "end": 1153.72,
+      "text": "We're sitting in case here."
+    },
+    {
+      "start": 1153.82,
+      "end": 1154.98,
+      "text": "We have F.D. Cowan."
+    },
+    {
+      "start": 1155.86,
+      "end": 1160.7,
+      "text": "You can give us a little bit of a stage set for this particular case."
+    },
+    {
+      "start": 1160.9,
+      "end": 1162.74,
+      "text": "What's going on in case Ben?"
+    },
+    {
+      "start": 1163.64,
+      "end": 1167.22,
+      "text": "So F.D. Cowan is an invested banking group."
+    },
+    {
+      "start": 1167.78,
+      "end": 1169.32,
+      "text": "They're based out in New York."
+    },
+    {
+      "start": 1169.32,
+      "end": 1174.98,
+      "text": "They are kind of a smaller, more boutique firm."
+    },
+    {
+      "start": 1175.46,
+      "end": 1180.9,
+      "text": "They try to differentiate through abilities to move up in the firm."
+    },
+    {
+      "start": 1181.48,
+      "end": 1184.2,
+      "text": "Having more disability to see the leadership."
+    },
+    {
+      "start": 1185.18,
+      "end": 1191.12,
+      "text": "And they typically are hiring an analyst class or an associate class each year."
+    },
+    {
+      "start": 1191.12,
+      "end": 1195.68,
+      "text": "Look, these folks are typically post-MBA."
+    },
+    {
+      "start": 1197.62,
+      "end": 1204.64,
+      "text": "And they can be with a lot of these larger firms or top talent from the top schools."
+    },
+    {
+      "start": 1205.4,
+      "end": 1210.74,
+      "text": "They've found that they typically are getting kind of invigorating candidates from top schools."
+    },
+    {
+      "start": 1210.98,
+      "end": 1217.44,
+      "text": "So they kind of move their strategy to target top talent from kind of tier two schools."
+    },
+    {
+      "start": 1218.44,
+      "end": 1221.8,
+      "text": "And they're hiring an analyst class right now."
+    },
+    {
+      "start": 1222.22,
+      "end": 1225.92,
+      "text": "They do a super Saturday process with that."
+    },
+    {
+      "start": 1226.06,
+      "end": 1232.24,
+      "text": "The candidates come in and the folks that help out with the interviews help make the hiring."
+    },
+    {
+      "start": 1232.88,
+      "end": 1237.28,
+      "text": "So multi-pronged kind of strategy here."
+    },
+    {
+      "start": 1237.86,
+      "end": 1240.38,
+      "text": "It starts with identifying the four schools."
+    },
+    {
+      "start": 1241.66,
+      "end": 1245.46,
+      "text": "And then we have on-campus interaction and interviews."
+    },
+    {
+      "start": 1246.28,
+      "end": 1249.44,
+      "text": "That results in why out of New York."
+    },
+    {
+      "start": 1249.62,
+      "end": 1254.22,
+      "text": "And then we have this super Saturday concept that will play results in final studies."
+    },
+    {
+      "start": 1255.36,
+      "end": 1259.68,
+      "text": "Let's talk first about this four school strategies."
+    },
+    {
+      "start": 1260.92,
+      "end": 1262.18,
+      "text": "What were your reactions?"
+    },
+    {
+      "start": 1262.9,
+      "end": 1267.5,
+      "text": "Things you like, things that you dislike about their score school strategy?"
+    },
+    {
+      "start": 1268.12,
+      "end": 1269.28,
+      "text": "Let's come here and back to another point."
+    },
+    {
+      "start": 1271.24,
+      "end": 1276.96,
+      "text": "The thing I like about the course was about the strategy is that it's a lot of you to get into the meeting pipeline."
+    },
+    {
+      "start": 1278.08,
+      "end": 1281.26,
+      "text": "So that you have access to the competitive talent."
+    },
+    {
+      "start": 1281.92,
+      "end": 1284.48,
+      "text": "But it's really easy to study that came out about it."
+    },
+    {
+      "start": 1284.58,
+      "end": 1291.08,
+      "text": "It has less to do with where students go to school and more how they perform half that school."
+    },
+    {
+      "start": 1291.54,
+      "end": 1294.38,
+      "text": "That really determines how well they're working with their careers."
+    },
+    {
+      "start": 1294.38,
+      "end": 1300.84,
+      "text": "So switching from your once-wheel to your two-school to looking for a few of your talent professors to do."
+    },
+    {
+      "start": 1301.38,
+      "end": 1305.22,
+      "text": "I'm like, I'm really going to stand on your very effective way of doing this."
+    },
+    {
+      "start": 1305.32,
+      "end": 1308.64,
+      "text": "But still, that's not what you see in your career."
+    },
+    {
+      "start": 1309.18,
+      "end": 1314.78,
+      "text": "So firms are looking for a single."
+    },
+    {
+      "start": 1315.92,
+      "end": 1319.54,
+      "text": "And an MBA can be a single one."
+    },
+    {
+      "start": 1319.54,
+      "end": 1335.42,
+      "text": "The idea here is that we're going to put some of the, we're going to put some trust in a school like Wharton or NYU or Berkeley or BYU to that talent course."
+    },
+    {
+      "start": 1335.7,
+      "end": 1341.5,
+      "text": "If a student's able to be accepted into this program, it's very well successively complete that program."
+    },
+    {
+      "start": 1341.5,
+      "end": 1349.24,
+      "text": "Then we have some confidence that we're getting a signal that this is a quality professional."
+    },
+    {
+      "start": 1350.12,
+      "end": 1362.98,
+      "text": "And so firms pay very close attention to the students and folks that reduce some of that information asymmetry and higher candidates that will perform well."
+    },
+    {
+      "start": 1363.7,
+      "end": 1364.54,
+      "text": "Rebecca."
+    },
+    {
+      "start": 1365.54,
+      "end": 1366.16,
+      "text": "Rebecca?"
+    },
+    {
+      "start": 1366.72,
+      "end": 1366.8,
+      "text": "Yes."
+    },
+    {
+      "start": 1367.34,
+      "end": 1368.22,
+      "text": "Did you have your own?"
+    },
+    {
+      "start": 1368.62,
+      "end": 1373.18,
+      "text": "No, I just kind of think of just focusing on that second period."
+    },
+    {
+      "start": 1373.96,
+      "end": 1377.0,
+      "text": "I'm just going to do this while I'm in class."
+    },
+    {
+      "start": 1380.98,
+      "end": 1387.52,
+      "text": "So I had a recruiter come to BYU and in front of all the BYU students,"
+    },
+    {
+      "start": 1389.36,
+      "end": 1393.2,
+      "text": "said something that aligned with this principle from this case, he just said,"
+    },
+    {
+      "start": 1394.2,
+      "end": 1400.0,
+      "text": "the top talent at UU is indistinguishable from the top talent at BYU."
+    },
+    {
+      "start": 1400.96,
+      "end": 1404.08,
+      "text": "And he said, and you don't get the arrogance that you sometimes can't."
+    },
+    {
+      "start": 1404.84,
+      "end": 1409.66,
+      "text": "You get it with the dose of the strappiness and humility that maybe you don't have at BYU."
+    },
+    {
+      "start": 1410.06,
+      "end": 1416.74,
+      "text": "I thought that was kind of interesting that you know, other firms sometimes recognize the top talent,"
+    },
+    {
+      "start": 1416.74,
+      "end": 1421.2,
+      "text": "but at least like you view and see this, we'll let it take some of the top talent."
+    },
+    {
+      "start": 1422.24,
+      "end": 1426.4,
+      "text": "Now if you go down into the middle of the class, then maybe you certainly have more variance."
+    },
+    {
+      "start": 1427.72,
+      "end": 1430.36,
+      "text": "Other reactions to their core force moves, gravity?"
+    },
+    {
+      "start": 1472.74,
+      "end": 1478.14,
+      "text": "I think that's the most important thing to do."
+    },
+    {
+      "start": 1478.14,
+      "end": 1478.32,
+      "text": "I think that's the most important thing to do."
+    },
+    {
+      "start": 1478.32,
+      "end": 1478.74,
+      "text": "I think that's the most important thing to do."
+    },
+    {
+      "start": 1478.78,
+      "end": 1485.68,
+      "text": "I think that's the most important thing to do."
+    },
+    {
+      "start": 1485.68,
+      "end": 1489.1,
+      "text": "The feeling of trying to do well, heavyement well in the way,"
+    },
+    {
+      "start": 1491.38,
+      "end": 1498.9,
+      "text": "is, okay, I just find it clear."
+    },
+    {
+      "start": 1499.82,
+      "end": 1500.66,
+      "text": "Didn't this answer feedback suitogl.."
+    },
+    {
+      "start": 1500.66,
+      "end": 1511.46,
+      "text": "Absolutely, so the Aoki included the audience who feedbacked it for new knowledge,"
+    },
+    {
+      "start": 1511.46,
+      "end": 1515.36,
+      "text": "each of you talk to my students and then every student there is getting good at it like"
+    },
+    {
+      "start": 1515.36,
+      "end": 1521.84,
+      "text": "based on a time of becoming that always be expensive but clever way to approach the"
+    },
+    {
+      "start": 1522.32,
+      "end": 1529.14,
+      "text": "process. And how do those initial info sessions help to act as a filter? How did that help them"
+    },
+    {
+      "start": 1530.18,
+      "end": 1535.04,
+      "text": "seem who is most interested? Well that's it if they are talking to these people and they're more"
+    },
+    {
+      "start": 1535.04,
+      "end": 1541.8,
+      "text": "interested instead of just waiting for their prudent or like actual interview. They're putting in"
+    },
+    {
+      "start": 1541.8,
+      "end": 1546.24,
+      "text": "that initiative of like I don't know learn from these people and see what's happening. So if they set up"
+    },
+    {
+      "start": 1546.24,
+      "end": 1552.8,
+      "text": "an informational interview actually you know what's the effort of seeking out that information"
+    },
+    {
+      "start": 1552.8,
+      "end": 1557.88,
+      "text": "that would give them again more information about the interview so that this would be that. Then did you have something to do?"
+    },
+    {
+      "start": 1558.62,
+      "end": 1561.1,
+      "text": "No, just something. Okay. Other thoughts?"
+    },
+    {
+      "start": 1563.24,
+      "end": 1571.9,
+      "text": "So then we have this on-campus interview process. Thoughts, things that you notice, things that you"
+    },
+    {
+      "start": 1572.98,
+      "end": 1576.88,
+      "text": "like or didn't like about that approach to their on-campus interview."
+    },
+    {
+      "start": 1583.38,
+      "end": 1590.9,
+      "text": "So there's a lot of that collaboration with the managers and decisions of the very end of the day from"
+    },
+    {
+      "start": 1590.9,
+      "end": 1595.26,
+      "text": "the all-in-one team and ready to get out of there. And I just thought that that idea will"
+    },
+    {
+      "start": 1595.26,
+      "end": 1599.88,
+      "text": "have been a little bit kind of a less than the support part of the process with the actions that they're"
+    },
+    {
+      "start": 1599.9,
+      "end": 1606.92,
+      "text": "trying to do. If they want to keep it, if they want to keep it, if they have to do it,"
+    },
+    {
+      "start": 1608.22,
+      "end": 1614.94,
+      "text": "they're trying to break out the time to be experiencing the support"
+    },
+    {
+      "start": 1614.94,
+      "end": 1618.84,
+      "text": "of the day. One day, pushing the very end of the hour."
+    },
+    {
+      "start": 1619.84,
+      "end": 1623.9,
+      "text": "Very interesting. Is that a motion to super-satter day? Or is that a motion to"
+    },
+    {
+      "start": 1628.94,
+      "end": 1651.46,
+      "text": "the day? Okay. We'll get to super-satter day."
+    },
+    {
+      "start": 1661.7,
+      "end": 1667.2,
+      "text": "So one issue is, you know, I'll be trying to cram too much of it one day. The second question is,"
+    },
+    {
+      "start": 1667.5,
+      "end": 1672.04,
+      "text": "who's doing the recruiting on campus and its associates? Or some of the pros and cons"
+    },
+    {
+      "start": 1673.12,
+      "end": 1678.2,
+      "text": "that approach to using associates? I think that what it does in the case,"
+    },
+    {
+      "start": 1678.2,
+      "end": 1681.5,
+      "text": "the people that are actively working with ones that are best suited to be able to do the same."
+    },
+    {
+      "start": 1682.1,
+      "end": 1684.72,
+      "text": "Yeah, that's definitely a sale-crime plan. No."
+    },
+    {
+      "start": 1687.24,
+      "end": 1692.82,
+      "text": "On the one hand, we have people who know what the job entails and are doing"
+    },
+    {
+      "start": 1692.82,
+      "end": 1694.58,
+      "text": "about the first round of interviews."
+    },
+    {
+      "start": 1695.2,
+      "end": 1698.5,
+      "text": "I was thinking throughout, like, the ability to value some vision, like,"
+    },
+    {
+      "start": 1698.56,
+      "end": 1702.04,
+      "text": "to get a little different, like, a big firm, like, people, things like the dimension."
+    },
+    {
+      "start": 1702.04,
+      "end": 1706.88,
+      "text": "But then, like, I also think that maybe some people were higher than that mind,"
+    },
+    {
+      "start": 1707.5,
+      "end": 1710.94,
+      "text": "but it's someone who, for that purpose, goes to be right."
+    },
+    {
+      "start": 1711.04,
+      "end": 1713.78,
+      "text": "So I actually know that values were envisioned,"
+    },
+    {
+      "start": 1713.9,
+      "end": 1717.18,
+      "text": "where we're going through that, but the energy won't be just that."
+    },
+    {
+      "start": 1717.8,
+      "end": 1723.84,
+      "text": "I just, um, this senior associate, we do a high-level experience,"
+    },
+    {
+      "start": 1725.7,
+      "end": 1731.34,
+      "text": "who is it, the work of the firm, are being given, given, selected,"
+    },
+    {
+      "start": 1731.68,
+      "end": 1735.66,
+      "text": "less, which means that there will potentially, other future,"
+    },
+    {
+      "start": 1735.82,
+      "end": 1738.82,
+      "text": "something would have been better, because we never, we've never seen,"
+    },
+    {
+      "start": 1739.34,
+      "end": 1743.26,
+      "text": "because somebody else felt there could outboard on who we didn't have the same experience,"
+    },
+    {
+      "start": 1743.58,
+      "end": 1746.78,
+      "text": "but they did. So we're trusting that, you know,"
+    },
+    {
+      "start": 1747.72,
+      "end": 1750.42,
+      "text": "because if the senior associate is looking at fit,"
+    },
+    {
+      "start": 1751.12,
+      "end": 1754.86,
+      "text": "and the long one, they're not doing the basic work,"
+    },
+    {
+      "start": 1755.1,
+      "end": 1758.32,
+      "text": "it's like, there's some risk in that, there was, like, wouldn't you better,"
+    },
+    {
+      "start": 1758.56,
+      "end": 1761.12,
+      "text": "if we decided to fit in, not many better first,"
+    },
+    {
+      "start": 1761.56,
+      "end": 1764.3,
+      "text": "and then we have to assess whether or not we could use those."
+    },
+    {
+      "start": 1764.96,
+      "end": 1767.86,
+      "text": "So maybe our filter is to strict at the beginning,"
+    },
+    {
+      "start": 1768.34,
+      "end": 1770.06,
+      "text": "which means that a more narrow,"
+    },
+    {
+      "start": 1770.3,
+      "end": 1772.94,
+      "text": "unit is where the action decision makers need to see."
+    },
+    {
+      "start": 1773.48,
+      "end": 1774.34,
+      "text": "Okay? Yeah."
+    },
+    {
+      "start": 1775.56,
+      "end": 1778.52,
+      "text": "That key, that key, that doesn't mean that it says that"
+    },
+    {
+      "start": 1778.52,
+      "end": 1779.8,
+      "text": "it's really hard to keep."
+    },
+    {
+      "start": 1789.82,
+      "end": 1796.58,
+      "text": "A lot of variance in how to, actually, review this,"
+    },
+    {
+      "start": 1797.34,
+      "end": 1798.84,
+      "text": "how to approach it."
+    },
+    {
+      "start": 1802.0,
+      "end": 1804.84,
+      "text": "I think that if you have any other fail,"
+    },
+    {
+      "start": 1805.06,
+      "end": 1810.34,
+      "text": "you can name it, just try to keep it in your mind."
+    },
+    {
+      "start": 1810.62,
+      "end": 1813.82,
+      "text": "I think it needs to be more, probably,"
+    },
+    {
+      "start": 1814.0,
+      "end": 1816.54,
+      "text": "full here, in terms of the plan right now."
+    },
+    {
+      "start": 1816.8,
+      "end": 1822.44,
+      "text": "Okay? So one of the reasons they select the number of people they use,"
+    },
+    {
+      "start": 1822.6,
+      "end": 1825.3,
+      "text": "is they have a target number of offers they're kind of made."
+    },
+    {
+      "start": 1825.3,
+      "end": 1832.02,
+      "text": "And so based on previous yields, that's why they are trying to bring 30 people out."
+    },
+    {
+      "start": 1832.2,
+      "end": 1833.66,
+      "text": "Because they hopefully bring 30 people out."
+    },
+    {
+      "start": 1834.14,
+      "end": 1837.24,
+      "text": "We have a hope of making 15 to 20 for the offer."
+    },
+    {
+      "start": 1839.52,
+      "end": 1841.98,
+      "text": "But I think it's a really important point."
+    },
+    {
+      "start": 1843.04,
+      "end": 1845.96,
+      "text": "So just having a really long big advantage."
+    },
+    {
+      "start": 1847.54,
+      "end": 1849.04,
+      "text": "Isn't it effective right now?"
+    },
+    {
+      "start": 1850.06,
+      "end": 1852.54,
+      "text": "Any other reactions to their on campus approach?"
+    },
+    {
+      "start": 1854.32,
+      "end": 1856.6,
+      "text": "I found it very interesting because of that,"
+    },
+    {
+      "start": 1856.68,
+      "end": 1861.36,
+      "text": "that's a more an opportunity for people to be able to see themselves comfortable."
+    },
+    {
+      "start": 1861.96,
+      "end": 1864.0,
+      "text": "Because if you're on campus in a place like this,"
+    },
+    {
+      "start": 1864.1,
+      "end": 1866.54,
+      "text": "you know, whereas if you're applying out to New York City,"
+    },
+    {
+      "start": 1866.78,
+      "end": 1867.92,
+      "text": "if you're not from there and you're in it,"
+    },
+    {
+      "start": 1868.0,
+      "end": 1874.7,
+      "text": "I know I, it's a very, very easy environment to be able to be comfortable."
+    },
+    {
+      "start": 1875.54,
+      "end": 1879.72,
+      "text": "And so I think I have the first little bit of ground on campus."
+    },
+    {
+      "start": 1880.38,
+      "end": 1883.52,
+      "text": "don't have to be able to see people when they're still worker,"
+    },
+    {
+      "start": 1883.9,
+      "end": 1886.28,
+      "text": "and be able to actually see what they're doing that way."
+    },
+    {
+      "start": 1886.54,
+      "end": 1895.56,
+      "text": "And than much loss."
+    },
+    {
+      "start": 1902.58,
+      "end": 1909.32,
+      "text": "If you want to let them show us a bunch of different ways of doing these on campus,"
+    },
+    {
+      "start": 1909.32,
+      "end": 1909.6,
+      "text": "perhaps they may demand new clients by doing that money and bringing in new resources."
+    },
+    {
+      "start": 1909.6,
+      "end": 1909.66,
+      "text": "So with regards to the kind of applications that would better be,"
+    },
+    {
+      "start": 1909.66,
+      "end": 1909.68,
+      "text": "employment or not that technology in terms of money there,"
+    },
+    {
+      "start": 1909.68,
+      "end": 1914.64,
+      "text": "I don't have to spend more time waiting for exclusion or a focus on what you said."
+    },
+    {
+      "start": 1914.82,
+      "end": 1918.96,
+      "text": "Even that having that close medicine in campus can help you speak for us."
+    },
+    {
+      "start": 1919.42,
+      "end": 1923.36,
+      "text": "And help you to know which ones actually have to have to be first built."
+    },
+    {
+      "start": 1924.04,
+      "end": 1926.72,
+      "text": "And as a candidate, I really appreciate when they help me."
+    },
+    {
+      "start": 1926.94,
+      "end": 1931.42,
+      "text": "No, and I'm going to learn to move on and learn to invest more time."
+    },
+    {
+      "start": 1932.02,
+      "end": 1932.38,
+      "text": "That's not good."
+    },
+    {
+      "start": 1932.94,
+      "end": 1939.18,
+      "text": "So after this initial screening on campus, we have 30 people that end up coming"
+    },
+    {
+      "start": 1939.18,
+      "end": 1946.24,
+      "text": "to the super Saturday event, reactions to super Saturday, what were your closing crimes and business issues?"
+    },
+    {
+      "start": 1946.38,
+      "end": 1948.0,
+      "text": "I think this is a lot of fun working with him."
+    },
+    {
+      "start": 1948.86,
+      "end": 1953.06,
+      "text": "But I didn't really anticipate about last time I was on the people's hotline after the conference"
+    },
+    {
+      "start": 1953.06,
+      "end": 1954.76,
+      "text": "where I talked to a part of the statement that I was getting."
+    },
+    {
+      "start": 1955.7,
+      "end": 1957.94,
+      "text": "So very similar to the super Saturday meeting."
+    },
+    {
+      "start": 1958.36,
+      "end": 1961.92,
+      "text": "And I think they did a lot of 100 interviews with like 10 different recruiters and teams."
+    },
+    {
+      "start": 1962.94,
+      "end": 1966.02,
+      "text": "And when I was sitting down on the interviews and sitting with a liberation,"
+    },
+    {
+      "start": 1966.02,
+      "end": 1971.24,
+      "text": "I just saw how easy it was for better the worst taking care of candidate."
+    },
+    {
+      "start": 1972.04,
+      "end": 1975.18,
+      "text": "You could have someone with like this one 100% and great thing."
+    },
+    {
+      "start": 1975.4,
+      "end": 1978.28,
+      "text": "He's 100% ready to build a troll."
+    },
+    {
+      "start": 1978.52,
+      "end": 1978.94,
+      "text": "It would be great."
+    },
+    {
+      "start": 1979.5,
+      "end": 1982.1,
+      "text": "And like, if you have someone who has a skills with a personality,"
+    },
+    {
+      "start": 1982.36,
+      "end": 1986.04,
+      "text": "you can go like, well, they just seem to go to the cold room or I didn't connect them as much."
+    },
+    {
+      "start": 1986.5,
+      "end": 1989.14,
+      "text": "Whereas if you had to do so many interviews back to back to back,"
+    },
+    {
+      "start": 1989.28,
+      "end": 1991.3,
+      "text": "maybe that difference wouldn't have stood out so much."
+    },
+    {
+      "start": 1991.46,
+      "end": 1994.64,
+      "text": "It's like really great because it's efficient and you're able to get a lot through ones."
+    },
+    {
+      "start": 1994.64,
+      "end": 1998.8,
+      "text": "But there's also not a question of like, is it actually advantageous"
+    },
+    {
+      "start": 1998.8,
+      "end": 2001.58,
+      "text": "in interview that many together from the interview?"
+    },
+    {
+      "start": 2002.4,
+      "end": 2005.02,
+      "text": "There's actually some really interesting research to do that shows,"
+    },
+    {
+      "start": 2006.34,
+      "end": 2013.96,
+      "text": "a person's rating in an interview context is greatly affected by the candidate that went before you."
+    },
+    {
+      "start": 2014.56,
+      "end": 2016.42,
+      "text": "So you have to be really careful."
+    },
+    {
+      "start": 2016.98,
+      "end": 2018.96,
+      "text": "You'll talk about this when you talk about performance management."
+    },
+    {
+      "start": 2019.28,
+      "end": 2020.7,
+      "text": "This is the same thing with performance management."
+    },
+    {
+      "start": 2020.7,
+      "end": 2024.88,
+      "text": "But when you're doing back to back to back interviews like that,"
+    },
+    {
+      "start": 2026.6,
+      "end": 2031.0,
+      "text": "you may rate an individual not necessarily based on the criteria,"
+    },
+    {
+      "start": 2031.0,
+      "end": 2033.56,
+      "text": "but based on how they compare to the person at the end of the work."
+    },
+    {
+      "start": 2033.96,
+      "end": 2038.68,
+      "text": "If someone before you was a stellar candidate and you're maybe weaker,"
+    },
+    {
+      "start": 2039.54,
+      "end": 2042.7,
+      "text": "that can be very disillusioned."
+    },
+    {
+      "start": 2045.62,
+      "end": 2051.28,
+      "text": "I think it doesn't necessarily make any work that I'm talking about today in the news."
+    },
+    {
+      "start": 2051.7,
+      "end": 2053.52,
+      "text": "It's the next day I've done that in town."
+    },
+    {
+      "start": 2054.24,
+      "end": 2058.14,
+      "text": "They told me to actually part of it."
+    },
+    {
+      "start": 2059.84,
+      "end": 2063.56,
+      "text": "I just try to tell if it's not scared of you guys,"
+    },
+    {
+      "start": 2063.7,
+      "end": 2065.86,
+      "text": "because you're probably going to be like,"
+    },
+    {
+      "start": 2066.4,
+      "end": 2067.42,
+      "text": "it's decentralized,"
+    },
+    {
+      "start": 2067.42,
+      "end": 2067.78,
+      "text": "and it's going to be a little bit more decentralized."
+    },
+    {
+      "start": 2068.68,
+      "end": 2069.54,
+      "text": "It's going to be a little bit more decentralized,"
+    },
+    {
+      "start": 2069.54,
+      "end": 2072.54,
+      "text": "because you can kind of sometimes not do it as easily directly."
+    },
+    {
+      "start": 2073.76,
+      "end": 2075.68,
+      "text": "You can be more comfortable into your people."
+    },
+    {
+      "start": 2076.2,
+      "end": 2077.26,
+      "text": "So that part is like good."
+    },
+    {
+      "start": 2077.66,
+      "end": 2080.08,
+      "text": "It's going to be a little bit more fun to do."
+    },
+    {
+      "start": 2080.08,
+      "end": 2083.56,
+      "text": "It's going to be a little bit more fun to do."
+    },
+    {
+      "start": 2085.44,
+      "end": 2088.08,
+      "text": "So I was surprised to report to this you for a day."
+    },
+    {
+      "start": 2106.56,
+      "end": 2116.1,
+      "text": "I was really surprised to see you guys."
+    },
+    {
+      "start": 2117.06,
+      "end": 2117.94,
+      "text": "I was really surprised to see you guys."
+    },
+    {
+      "start": 2122.34,
+      "end": 2132.74,
+      "text": "I think one of the major issues with this entire process is from the on-campus experience"
+    },
+    {
+      "start": 2132.74,
+      "end": 2137.64,
+      "text": "for Saturday is a lack of rigor and structure in what they're doing."
+    },
+    {
+      "start": 2138.76,
+      "end": 2140.6,
+      "text": "Even when you look at the notes in the case,"
+    },
+    {
+      "start": 2141.76,
+      "end": 2143.84,
+      "text": "the notes are all over the place."
+    },
+    {
+      "start": 2144.48,
+      "end": 2145.76,
+      "text": "And that's the case."
+    },
+    {
+      "start": 2146.14,
+      "end": 2148.08,
+      "text": "What are you selecting based notes?"
+    },
+    {
+      "start": 2148.88,
+      "end": 2154.56,
+      "text": "Is it criteria or is it random things like whether the person played with a boss or not?"
+    },
+    {
+      "start": 2155.74,
+      "end": 2159.5,
+      "text": "They can see some of the challenges that have happened."
+    },
+    {
+      "start": 2159.88,
+      "end": 2159.98,
+      "text": "Yeah."
+    },
+    {
+      "start": 2161.54,
+      "end": 2162.74,
+      "text": "Along the same line,"
+    },
+    {
+      "start": 2163.82,
+      "end": 2165.46,
+      "text": "they have a regular sheet, right?"
+    },
+    {
+      "start": 2165.66,
+      "end": 2167.22,
+      "text": "But it wasn't actually built out."
+    },
+    {
+      "start": 2167.36,
+      "end": 2168.62,
+      "text": "Like they have to be out of use."
+    },
+    {
+      "start": 2168.82,
+      "end": 2171.8,
+      "text": "But in order to have a lady's understanding of that,"
+    },
+    {
+      "start": 2171.8,
+      "end": 2174.04,
+      "text": "it looks like a little bit successful,"
+    },
+    {
+      "start": 2174.24,
+      "end": 2175.42,
+      "text": "20 feet below that bar."
+    },
+    {
+      "start": 2175.74,
+      "end": 2177.82,
+      "text": "And there's also really low adoption."
+    },
+    {
+      "start": 2178.02,
+      "end": 2178.1,
+      "text": "Right?"
+    },
+    {
+      "start": 2178.2,
+      "end": 2180.66,
+      "text": "Like Joseph,"
+    },
+    {
+      "start": 2181.1,
+      "end": 2183.64,
+      "text": "the famous who were running these interviews,"
+    },
+    {
+      "start": 2184.46,
+      "end": 2187.76,
+      "text": "and they were raising it like on-line securely,"
+    },
+    {
+      "start": 2187.92,
+      "end": 2190.18,
+      "text": "which is a very large option."
+    },
+    {
+      "start": 2190.18,
+      "end": 2192.52,
+      "text": "I'll certainly wait until you hire them."
+    },
+    {
+      "start": 2193.22,
+      "end": 2196.56,
+      "text": "And we know from research that unstructured interviewing"
+    },
+    {
+      "start": 2198.24,
+      "end": 2199.2,
+      "text": "is workable."
+    },
+    {
+      "start": 2200.54,
+      "end": 2202.22,
+      "text": "It's not about bullet point."
+    },
+    {
+      "start": 2202.8,
+      "end": 2205.44,
+      "text": "You'll get a better out-hound."
+    },
+    {
+      "start": 2206.82,
+      "end": 2209.12,
+      "text": "I'll call you within unstructured interviewing."
+    },
+    {
+      "start": 2210.2,
+      "end": 2210.48,
+      "text": "Yeah, much."
+    },
+    {
+      "start": 2211.14,
+      "end": 2212.7,
+      "text": "This is very similar to,"
+    },
+    {
+      "start": 2213.44,
+      "end": 2216.42,
+      "text": "at least in terms of the information on that,"
+    },
+    {
+      "start": 2217.16,
+      "end": 2218.66,
+      "text": "the tool that can solve you from that,"
+    },
+    {
+      "start": 2218.78,
+      "end": 2219.76,
+      "text": "it's for the first seven years."
+    },
+    {
+      "start": 2219.9,
+      "end": 2220.96,
+      "text": "And I saw it from both sides,"
+    },
+    {
+      "start": 2220.96,
+      "end": 2223.94,
+      "text": "but can it in the middle of the entire research?"
+    },
+    {
+      "start": 2224.42,
+      "end": 2226.64,
+      "text": "And you have to lock these structure things."
+    },
+    {
+      "start": 2227.84,
+      "end": 2231.38,
+      "text": "And also, in terms of some of the tools that you're going to use"
+    },
+    {
+      "start": 2232.08,
+      "end": 2233.62,
+      "text": "in the work that you're going to use,"
+    },
+    {
+      "start": 2234.02,
+      "end": 2235.68,
+      "text": "the signals that you set to 90."
+    },
+    {
+      "start": 2235.98,
+      "end": 2239.26,
+      "text": "It has as how much their existence will process"
+    },
+    {
+      "start": 2239.74,
+      "end": 2240.92,
+      "text": "in community development."
+    },
+    {
+      "start": 2241.3,
+      "end": 2242.02,
+      "text": "And you move it back,"
+    },
+    {
+      "start": 2242.36,
+      "end": 2244.4,
+      "text": "it just point about the fact that when the program is"
+    },
+    {
+      "start": 2244.4,
+      "end": 2245.46,
+      "text": "used today, it won't be Saturday."
+    },
+    {
+      "start": 2246.0,
+      "end": 2247.52,
+      "text": "It's all candidates, you're coming in,"
+    },
+    {
+      "start": 2247.72,
+      "end": 2249.34,
+      "text": "or you're getting a little Friday night,"
+    },
+    {
+      "start": 2249.34,
+      "end": 2250.8,
+      "text": "and then you're going to be talking Saturday,"
+    },
+    {
+      "start": 2251.0,
+      "end": 2252.08,
+      "text": "essentially telling,"
+    },
+    {
+      "start": 2252.7,
+      "end": 2256.02,
+      "text": "oh, we'll figure you out on the yesterday's"
+    },
+    {
+      "start": 2256.02,
+      "end": 2257.24,
+      "text": "work in the D-Broom at the end,"
+    },
+    {
+      "start": 2257.56,
+      "end": 2258.5,
+      "text": "to me as a candidate,"
+    },
+    {
+      "start": 2258.66,
+      "end": 2259.52,
+      "text": "we're going to be talking, okay,"
+    },
+    {
+      "start": 2259.58,
+      "end": 2260.12,
+      "text": "so you're not really,"
+    },
+    {
+      "start": 2261.04,
+      "end": 2263.0,
+      "text": "you're far more invested in, like,"
+    },
+    {
+      "start": 2263.38,
+      "end": 2264.76,
+      "text": "the data that you've also seen,"
+    },
+    {
+      "start": 2264.92,
+      "end": 2266.26,
+      "text": "then you are in the beginning."
+    },
+    {
+      "start": 2267.74,
+      "end": 2270.5,
+      "text": "There might be some realistic job for you,"
+    },
+    {
+      "start": 2270.64,
+      "end": 2273.32,
+      "text": "going on too, that works better than you're in a Saturday,"
+    },
+    {
+      "start": 2273.56,
+      "end": 2275.2,
+      "text": "but we're going to take them to your full day on Saturday."
+    },
+    {
+      "start": 2276.24,
+      "end": 2279.04,
+      "text": "So there's certainly some positive elements"
+    },
+    {
+      "start": 2279.04,
+      "end": 2281.94,
+      "text": "in terms of getting totally realistic job for you."
+    },
+    {
+      "start": 2282.16,
+      "end": 2284.58,
+      "text": "Am I missing any hands over here on this side of your?"
+    },
+    {
+      "start": 2284.88,
+      "end": 2286.5,
+      "text": "I think there's too many interviews."
+    },
+    {
+      "start": 2286.94,
+      "end": 2290.44,
+      "text": "In one day, like, you go back to back to back"
+    },
+    {
+      "start": 2290.44,
+      "end": 2293.74,
+      "text": "and you're expected to, like, be on your game multiple times,"
+    },
+    {
+      "start": 2293.9,
+      "end": 2294.88,
+      "text": "to multiple people, I think,"
+    },
+    {
+      "start": 2294.88,
+      "end": 2297.16,
+      "text": "it's exhausting on both sides,"
+    },
+    {
+      "start": 2297.16,
+      "end": 2299.14,
+      "text": "and, like, I think people can talk and, like,"
+    },
+    {
+      "start": 2299.56,
+      "end": 2300.72,
+      "text": "make connections or whatever,"
+    },
+    {
+      "start": 2300.9,
+      "end": 2302.98,
+      "text": "but I don't know if that always has anything to do"
+    },
+    {
+      "start": 2302.98,
+      "end": 2305.48,
+      "text": "with your actual ability to, like, be a teen player,"
+    },
+    {
+      "start": 2305.86,
+      "end": 2308.56,
+      "text": "or, you know, like, Natalia or whatever,"
+    },
+    {
+      "start": 2308.8,
+      "end": 2311.36,
+      "text": "they're like, I'm worried about her English-speaking abilities."
+    },
+    {
+      "start": 2311.38,
+      "end": 2312.9,
+      "text": "It's like, well, have you seen her, like,"
+    },
+    {
+      "start": 2313.06,
+      "end": 2313.72,
+      "text": "work with people?"
+    },
+    {
+      "start": 2313.8,
+      "end": 2314.96,
+      "text": "Is that really actually an issue?"
+    },
+    {
+      "start": 2315.08,
+      "end": 2317.06,
+      "text": "Or is that just your, like, bias talking?"
+    },
+    {
+      "start": 2318.82,
+      "end": 2322.46,
+      "text": "Okay, so, you guys know how we do that."
+    },
+    {
+      "start": 2322.52,
+      "end": 2323.96,
+      "text": "How do you do that already,"
+    },
+    {
+      "start": 2324.28,
+      "end": 2326.68,
+      "text": "you map with your groups to discuss this case?"
+    },
+    {
+      "start": 2327.74,
+      "end": 2328.22,
+      "text": "Sorry."
+    },
+    {
+      "start": 2329.16,
+      "end": 2329.64,
+      "text": "Hmm."
+    },
+    {
+      "start": 2330.0,
+      "end": 2330.48,
+      "text": "Perfect."
+    },
+    {
+      "start": 2331.0,
+      "end": 2331.8,
+      "text": "And now that's actually good."
+    },
+    {
+      "start": 2333.12,
+      "end": 2334.34,
+      "text": "So, have me hear that."
+    },
+    {
+      "start": 2334.76,
+      "end": 2335.66,
+      "text": "That's the story."
+    },
+    {
+      "start": 2336.26,
+      "end": 2337.02,
+      "text": "That's the story."
+    },
+    {
+      "start": 2337.8,
+      "end": 2337.98,
+      "text": "That's the story."
+    },
+    {
+      "start": 2337.98,
+      "end": 2338.8,
+      "text": "We didn't want to get it."
+    },
+    {
+      "start": 2339.08,
+      "end": 2342.44,
+      "text": "I just didn't want to re-create what we've already done."
+    },
+    {
+      "start": 2342.86,
+      "end": 2343.5,
+      "text": "So, um,"
+    },
+    {
+      "start": 2343.92,
+      "end": 2345.0,
+      "text": "I was just curious."
+    },
+    {
+      "start": 2345.54,
+      "end": 2348.08,
+      "text": "I thought we'd already talk about this in time."
+    },
+    {
+      "start": 2348.68,
+      "end": 2350.56,
+      "text": "I want you to take the four candidates."
+    },
+    {
+      "start": 2351.28,
+      "end": 2351.54,
+      "text": "Right."
+    },
+    {
+      "start": 2351.98,
+      "end": 2352.78,
+      "text": "You got that."
+    },
+    {
+      "start": 2352.78,
+      "end": 2353.42,
+      "text": "I'll give it a five."
+    },
+    {
+      "start": 2354.72,
+      "end": 2355.06,
+      "text": "Folks."
+    },
+    {
+      "start": 2357.78,
+      "end": 2358.28,
+      "text": "We're the people's vote."
+    },
+    {
+      "start": 2359.6,
+      "end": 2360.34,
+      "text": "Thanks."
+    },
+    {
+      "start": 2363.66,
+      "end": 2364.9,
+      "text": "We're the designers."
+    },
+    {
+      "start": 2365.22,
+      "end": 2367.02,
+      "text": "We're the designers of the..."
+    },
+    {
+      "start": 2367.02,
+      "end": 2367.32,
+      "text": "Derek!"
+    },
+    {
+      "start": 2371.98,
+      "end": 2372.72,
+      "text": "Eric."
+    },
+    {
+      "start": 2372.72,
+      "end": 2372.88,
+      "text": "All right."
+    },
+    {
+      "start": 2376.44,
+      "end": 2379.34,
+      "text": "We don't have time to do every group,"
+    },
+    {
+      "start": 2379.34,
+      "end": 2389.52,
+      "text": "But I need some spokespeople from each group to just give a really brief description of why you offer to people if you get."
+    },
+    {
+      "start": 2390.9,
+      "end": 2397.06,
+      "text": "So we just took the criteria evaluation form and just west through it based off of the script."
+    },
+    {
+      "start": 2403.4,
+      "end": 2408.82,
+      "text": "So you've seen how that sheet others, how did you approach this statement?"
+    },
+    {
+      "start": 2410.64,
+      "end": 2412.96,
+      "text": "We just did a democratic process."
+    },
+    {
+      "start": 2413.24,
+      "end": 2418.48,
+      "text": "It was a bit more of a plus thing to say than that you used actual group work, but we did not."
+    },
+    {
+      "start": 2419.38,
+      "end": 2431.4,
+      "text": "It was a science, but we all made a case for people that we thought were passionate, like Hannah really, like Mark and we all hated it."
+    },
+    {
+      "start": 2431.74,
+      "end": 2435.88,
+      "text": "Well we didn't hate it. We scored our troops, but like..."
+    },
+    {
+      "start": 2437.42,
+      "end": 2438.26,
+      "text": "You can't sign that."
+    },
+    {
+      "start": 2441.48,
+      "end": 2449.14,
+      "text": "I think it was just a little bit more subjective, which probably isn't my system, but we probably should be."
+    },
+    {
+      "start": 2450.02,
+      "end": 2452.42,
+      "text": "So we have five, what are some other things that you can say?"
+    },
+    {
+      "start": 2454.08,
+      "end": 2456.74,
+      "text": "Tanner, what was your case for Mark?"
+    },
+    {
+      "start": 2456.98,
+      "end": 2461.18,
+      "text": "There's other concerns I think that Mr. Begney is not just a job, it's like it's a life."
+    },
+    {
+      "start": 2461.18,
+      "end": 2466.02,
+      "text": "And so I think some things that is important to the part of it are like, with Mark, I love that."
+    },
+    {
+      "start": 2466.14,
+      "end": 2467.92,
+      "text": "If background in military he'd do that grinds."
+    },
+    {
+      "start": 2468.18,
+      "end": 2473.3,
+      "text": "He'd have the outside sources, like relationships, which sounds sad, but also it relates to the little that doesn't make you."
+    },
+    {
+      "start": 2473.64,
+      "end": 2476.78,
+      "text": "So we've got to grind through it and be able to do it in their long term."
+    },
+    {
+      "start": 2477.28,
+      "end": 2485.18,
+      "text": "Like as a company, I always hire someone who wants to leave in the year, and I work with other candidates with their ties to other pieces of the entrepreneur of family."
+    },
+    {
+      "start": 2485.18,
+      "end": 2490.88,
+      "text": "It doesn't make you be concerned that they want to leave a year or two when the company wants to have long term regression."
+    },
+    {
+      "start": 2491.76,
+      "end": 2492.88,
+      "text": "Anyone else from that group?"
+    },
+    {
+      "start": 2495.16,
+      "end": 2499.2,
+      "text": "What were some of the reasons why you advocated for their campaign?"
+    },
+    {
+      "start": 2499.78,
+      "end": 2502.68,
+      "text": "I think we all were almost in this long Nepal year."
+    },
+    {
+      "start": 2503.44,
+      "end": 2506.3,
+      "text": "I think they're concerned about like language or social things."
+    },
+    {
+      "start": 2506.58,
+      "end": 2510.96,
+      "text": "We're secondary to... She had the type of like skill set that she's talking about."
+    },
+    {
+      "start": 2510.96,
+      "end": 2513.58,
+      "text": "She'd put her head down, grind, and she had trade periods."
+    },
+    {
+      "start": 2515.26,
+      "end": 2518.74,
+      "text": "She seemed like she would be a good fit just on the analytical side."
+    },
+    {
+      "start": 2518.9,
+      "end": 2520.16,
+      "text": "So I think all of us were in fourth there."
+    },
+    {
+      "start": 2520.38,
+      "end": 2525.92,
+      "text": "And then I think the other ones, there was like family, man, military, or like entrepreneur."
+    },
+    {
+      "start": 2526.82,
+      "end": 2529.22,
+      "text": "And so all of us kind of made cases in different ways."
+    },
+    {
+      "start": 2529.44,
+      "end": 2532.34,
+      "text": "Why is that one that goes background better?"
+    },
+    {
+      "start": 2533.1,
+      "end": 2536.6,
+      "text": "And so anyways, we had another voting for college entrepreneur at the end."
+    },
+    {
+      "start": 2536.6,
+      "end": 2539.86,
+      "text": "That also may have just been our own backgrounds as well."
+    },
+    {
+      "start": 2540.22,
+      "end": 2542.8,
+      "text": "And they've been changing the vibes."
+    },
+    {
+      "start": 2543.24,
+      "end": 2544.44,
+      "text": "So you were..."
+    },
+    {
+      "start": 2544.44,
+      "end": 2546.94,
+      "text": "Okay. Right. You're the health provider."
+    },
+    {
+      "start": 2547.36,
+      "end": 2549.72,
+      "text": "Yeah, I don't know if everyone thought that's exactly what it was."
+    },
+    {
+      "start": 2549.72,
+      "end": 2556.18,
+      "text": "But the way I was thinking about it was they all have a skill set that I think would be beneficial for this to be making."
+    },
+    {
+      "start": 2556.8,
+      "end": 2561.18,
+      "text": "We just waited like how big the concern was for each candidate."
+    },
+    {
+      "start": 2561.18,
+      "end": 2562.86,
+      "text": "Like there were certain concerns."
+    },
+    {
+      "start": 2563.02,
+      "end": 2563.94,
+      "text": "They all had concerns."
+    },
+    {
+      "start": 2564.6,
+      "end": 2567.42,
+      "text": "Some of them were just larger concerns than others."
+    },
+    {
+      "start": 2567.98,
+      "end": 2572.16,
+      "text": "So it was more about... honestly for me it's more about the concern than the skill set."
+    },
+    {
+      "start": 2572.26,
+      "end": 2577.68,
+      "text": "Okay, so you're waiting the red flags and trying to decide which red flags were mostly."
+    },
+    {
+      "start": 2578.28,
+      "end": 2582.34,
+      "text": "How did you tell us about how you made that decision about which red flags were most comfortable?"
+    },
+    {
+      "start": 2582.96,
+      "end": 2585.82,
+      "text": "Yeah, I mean Natalia was obvious. I think everyone thought that too."
+    },
+    {
+      "start": 2585.82,
+      "end": 2588.04,
+      "text": "She has great skills."
+    },
+    {
+      "start": 2588.88,
+      "end": 2596.28,
+      "text": "And again, those like language things, I think were very low on our list of what to go along."
+    },
+    {
+      "start": 2596.54,
+      "end": 2603.48,
+      "text": "Right. For Martin, the red flag was that we don't know if he's going to accept an offer."
+    },
+    {
+      "start": 2603.98,
+      "end": 2605.3,
+      "text": "And that's a big thing. Right."
+    },
+    {
+      "start": 2605.44,
+      "end": 2607.16,
+      "text": "So we decided not to go with him for that reason."
+    },
+    {
+      "start": 2607.16,
+      "end": 2610.88,
+      "text": "Then it would be between 10 and 10."
+    },
+    {
+      "start": 2611.12,
+      "end": 2617.04,
+      "text": "And we thought 10 had a stronger skill set in that like PWC was fantastic."
+    },
+    {
+      "start": 2617.52,
+      "end": 2621.3,
+      "text": "They both had issues with like other commitments that might take them away."
+    },
+    {
+      "start": 2621.78,
+      "end": 2628.34,
+      "text": "We thought this entrepreneurship might be a bigger deal that he would want to lead to start to continue his own business."
+    },
+    {
+      "start": 2628.72,
+      "end": 2631.92,
+      "text": "He was already making more money than he would in the investment thinking."
+    },
+    {
+      "start": 2631.92,
+      "end": 2641.08,
+      "text": "So we talked about 10 and one red flag being had a family where 24% of us theoretically."
+    },
+    {
+      "start": 2642.18,
+      "end": 2646.84,
+      "text": "But they also looked at us and was doing this investment making jobs in New York."
+    },
+    {
+      "start": 2647.4,
+      "end": 2648.78,
+      "text": "The only thing that status is a protected class."
+    },
+    {
+      "start": 2649.5,
+      "end": 2652.06,
+      "text": "It's like you don't hire him based on the fact that he has a family."
+    },
+    {
+      "start": 2652.62,
+      "end": 2658.6,
+      "text": "And he could turn around to the city and he would 100% win that case because the conversation is being passed away."
+    },
+    {
+      "start": 2658.6,
+      "end": 2660.44,
+      "text": "He would be very happy because he has 60."
+    },
+    {
+      "start": 2660.8,
+      "end": 2663.02,
+      "text": "He theoretically he could sue."
+    },
+    {
+      "start": 2663.82,
+      "end": 2665.76,
+      "text": "In practice it would be very difficult."
+    },
+    {
+      "start": 2666.22,
+      "end": 2668.26,
+      "text": "I mean I would have to work and that's actually happening."
+    },
+    {
+      "start": 2668.9,
+      "end": 2673.38,
+      "text": "Whether that's legal or ethical, this might be two different conversations."
+    },
+    {
+      "start": 2674.8,
+      "end": 2674.88,
+      "text": "Yeah."
+    },
+    {
+      "start": 2675.66,
+      "end": 2678.36,
+      "text": "And what do you think of the rest of the situation in Canada?"
+    },
+    {
+      "start": 2678.72,
+      "end": 2680.36,
+      "text": "Why do you think it's a new process?"
+    },
+    {
+      "start": 2681.56,
+      "end": 2683.3,
+      "text": "That it would be a future of the Canadian."
+    },
+    {
+      "start": 2684.04,
+      "end": 2687.48,
+      "text": "We have an international international director who asked to have kids."
+    },
+    {
+      "start": 2688.0,
+      "end": 2690.26,
+      "text": "I thought I have a treat or he would just look like a dad."
+    },
+    {
+      "start": 2691.66,
+      "end": 2693.88,
+      "text": "And I kind of assumed that was about me."
+    },
+    {
+      "start": 2694.88,
+      "end": 2697.32,
+      "text": "And what I said in the two is I don't want to ask what for his dad."
+    },
+    {
+      "start": 2698.5,
+      "end": 2703.66,
+      "text": "So if I wasn't in the compositions, the problem is that I told them those things on his face."
+    },
+    {
+      "start": 2704.58,
+      "end": 2708.06,
+      "text": "And it came to my knowledge that people probably won't have their head kids."
+    },
+    {
+      "start": 2708.32,
+      "end": 2709.12,
+      "text": "I wouldn't want it."
+    },
+    {
+      "start": 2710.54,
+      "end": 2712.9,
+      "text": "So that's what I wanted to tell the OU students."
+    },
+    {
+      "start": 2713.3,
+      "end": 2715.96,
+      "text": "If someone's been discriminated against you because you have a family,"
+    },
+    {
+      "start": 2716.16,
+      "end": 2717.86,
+      "text": "you probably don't want to work at that particular."
+    },
+    {
+      "start": 2718.82,
+      "end": 2720.52,
+      "text": "I don't know why it's turned out."
+    },
+    {
+      "start": 2721.48,
+      "end": 2727.42,
+      "text": "We didn't decide on this other team, but we didn't see any of the other things that we're not hiring anyone at the top yet."
+    },
+    {
+      "start": 2728.58,
+      "end": 2730.98,
+      "text": "Just made one principle and we were working with the role."
+    },
+    {
+      "start": 2731.38,
+      "end": 2732.8,
+      "text": "I know that goes into like a bunch."
+    },
+    {
+      "start": 2732.88,
+      "end": 2734.54,
+      "text": "But I think it kind of goes back to that."
+    },
+    {
+      "start": 2734.54,
+      "end": 2736.28,
+      "text": "What is the purpose of this role?"
+    },
+    {
+      "start": 2736.58,
+      "end": 2739.66,
+      "text": "If we don't have a star candidate in the village, what's his name?"
+    },
+    {
+      "start": 2739.9,
+      "end": 2741.36,
+      "text": "I don't know if he's good."
+    },
+    {
+      "start": 2744.18,
+      "end": 2746.14,
+      "text": "This is a speaker for my group."
+    },
+    {
+      "start": 2746.64,
+      "end": 2750.08,
+      "text": "But wait, what was the thing that we were doing at Martin?"
+    },
+    {
+      "start": 2750.2,
+      "end": 2750.42,
+      "text": "Martin."
+    },
+    {
+      "start": 2750.84,
+      "end": 2756.52,
+      "text": "So I was actually pro-Martin because I don't know what this pro-Martin is."
+    },
+    {
+      "start": 2756.8,
+      "end": 2757.14,
+      "text": "Sure."
+    },
+    {
+      "start": 2757.46,
+      "end": 2758.52,
+      "text": "Do you want to be a pro-Martin?"
+    },
+    {
+      "start": 2758.76,
+      "end": 2759.36,
+      "text": "Three people."
+    },
+    {
+      "start": 2759.36,
+      "end": 2762.3,
+      "text": "So like the song is going to be like Team T."
+    },
+    {
+      "start": 2763.1,
+      "end": 2763.26,
+      "text": "Team T."
+    },
+    {
+      "start": 2763.26,
+      "end": 2763.56,
+      "text": "Team T."
+    },
+    {
+      "start": 2764.3,
+      "end": 2764.48,
+      "text": "Team T."
+    },
+    {
+      "start": 2766.58,
+      "end": 2768.68,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2768.92,
+      "end": 2769.32,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2769.32,
+      "end": 2769.64,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2769.64,
+      "end": 2769.66,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2769.66,
+      "end": 2769.84,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2769.84,
+      "end": 2769.96,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2769.96,
+      "end": 2770.0,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2770.0,
+      "end": 2770.22,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2770.22,
+      "end": 2770.68,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2770.68,
+      "end": 2773.08,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2773.32,
+      "end": 2776.92,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2778.42,
+      "end": 2783.34,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2786.1,
+      "end": 2788.86,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2792.6,
+      "end": 2808.4,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2808.4,
+      "end": 2809.42,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2809.42,
+      "end": 2810.0,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2810.0,
+      "end": 2810.78,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2810.78,
+      "end": 2811.66,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2811.66,
+      "end": 2813.54,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2813.54,
+      "end": 2814.1,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2814.1,
+      "end": 2817.76,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2817.76,
+      "end": 2818.3,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2818.3,
+      "end": 2818.84,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2828.76,
+      "end": 2835.54,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2835.8,
+      "end": 2836.76,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2836.76,
+      "end": 2836.94,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2836.94,
+      "end": 2837.52,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2837.52,
+      "end": 2838.24,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2838.24,
+      "end": 2839.52,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2839.52,
+      "end": 2840.28,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2840.28,
+      "end": 2841.02,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2841.14,
+      "end": 2842.94,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2842.94,
+      "end": 2843.34,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2843.36,
+      "end": 2843.88,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2843.88,
+      "end": 2848.7,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2863.24,
+      "end": 2866.78,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2867.04,
+      "end": 2869.22,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2869.22,
+      "end": 2869.52,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2869.8,
+      "end": 2870.66,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2870.66,
+      "end": 2872.6,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2872.94,
+      "end": 2874.14,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2874.14,
+      "end": 2875.7,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2875.7,
+      "end": 2876.74,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2876.74,
+      "end": 2877.38,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2877.38,
+      "end": 2878.68,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2879.36,
+      "end": 2880.98,
+      "text": "So a lot of seconds hook my group."
+    },
+    {
+      "start": 2880.98,
+      "end": 2882.12,
+      "text": "My group made for 10."
+    },
+    {
+      "start": 2882.3,
+      "end": 2883.84,
+      "text": "I don't want you guys to be more honest."
+    },
+    {
+      "start": 2884.14,
+      "end": 2884.26,
+      "text": "I don't want you guys to be more honest."
+    }
+  ],
+  "main_ideas": [
+    "TODO"
+  ],
+  "summary": "TODO",
+  "keywords": [
+    "TODO"
+  ],
+  "questions_to_review": [
+    "TODO"
+  ],
+  "text": "Today's National Chocolate Cupboardnej. Okay. Okay. We spent a few class sessions looking at the characteristics of work that we will do and how that shapes things like culture, how it influences individuals, how we design formal organization to support that work. We spent a few days talking about universal needs that individuals have. We talked about individual differences in diversity. Today we're going to shift and we're going to spend a good chunk of the next number of weeks. I talked about different formal HR processes. Today we're going to start by talking about recruiting and selection as a really critical HR process. This slide just helps you again reinforce the message that I hope you've been hearing from Dave on and that is I don't care what discipline you are. I don't care what you're after. I don't care if you never want to go into HR. Who executes most of the HR functions for HR processes and managers in other places. HR supports and sold sometimes it owns those processes but line managers often execute those. Today we're going to talk about the hiring process. We're going to talk about something called job analysis that we use to create a weighted criterion matrix and then we'll spend a good chunk of our time discussing it as to how it's going to work. This is the ideal hiring process. We're being very intentional about hiring. It starts with identifying the purpose of the hiring. That sounds obvious but in a startup environment or a high growth environment, sometimes you're just trying to get bodies and you don't really take time to think about what is the actual purpose. What is the job that we're hiring this person to do? Once we identify that purpose, we establish the criteria upon which selection is going to be based. We go through a process of waiting those criteria and then we identify candidates, evaluate candidates, select candidates, hire and on board those that we selected and then at some point we're going to evaluate that employee and see do they perform in line with expectations. We're going to spend a little bit of time on each of these steps here. First, identify the purpose of a hire. Again, you have to be very intentional about why you're hiring someone. I think this is a really good example of a situation where they really create a competitive advantage by getting really, really clear about the purpose of a hire. I'm not 100% sure if the sound on this is working. So I can try to test it. We'll see here. There is an epidemic failure with a patient who understands what we need to ask. And this means people with an agent based policies. This judge your players may manage their teams. Okay, people who run all those that they think in terms of buying players. Your goal is to buy players, your goal should be five players and over-defined players should be five players. Here's your final question. It's about to be a stock seed journey based on your start. We're $7 million a year. So I see your journey. What I see is an imperfect understanding of your growth. The guy's got a great club. He's an easy lead off-hitter. He'll be $7 million a year from the rest of the school. Based on this, it's going to be later on. All of the more questions. Hey Billy, I wanted you to see player dimensions. I actually do three. Yeah. To buy my three players. Yeah. How many do you do? Forty-six. Okay. Okay, well that's stuffy. So traditionally, baseball executives were thinking about the purpose of a higher in terms of buying stars, right? The Oakland A's had severe budget constraints. They didn't have the financial needs to hire the start players like someone like the U.C. or the Yankees. So how did they change their thinking about the purpose of hiring a baseball player? How did they shift their thinking here to other law books? Yeah. So yeah, they broke down. Instead of thinking like, oh I hired a person. Oh, I need to change the needs of the metrics. How does this person help this music? They're looking to get done with it. They're very hitter. They're a great runner. They're thinking about it in the whole unified term. Yeah. So if a win comes from scoring runs, how does a baseball team score runs? And it runs by getting people on base. And so they started to value something called on base for simple. Far more than how many home runs someone hits. Far more than other metrics than what typically he used to think about hiring a baseball player. And during the years from 2000 to about 2006, they finished first and second in their division despite some severe financial constraints. This is a frontier that shows you T-20 percentage. And this is salary. So you'll notice the New York Yankees, how to hide T-20 percentage, but they were paying a ton for that winning percentage. Here you see these teams from the Oakland A's are all down on the lower right quadrant, suggesting that they were getting a significant winning percentage for very low salary. So just by simply shifting their thinking about what is the purpose of a baseball player, they were going to create this incredible competitive advantage. And they never won a World Series during that time, but they came very close and had some really, really good teams during that time. Once the market kind of discovered what the A's were doing as management, earned the A's, went to other places, and the money ball concept kind of went to other places. You'll notice the labor market returns to individuals with higher on base percentage begin to skyrocket. So getting clear about the purpose of a higher is really important. Once you get clear on why you're hiring someone, then we do something called a job analysis. A job analysis is a study that's meant to determine the tasks that are involved in a job, and the competencies that are required to do those tasks. The ultimate goal of the job analysis is to write a job description so that you can advertise for a particular job what you're looking for. So a few steps into job analysis, we're going to review existing job descriptions that are related to this job that we're hiring for. We're going to review any public data that's available that can help us gather information about what this job entails. We're going to conduct surveys or interviews or observations of people that have done that job. And then we're going to look at those that supervise individuals in that job. And so by implementing these different types of approaches to learning about the job, we can better understand what are the tasks and what are the competencies. So once we've identified the critical tasks and tasks in competencies, then we're going to learn how to write what we call task statements and competencies statements. And then we're going to get a good task statement. Has this form we've talked about each action, sorry, the object of the action with clarifying details. So here's the example of a task statement. We need an individual that can develop and implement comprehensive digital marketing strategies that increase brand visibility and customer engagement using platforms such as Google Analytics social media and SEO tools. So that's an example of a task statement. What competencies are required, competency statements have to form what is the competency, what is the object of the competency, and what's the level of proficiency. So here it says advanced proficiency in developing, testing and deploying web applications using modern frameworks to optimize application formats and ensure security best practices. So task statement describes what needs to be done, the competency statement describes the level of competency we're looking for for some of the performance tasks. Questions? Yes. From your perspective, I feel like, so in my experience, any job, job-to-word, job-to-description, job-to-signal, you can believe what I can look at is actually very different from the circumstances. So it's like, you job-to-signal, you're not a good idea to be a scientist, you're kind of like a more patient, you'll be a partner in the job-to-signal, like the other type of thing. Yeah, so a job description is really for helping someone understand what am I going to be doing here and what are the core companies and that may or may not be included in a job-to-signal, you may have other way to get your job, but the job description is really the nuts and bolts that help the person understand this is what you're going to be doing and these are the qualifications to make life easier. Yeah. Do you really need theories about why so many people are so bad at this? This is my experience, I'm very worried about the new job, those things that have good jobs for getting married, they actually make sense. I appreciate it's indescribable. To be honest, I just feel like many, many, many managers get so consumed with putting up their buyers and their day to day jobs, they just don't have the bandwidth or the time, or maybe the understanding is the intentional loss in this, so they do a new four-gyPE. Companies that really value HR are going to do this better than one of these. Now there's some argument that this is kind of an obsolete thing. There are some people that advocate for other types of mediums, so one is a video job description. I'm going to show you an example of a video job description. 10,000 shrewpacks if you've been caught the BYU cameo in this particular job description. As you're watching this, I want you to think about, okay, what would be the advantages of a job description like this? What would be some of the drawbacks to the advantages of this? Instructors are critical to camp. They help the faith in environment where the campers feel faith, whether they feel hurt, their臂, exploring their interests, the material. Three things that make a really amazing medium instructor are being able to be in prompting, being someone who is really passionate about certain subjects or certain areas, but also someone who is excited and loves to easily and have a lot of fun at camp. Going into gallery, you don't necessarily have to be going down to the traditional education path. You don't have to be a video game designer to being a video game instructor. You just need to have the passion, you just need to want to have fun with kids, you just need to have that open mind jumping there to do this. The aim of a medium instructor can vary, but their main focus is to work on the classroom, to make sure that all the materials are there for people to use, that your 10 years know how to best support you in the classroom, but also just being a part of camp, where I'm feeling hot today, and bringing the energy, bringing the time every day, just being excited with you there. Jowl is fun because you're working with amazing staff in an environment where you get to be able to fit again, working with curriculum that's so high quality that really inspires not only kids to be your best, but also the staffers to be their best as well. It gives you this confidence going through your talent, and it's not a love warranting confidence, it's like a real confidence from an experience, a transformative experience, a really great success. How do you, it's obviously what you came up with. 10,000, three bucks for all. What are some of it, some advantages, disadvantages to this type of job history? Advantage, you see what's happening, you see a little bit of environment, no, yeah, I think I did a good job. Did you much better feel culture and a bit of video? I hope I'm happier walking that video, so I will agree to that. Yeah, yeah, there's emotions, the affect that's part of it. I feel like it feels more like I don't know what state you're in the office, but I think that's a lot of me great to see what you're here. This is kind of like I don't really want you to be doing any today, but I feel like actually getting to work, it's not like you're doing anything in the field, and they get expectation, and what the whole job I will get much more into. You see, I'm not sure. Yeah, so this one's maybe more focused on culture and cultural fit, but you still have a lot of questions about what I'm actually wanting for, what I'm actually doing here too. Yeah, these are expensive, right? And they're market change. So once you create them, if somebody changes making a new one, it's a whole new expense. I think that video is more flexible than what they can portray. Like this one focused on culture, but could you possibly understand what the job is on the functional days? Absolutely. I think the main difference is that when you're writing about the structured why not just being on your specs. Many of you are so different, as we do not know for working on this, because not most of us are. Thank you. I'll give you some utility and creating videos that do help individuals understand. Could I be a cultural fit? Once we've done the job analysis, we create selection criteria. This was from your case, right? I think that this very well thought out selection criteria sheet, commitment to firm, judgment maturity, interpersonal skills, leadership, technical skills, and work ethic. And then under each and that, we're in the head of subcategories here to get to an overall rate. Once we create our criteria, then the last step is to create what we call weighted criteria and metrics. So there may be criteria that we value equally, or there may be some that we want to weight more than others. And so we take our criterion, we establish a weight for each one, and then, when we break the candidate, we can use that weighted criterion matrix to evaluate the candidate. Or you can just employ Ron Swanson's method. The only question is, what can you start? I know, let's do it. Thank you for coming here. We will talk. Cool. I feel good about this. I know you can give me a location with anytime there, and I know that right. Thank you everybody. Boom. So what even do you do with assistance? I want to punch you in the face of that right now. Yeah. Mr. Seagalkey, look. Thank you. Really? No. I want to be your assistant. Really? You're a native here. So you, I'll make sure you don't have to go to any meetings. And when comes to see you, I'll scare them away. If you have to do these two guys, you're hired. I'm going to find a spot to get paid for being here. There's no... Hopefully we're in a safe and value and following the more ideal hiring process. So that's right, Ben. We're sitting in case here. We have F.D. Cowan. You can give us a little bit of a stage set for this particular case. What's going on in case Ben? So F.D. Cowan is an invested banking group. They're based out in New York. They are kind of a smaller, more boutique firm. They try to differentiate through abilities to move up in the firm. Having more disability to see the leadership. And they typically are hiring an analyst class or an associate class each year. Look, these folks are typically post-MBA. And they can be with a lot of these larger firms or top talent from the top schools. They've found that they typically are getting kind of invigorating candidates from top schools. So they kind of move their strategy to target top talent from kind of tier two schools. And they're hiring an analyst class right now. They do a super Saturday process with that. The candidates come in and the folks that help out with the interviews help make the hiring. So multi-pronged kind of strategy here. It starts with identifying the four schools. And then we have on-campus interaction and interviews. That results in why out of New York. And then we have this super Saturday concept that will play results in final studies. Let's talk first about this four school strategies. What were your reactions? Things you like, things that you dislike about their score school strategy? Let's come here and back to another point. The thing I like about the course was about the strategy is that it's a lot of you to get into the meeting pipeline. So that you have access to the competitive talent. But it's really easy to study that came out about it. It has less to do with where students go to school and more how they perform half that school. That really determines how well they're working with their careers. So switching from your once-wheel to your two-school to looking for a few of your talent professors to do. I'm like, I'm really going to stand on your very effective way of doing this. But still, that's not what you see in your career. So firms are looking for a single. And an MBA can be a single one. The idea here is that we're going to put some of the, we're going to put some trust in a school like Wharton or NYU or Berkeley or BYU to that talent course. If a student's able to be accepted into this program, it's very well successively complete that program. Then we have some confidence that we're getting a signal that this is a quality professional. And so firms pay very close attention to the students and folks that reduce some of that information asymmetry and higher candidates that will perform well. Rebecca. Rebecca? Yes. Did you have your own? No, I just kind of think of just focusing on that second period. I'm just going to do this while I'm in class. So I had a recruiter come to BYU and in front of all the BYU students, said something that aligned with this principle from this case, he just said, the top talent at UU is indistinguishable from the top talent at BYU. And he said, and you don't get the arrogance that you sometimes can't. You get it with the dose of the strappiness and humility that maybe you don't have at BYU. I thought that was kind of interesting that you know, other firms sometimes recognize the top talent, but at least like you view and see this, we'll let it take some of the top talent. Now if you go down into the middle of the class, then maybe you certainly have more variance. Other reactions to their core force moves, gravity? I think that's the most important thing to do. I think that's the most important thing to do. I think that's the most important thing to do. I think that's the most important thing to do. The feeling of trying to do well, heavyement well in the way, is, okay, I just find it clear. Didn't this answer feedback suitogl.. Absolutely, so the Aoki included the audience who feedbacked it for new knowledge, each of you talk to my students and then every student there is getting good at it like based on a time of becoming that always be expensive but clever way to approach the process. And how do those initial info sessions help to act as a filter? How did that help them seem who is most interested? Well that's it if they are talking to these people and they're more interested instead of just waiting for their prudent or like actual interview. They're putting in that initiative of like I don't know learn from these people and see what's happening. So if they set up an informational interview actually you know what's the effort of seeking out that information that would give them again more information about the interview so that this would be that. Then did you have something to do? No, just something. Okay. Other thoughts? So then we have this on-campus interview process. Thoughts, things that you notice, things that you like or didn't like about that approach to their on-campus interview. So there's a lot of that collaboration with the managers and decisions of the very end of the day from the all-in-one team and ready to get out of there. And I just thought that that idea will have been a little bit kind of a less than the support part of the process with the actions that they're trying to do. If they want to keep it, if they want to keep it, if they have to do it, they're trying to break out the time to be experiencing the support of the day. One day, pushing the very end of the hour. Very interesting. Is that a motion to super-satter day? Or is that a motion to the day? Okay. We'll get to super-satter day. So one issue is, you know, I'll be trying to cram too much of it one day. The second question is, who's doing the recruiting on campus and its associates? Or some of the pros and cons that approach to using associates? I think that what it does in the case, the people that are actively working with ones that are best suited to be able to do the same. Yeah, that's definitely a sale-crime plan. No. On the one hand, we have people who know what the job entails and are doing about the first round of interviews. I was thinking throughout, like, the ability to value some vision, like, to get a little different, like, a big firm, like, people, things like the dimension. But then, like, I also think that maybe some people were higher than that mind, but it's someone who, for that purpose, goes to be right. So I actually know that values were envisioned, where we're going through that, but the energy won't be just that. I just, um, this senior associate, we do a high-level experience, who is it, the work of the firm, are being given, given, selected, less, which means that there will potentially, other future, something would have been better, because we never, we've never seen, because somebody else felt there could outboard on who we didn't have the same experience, but they did. So we're trusting that, you know, because if the senior associate is looking at fit, and the long one, they're not doing the basic work, it's like, there's some risk in that, there was, like, wouldn't you better, if we decided to fit in, not many better first, and then we have to assess whether or not we could use those. So maybe our filter is to strict at the beginning, which means that a more narrow, unit is where the action decision makers need to see. Okay? Yeah. That key, that key, that doesn't mean that it says that it's really hard to keep. A lot of variance in how to, actually, review this, how to approach it. I think that if you have any other fail, you can name it, just try to keep it in your mind. I think it needs to be more, probably, full here, in terms of the plan right now. Okay? So one of the reasons they select the number of people they use, is they have a target number of offers they're kind of made. And so based on previous yields, that's why they are trying to bring 30 people out. Because they hopefully bring 30 people out. We have a hope of making 15 to 20 for the offer. But I think it's a really important point. So just having a really long big advantage. Isn't it effective right now? Any other reactions to their on campus approach? I found it very interesting because of that, that's a more an opportunity for people to be able to see themselves comfortable. Because if you're on campus in a place like this, you know, whereas if you're applying out to New York City, if you're not from there and you're in it, I know I, it's a very, very easy environment to be able to be comfortable. And so I think I have the first little bit of ground on campus. don't have to be able to see people when they're still worker, and be able to actually see what they're doing that way. And than much loss. If you want to let them show us a bunch of different ways of doing these on campus, perhaps they may demand new clients by doing that money and bringing in new resources. So with regards to the kind of applications that would better be, employment or not that technology in terms of money there, I don't have to spend more time waiting for exclusion or a focus on what you said. Even that having that close medicine in campus can help you speak for us. And help you to know which ones actually have to have to be first built. And as a candidate, I really appreciate when they help me. No, and I'm going to learn to move on and learn to invest more time. That's not good. So after this initial screening on campus, we have 30 people that end up coming to the super Saturday event, reactions to super Saturday, what were your closing crimes and business issues? I think this is a lot of fun working with him. But I didn't really anticipate about last time I was on the people's hotline after the conference where I talked to a part of the statement that I was getting. So very similar to the super Saturday meeting. And I think they did a lot of 100 interviews with like 10 different recruiters and teams. And when I was sitting down on the interviews and sitting with a liberation, I just saw how easy it was for better the worst taking care of candidate. You could have someone with like this one 100% and great thing. He's 100% ready to build a troll. It would be great. And like, if you have someone who has a skills with a personality, you can go like, well, they just seem to go to the cold room or I didn't connect them as much. Whereas if you had to do so many interviews back to back to back, maybe that difference wouldn't have stood out so much. It's like really great because it's efficient and you're able to get a lot through ones. But there's also not a question of like, is it actually advantageous in interview that many together from the interview? There's actually some really interesting research to do that shows, a person's rating in an interview context is greatly affected by the candidate that went before you. So you have to be really careful. You'll talk about this when you talk about performance management. This is the same thing with performance management. But when you're doing back to back to back interviews like that, you may rate an individual not necessarily based on the criteria, but based on how they compare to the person at the end of the work. If someone before you was a stellar candidate and you're maybe weaker, that can be very disillusioned. I think it doesn't necessarily make any work that I'm talking about today in the news. It's the next day I've done that in town. They told me to actually part of it. I just try to tell if it's not scared of you guys, because you're probably going to be like, it's decentralized, and it's going to be a little bit more decentralized. It's going to be a little bit more decentralized, because you can kind of sometimes not do it as easily directly. You can be more comfortable into your people. So that part is like good. It's going to be a little bit more fun to do. It's going to be a little bit more fun to do. So I was surprised to report to this you for a day. I was really surprised to see you guys. I was really surprised to see you guys. I think one of the major issues with this entire process is from the on-campus experience for Saturday is a lack of rigor and structure in what they're doing. Even when you look at the notes in the case, the notes are all over the place. And that's the case. What are you selecting based notes? Is it criteria or is it random things like whether the person played with a boss or not? They can see some of the challenges that have happened. Yeah. Along the same line, they have a regular sheet, right? But it wasn't actually built out. Like they have to be out of use. But in order to have a lady's understanding of that, it looks like a little bit successful, 20 feet below that bar. And there's also really low adoption. Right? Like Joseph, the famous who were running these interviews, and they were raising it like on-line securely, which is a very large option. I'll certainly wait until you hire them. And we know from research that unstructured interviewing is workable. It's not about bullet point. You'll get a better out-hound. I'll call you within unstructured interviewing. Yeah, much. This is very similar to, at least in terms of the information on that, the tool that can solve you from that, it's for the first seven years. And I saw it from both sides, but can it in the middle of the entire research? And you have to lock these structure things. And also, in terms of some of the tools that you're going to use in the work that you're going to use, the signals that you set to 90. It has as how much their existence will process in community development. And you move it back, it just point about the fact that when the program is used today, it won't be Saturday. It's all candidates, you're coming in, or you're getting a little Friday night, and then you're going to be talking Saturday, essentially telling, oh, we'll figure you out on the yesterday's work in the D-Broom at the end, to me as a candidate, we're going to be talking, okay, so you're not really, you're far more invested in, like, the data that you've also seen, then you are in the beginning. There might be some realistic job for you, going on too, that works better than you're in a Saturday, but we're going to take them to your full day on Saturday. So there's certainly some positive elements in terms of getting totally realistic job for you. Am I missing any hands over here on this side of your? I think there's too many interviews. In one day, like, you go back to back to back and you're expected to, like, be on your game multiple times, to multiple people, I think, it's exhausting on both sides, and, like, I think people can talk and, like, make connections or whatever, but I don't know if that always has anything to do with your actual ability to, like, be a teen player, or, you know, like, Natalia or whatever, they're like, I'm worried about her English-speaking abilities. It's like, well, have you seen her, like, work with people? Is that really actually an issue? Or is that just your, like, bias talking? Okay, so, you guys know how we do that. How do you do that already, you map with your groups to discuss this case? Sorry. Hmm. Perfect. And now that's actually good. So, have me hear that. That's the story. That's the story. That's the story. We didn't want to get it. I just didn't want to re-create what we've already done. So, um, I was just curious. I thought we'd already talk about this in time. I want you to take the four candidates. Right. You got that. I'll give it a five. Folks. We're the people's vote. Thanks. We're the designers. We're the designers of the... Derek! Eric. All right. We don't have time to do every group, But I need some spokespeople from each group to just give a really brief description of why you offer to people if you get. So we just took the criteria evaluation form and just west through it based off of the script. So you've seen how that sheet others, how did you approach this statement? We just did a democratic process. It was a bit more of a plus thing to say than that you used actual group work, but we did not. It was a science, but we all made a case for people that we thought were passionate, like Hannah really, like Mark and we all hated it. Well we didn't hate it. We scored our troops, but like... You can't sign that. I think it was just a little bit more subjective, which probably isn't my system, but we probably should be. So we have five, what are some other things that you can say? Tanner, what was your case for Mark? There's other concerns I think that Mr. Begney is not just a job, it's like it's a life. And so I think some things that is important to the part of it are like, with Mark, I love that. If background in military he'd do that grinds. He'd have the outside sources, like relationships, which sounds sad, but also it relates to the little that doesn't make you. So we've got to grind through it and be able to do it in their long term. Like as a company, I always hire someone who wants to leave in the year, and I work with other candidates with their ties to other pieces of the entrepreneur of family. It doesn't make you be concerned that they want to leave a year or two when the company wants to have long term regression. Anyone else from that group? What were some of the reasons why you advocated for their campaign? I think we all were almost in this long Nepal year. I think they're concerned about like language or social things. We're secondary to... She had the type of like skill set that she's talking about. She'd put her head down, grind, and she had trade periods. She seemed like she would be a good fit just on the analytical side. So I think all of us were in fourth there. And then I think the other ones, there was like family, man, military, or like entrepreneur. And so all of us kind of made cases in different ways. Why is that one that goes background better? And so anyways, we had another voting for college entrepreneur at the end. That also may have just been our own backgrounds as well. And they've been changing the vibes. So you were... Okay. Right. You're the health provider. Yeah, I don't know if everyone thought that's exactly what it was. But the way I was thinking about it was they all have a skill set that I think would be beneficial for this to be making. We just waited like how big the concern was for each candidate. Like there were certain concerns. They all had concerns. Some of them were just larger concerns than others. So it was more about... honestly for me it's more about the concern than the skill set. Okay, so you're waiting the red flags and trying to decide which red flags were mostly. How did you tell us about how you made that decision about which red flags were most comfortable? Yeah, I mean Natalia was obvious. I think everyone thought that too. She has great skills. And again, those like language things, I think were very low on our list of what to go along. Right. For Martin, the red flag was that we don't know if he's going to accept an offer. And that's a big thing. Right. So we decided not to go with him for that reason. Then it would be between 10 and 10. And we thought 10 had a stronger skill set in that like PWC was fantastic. They both had issues with like other commitments that might take them away. We thought this entrepreneurship might be a bigger deal that he would want to lead to start to continue his own business. He was already making more money than he would in the investment thinking. So we talked about 10 and one red flag being had a family where 24% of us theoretically. But they also looked at us and was doing this investment making jobs in New York. The only thing that status is a protected class. It's like you don't hire him based on the fact that he has a family. And he could turn around to the city and he would 100% win that case because the conversation is being passed away. He would be very happy because he has 60. He theoretically he could sue. In practice it would be very difficult. I mean I would have to work and that's actually happening. Whether that's legal or ethical, this might be two different conversations. Yeah. And what do you think of the rest of the situation in Canada? Why do you think it's a new process? That it would be a future of the Canadian. We have an international international director who asked to have kids. I thought I have a treat or he would just look like a dad. And I kind of assumed that was about me. And what I said in the two is I don't want to ask what for his dad. So if I wasn't in the compositions, the problem is that I told them those things on his face. And it came to my knowledge that people probably won't have their head kids. I wouldn't want it. So that's what I wanted to tell the OU students. If someone's been discriminated against you because you have a family, you probably don't want to work at that particular. I don't know why it's turned out. We didn't decide on this other team, but we didn't see any of the other things that we're not hiring anyone at the top yet. Just made one principle and we were working with the role. I know that goes into like a bunch. But I think it kind of goes back to that. What is the purpose of this role? If we don't have a star candidate in the village, what's his name? I don't know if he's good. This is a speaker for my group. But wait, what was the thing that we were doing at Martin? Martin. So I was actually pro-Martin because I don't know what this pro-Martin is. Sure. Do you want to be a pro-Martin? Three people. So like the song is going to be like Team T. Team T. Team T. Team T. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. I don't want you guys to be more honest. So a lot of seconds hook my group. My group made for 10. I don't want you guys to be more honest. I don't want you guys to be more honest."
+}
